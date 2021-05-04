@@ -6,6 +6,7 @@ languageCode = "en"
 DefaultContentLanguage = "en"
 enableInlineShortcodes = true
 footnoteReturnLinkContents = "^"
+math = true
 # DO NOT REMOVE THIS
 theme = "harbor"
 
@@ -63,3 +64,11 @@ theme = "harbor"
     width = 50
     height = 50
     alt = "Logo"
+[markup]
+  [markup.goldmark]
+    [markup.goldmark.renderer]
+      unsafe = true  # Enable user to embed HTML snippets in Markdown content
+  [markup.tableOfContents]
+    endLevel = 4
+    ordered = false
+    startLevel = 2
