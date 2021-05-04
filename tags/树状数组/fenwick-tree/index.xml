@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>树状数组/Fenwick Tree on Thallim&#39;s Blog</title>
+    <link>https://blog.thallium.com/tags/%E6%A0%91%E7%8A%B6%E6%95%B0%E7%BB%84/fenwick-tree/</link>
+    <description>Recent content in 树状数组/Fenwick Tree on Thallim&#39;s Blog</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en</language><atom:link href="https://blog.thallium.com/tags/%E6%A0%91%E7%8A%B6%E6%95%B0%E7%BB%84/fenwick-tree/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Editorial for Codeforces 1208D- Restore Permutation</title>
+      <link>https://blog.thallium.com/post/2020-04-10-cd1208d/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>https://blog.thallium.com/post/2020-04-10-cd1208d/</guid>
+      <description>题目本身就很好，同时又能带来对树状数组的一些思考。 Solution We will solve the problem in reversed order. For every $i$ from $N$ to $1$, there exists some $k$ such that the sum of $k$ smallest unused numbers is $s_i$. The answer for the position $i$ is $k+1$. We can find $k$ by fenwick tree(BIT) and binary in $O(n\cdot \log(n)^2)$or fenwick tree with binary lifting in $O(n\cdot \log(n))$ time. 题解 我们要倒着处理，对于当前的</description>
+    </item>
+    
+    <item>
+      <title>Little Elephant and Array - CodeForces220B 树状数组</title>
+      <link>https://blog.thallium.com/post/2019-9-26-cf220b/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>https://blog.thallium.com/post/2019-9-26-cf220b/</guid>
+      <description>据说莫队更简单，然而不会啊 题目链接 考虑维护一个数组$D$，使得$D_l,D_{l+1},\dots,D_{r-1},D_r$的和为询问$[l,r]$的答案。用线段树或树状数组都行（显然树状数组比较好写</description>
+    </item>
+    
+    <item>
+      <title>Tutorial for Codeforces 1268C/1269E</title>
+      <link>https://blog.thallium.com/post/2020-05-21-cf1268c/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>https://blog.thallium.com/post/2020-05-21-cf1268c/</guid>
+      <description>又一道pbds Solution Forming a subsegment of $1,2,3,\dots,k$ consists two steps: Make numbers $1,2,3,\dots,k$ form a subsegment in any order. Change the order of numbers to form $1,2,3,\dots,k$. The first step reminds us a classic problem: moving some points to one points with the minimum moves. The optimal way is to move all the points to the points in the middle. Let the coordinate of the points be $p_i$ and the point in the middle be $mid$, the answer is $\sum\vert mid-pos_i\vert $. However, in the actual problem we don&amp;rsquo;t move all the points to</description>
+    </item>
+    
+    <item>
+      <title>Tutorial for Codeforces 1288E - Messenger Simulator</title>
+      <link>https://blog.thallium.com/post/2020-05-09-cf1288e/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>https://blog.thallium.com/post/2020-05-09-cf1288e/</guid>
+      <description>Tutorial A faster way to simulate the process is that instead of moving the hole array, we can add some extra space in front of the array and simply move the element to the extra space. For example, in the sample input: 5 4 3 5 1 4 The process would look like _ _ _ _ 1 2 3 4 5 _ _ _ 3 1 2 _ 4 5 _ _ 5 3 1 2 _ 4 _ _ 1 5 3 _ 2 _ 4 _ 4 1 5 3 _ 2 _ _ _ We can</description>
+    </item>
+    
+  </channel>
+</rss>

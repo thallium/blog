@@ -1,0 +1,895 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
+<meta name="HandheldFriendly" content="True" />
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+<meta name="generator" content="Hugo 0.83.1" />
+
+
+
+<link rel="apple-touch-icon" sizes="180x180" href="https://cdn.jsdelivr.net/gh/amzrk2/cdn-stcapi@1/favicons/apple-touch-icon.png" />
+<link rel="icon" type="image/png" sizes="32x32" href="https://cdn.jsdelivr.net/gh/amzrk2/cdn-stcapi@1/favicons/favicon-32x32.png" />
+<link rel="icon" type="image/png" sizes="16x16" href="https://cdn.jsdelivr.net/gh/amzrk2/cdn-stcapi@1/favicons/favicon-16x16.png" />
+<link rel="manifest" href="https://cdn.jsdelivr.net/gh/amzrk2/cdn-stcapi@1/favicons/site.webmanifest" />
+<link rel="mask-icon" href="https://cdn.jsdelivr.net/gh/amzrk2/cdn-stcapi@1/favicons/safari-pinned-tab.svg" color="#8aa2d3" />
+<link rel="shortcut icon" href="https://cdn.jsdelivr.net/gh/amzrk2/cdn-stcapi@1/favicons/favicon.ico" />
+<meta name="theme-color" content="#ffffff" />
+
+
+<title>Posts - Thallim&#39;s Blog</title>
+
+
+<meta name="author" content="Thallium" />
+
+
+<meta name="description" content="A minimal Hugo theme with nice theme color." />
+
+
+<link rel="alternate" type="application/rss+xml" href="https://blog.thallium.com/post/index.xml" title="Thallim's Blog" />
+
+<meta property="og:title" content="Posts" />
+<meta name="twitter:title" content="Posts" />
+<meta property="og:type" content="website" />
+<meta property="og:url" content="https://blog.thallium.com/post/" /><meta property="og:image" content="https://blog.thallium.com/img/og.png" />
+<meta name="twitter:card" content="summary_large_image" />
+<meta name="twitter:image" content="https://blog.thallium.com/img/og.png" /><meta property="og:updated_time" content="2020-05-11T00:00:00+00:00" />
+
+
+<style>
+    @media (prefers-color-scheme: dark) {
+        body[data-theme='auto'] img {
+            filter: brightness(60%);
+        }
+    }
+
+    body[data-theme='dark'] img {
+        filter: brightness(60%);
+    }
+</style>
+
+
+
+<link rel="stylesheet" href="https://blog.thallium.com/assets/css/fuji.min.css" />
+
+
+
+
+
+</head>
+
+<body data-theme="auto">
+    <script data-cfasync="false">
+  
+  var fujiThemeData = localStorage.getItem('fuji_data-theme');
+  
+  if (!fujiThemeData) {
+    localStorage.setItem('fuji_data-theme', 'auto');
+  } else {
+    
+    if (fujiThemeData !== 'auto') {
+      document.body.setAttribute('data-theme', fujiThemeData === 'dark' ? 'dark' : 'light');
+    }
+  }
+</script>
+    <header>
+    <div class="container-lg clearfix">
+        <div class="col-12 header">
+            <a class="title-main" href="https://blog.thallium.com">Thallim&#39;s Blog</a>
+            
+            <span class="title-sub">My blog mainly about competitive programming and some other stuff</span>
+            
+        </div>
+    </div>
+</header>
+
+    <main>
+        <div class="container-lg clearfix">
+            
+            <div class="col-12 col-md-9 float-left content">
+                
+
+
+
+<div class="post">
+    <h2 class="post-item post-title">
+        <a href="https://blog.thallium.com/post/2020-08-24-abc175e/">Tutorial/题解 for AtCoder beginner contest 175E - Picking Goods</a>
+    </h2>
+    <div class="post-item post-meta">
+        <span><i class="iconfont icon-today-sharp"></i>&nbsp;0001-01-01</span>
+
+<span><i class="iconfont icon-file-tray-sharp"></i>&nbsp;167 words</span>
+
+<span><i class="iconfont icon-pricetags-sharp"></i>&nbsp;<a href="/tags/%E5%8A%A8%E6%80%81%E8%A7%84%E5%88%92/dp">动态规划/DP</a>&nbsp;</span>
+
+    </div>
+    <div class="post-item post-summary markdown-body">
+        Yes, I&rsquo;m back! Solution Let $dp_{i,j,k}$ be the maximum sum of values if he stops at $(i,j)$ with $k$ items picked in the $i$-th row. We first update $dp_{i,j,k}$ for $k=1,2,3$ with $dp_{i,j,k-1}$, be careful of the order of $k$, it should be from $3$ to $1$. Then we update $dp_{i+1,j,0}$ with $dp_{i,j,k}$, update $dp_{i,j+1,k}$ with $dp_{i,j,k}$. It&rsquo;s pretty standard dp but I just can&rsquo;t come up quickly. Code #include &lt;bits/stdc++.h&gt; #define all(x) (x).begin(),(x).end() #define sz(x) int(x.size()) #define pb push_back using namespace std; using ll=long long; using pii= pair&lt;int, int&gt;; mt19937 gen(chrono::steady_clock::now().time_since_epoch().count()); template&lt;typename... T&gt; void rd(T&amp;... args) {((cin&gt;&gt;args), ...);} template&lt;typename...
+    </div>
+</div>
+
+<div class="post">
+    <h2 class="post-item post-title">
+        <a href="https://blog.thallium.com/post/2020-09-08-cf1407d/">Tutorial/题解 for CodeForces 1407D</a>
+    </h2>
+    <div class="post-item post-meta">
+        <span><i class="iconfont icon-today-sharp"></i>&nbsp;0001-01-01</span>
+
+<span><i class="iconfont icon-file-tray-sharp"></i>&nbsp;171 words</span>
+
+<span><i class="iconfont icon-pricetags-sharp"></i>&nbsp;<a href="/tags/%E5%8A%A8%E6%80%81%E8%A7%84%E5%88%92/dp">动态规划/DP</a>&nbsp;<a href="/tags/%E5%8D%95%E8%B0%83%E6%A0%88/monotonic-stack">单调栈/Monotonic Stack</a>&nbsp;</span>
+
+    </div>
+    <div class="post-item post-summary markdown-body">
+        Solution First let&rsquo;s consider the case where $\max(h_{i + 1}, \ldots, h_{j - 1}) &lt; \min(h_i, h_j)$. $h_i$ could be lower or higher than $h_j$. There can be multiple $i$ that satisfies the condition and we can observe the leftmost $i$ is the first that $h_i\ge h_j$, let&rsquo;s denote this $i_{min}$, other $i$ between $[i_{min},j]$ must satisfy that $h_i$ is the maximum value among $[i,j-1]$. This can be solved using monotonic stack. Assume we store the indices in the stack, when adding a new index $j$, all the indices that will be removed are a valid position to jump to
+    </div>
+</div>
+
+<div class="post">
+    <h2 class="post-item post-title">
+        <a href="https://blog.thallium.com/post/2019-11-30-segunion/">Two Ways to Do Segment Union</a>
+    </h2>
+    <div class="post-item post-meta">
+        <span><i class="iconfont icon-today-sharp"></i>&nbsp;0001-01-01</span>
+
+<span><i class="iconfont icon-file-tray-sharp"></i>&nbsp;121 words</span>
+
+<span><i class="iconfont icon-pricetags-sharp"></i>&nbsp;<a href="/tags/%E6%9D%82%E9%A1%B9/misc">杂项/Misc</a>&nbsp;</span>
+
+    </div>
+    <div class="post-item post-summary markdown-body">
+        Klee&rsquo;s Algorithm origin int length_union(const vector&lt;pair&lt;int, int&gt;&gt; &amp;a) { int n = a.size(); vector&lt;pair&lt;int, bool&gt;&gt; x(n*2); for (int i = 0; i &lt; n; i++) { x[i*2] = {a[i].first, false}; x[i*2+1] = {a[i].second, true}; } sort(x.begin(), x.end()); int result = 0; int c = 0; for (int i = 0; i &lt; n * 2; i++) { if (i &gt; 0 &amp;&amp; x[i].first &gt; x[i-1].first &amp;&amp; c &gt; 0) result += x[i].first - x[i-1].first; if (x[i].second) c--; else c++; } return result; } One algorithm that I learnt from other&rsquo;s code int length_union(const vector&lt;pair&lt;int, int&gt;&gt; &amp;a) { int n =
+    </div>
+</div>
+
+<div class="post">
+    <h2 class="post-item post-title">
+        <a href="https://blog.thallium.com/post/2019-10-15-debugconfig/">VSCode C&#43;&#43; debug configuration</a>
+    </h2>
+    <div class="post-item post-meta">
+        <span><i class="iconfont icon-today-sharp"></i>&nbsp;0001-01-01</span>
+
+<span><i class="iconfont icon-file-tray-sharp"></i>&nbsp;69 words</span>
+
+<span><i class="iconfont icon-pricetags-sharp"></i>&nbsp;<a href="/tags/vscode">VSCode</a>&nbsp;</span>
+
+    </div>
+    <div class="post-item post-summary markdown-body">
+        task.json { &quot;version&quot;: &quot;2.0.0&quot;, &quot;tasks&quot;: [ { &quot;label&quot;: &quot;task&quot;, &quot;type&quot;: &quot;shell&quot;, &quot;command&quot;: &quot;g++&quot;, &quot;args&quot;: [ &quot;-g&quot;, &quot;${file}&quot;, &quot;-o&quot;, &quot;${fileDirname}/${fileBasenameNoExtension}.exe&quot; ], &quot;group&quot;: { &quot;kind&quot;: &quot;build&quot;, &quot;isDefault&quot;: true } } ] } launch.json { &quot;version&quot;: &quot;0.2.0&quot;, &quot;configurations&quot;: [ { &quot;name&quot;: &quot;C++ Launch&quot;, &quot;type&quot;: &quot;cppdbg&quot;, &quot;request&quot;: &quot;launch&quot;, &quot;program&quot;: &quot;${workspaceRoot}/${fileBasenameNoExtension}.exe&quot;, &quot;stopAtEntry&quot;: false, &quot;externalConsole&quot;: true, &quot;cwd&quot;: &quot;${workspaceFolder}&quot;, &quot;preLaunchTask&quot;: &quot;task&quot;, &quot;windows&quot;: { &quot;MIMode&quot;: &quot;gdb&quot;, &quot;miDebuggerPath&quot;: &quot;replace this with your gdb path&quot; } } ] }
+    </div>
+</div>
+
+<div class="post">
+    <h2 class="post-item post-title">
+        <a href="https://blog.thallium.com/post/2019-9-15-yorku1totr/">York Univeristy programming contest 第一场题解</a>
+    </h2>
+    <div class="post-item post-meta">
+        <span><i class="iconfont icon-today-sharp"></i>&nbsp;0001-01-01</span>
+
+<span><i class="iconfont icon-file-tray-sharp"></i>&nbsp;1065 words</span>
+
+<span><i class="iconfont icon-pricetags-sharp"></i>&nbsp;No tag</span>
+
+    </div>
+    <div class="post-item post-summary markdown-body">
+        这是一场关于身残志坚的比赛。那天晚上切菜时切着手了，去了医院，没想到挂个急诊还要等这么久，心想晚上的比赛肯定泡汤了，等待之余想起自己包里还有iPad和蓝牙键盘，虽然比赛已经开始半小时了，而且自己只有9
+    </div>
+</div>
+
+<div class="post">
+    <h2 class="post-item post-title">
+        <a href="https://blog.thallium.com/post/2019-9-26-york2tutr/">York University programming contest 2 题解</a>
+    </h2>
+    <div class="post-item post-meta">
+        <span><i class="iconfont icon-today-sharp"></i>&nbsp;0001-01-01</span>
+
+<span><i class="iconfont icon-file-tray-sharp"></i>&nbsp;1047 words</span>
+
+<span><i class="iconfont icon-pricetags-sharp"></i>&nbsp;No tag</span>
+
+    </div>
+    <div class="post-item post-summary markdown-body">
+        还算顺利的一场 题目链接 A - 3D Printed Statues 题意： 你有1个3D打印机，打印机每天可以打印出1个打印机或者1个雕塑，你需要打印出n个雕塑，问最少需要几天。 思路： 不难想出，只用一天打印雕塑就够了，因为如果要需要更多的
+    </div>
+</div>
+
+<div class="post">
+    <h2 class="post-item post-title">
+        <a href="https://blog.thallium.com/post/2020-05-19-monostack/">单调栈常见模型</a>
+    </h2>
+    <div class="post-item post-meta">
+        <span><i class="iconfont icon-today-sharp"></i>&nbsp;0001-01-01</span>
+
+<span><i class="iconfont icon-file-tray-sharp"></i>&nbsp;304 words</span>
+
+<span><i class="iconfont icon-pricetags-sharp"></i>&nbsp;<a href="/tags/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84/data-structure">数据结构/Data Structure</a>&nbsp;<a href="/tags/%E5%8D%95%E8%B0%83%E6%A0%88/monotone-stack">单调栈/Monotone Stack</a>&nbsp;</span>
+
+    </div>
+    <div class="post-item post-summary markdown-body">
+        总结一下加深印象 左边第一个比当前小 严格单调递增栈，如果求的是数字栈内就存数字，如果求距离栈内就存数字+下标或者数字+到栈内前一个元素的距离。 举例 [2,1,6,4,5] [] 空栈，说明2之前没有比2小的元素，然后2入栈 [2] 为了保
+    </div>
+</div>
+
+<div class="post">
+    <h2 class="post-item post-title">
+        <a href="https://blog.thallium.com/post/2019-10-4-gametheory/">博弈论入门学习笔记</a>
+    </h2>
+    <div class="post-item post-meta">
+        <span><i class="iconfont icon-today-sharp"></i>&nbsp;0001-01-01</span>
+
+<span><i class="iconfont icon-file-tray-sharp"></i>&nbsp;2504 words</span>
+
+<span><i class="iconfont icon-pricetags-sharp"></i>&nbsp;<a href="/tags/%E5%8D%9A%E5%BC%88%E8%AE%BA/game-theory">博弈论/Game Theory</a>&nbsp;</span>
+
+    </div>
+    <div class="post-item post-summary markdown-body">
+        几个月前的笔记，才疏学浅，仅供参考~ 基本概念 PN点 什么是PN点 P点：前一个选手（previous person)将取胜的点，即必败点。 N点：下一个选手（next person)将取胜的点，即必胜点。 注意：
+    </div>
+</div>
+
+<div class="post">
+    <h2 class="post-item post-title">
+        <a href="https://blog.thallium.com/post/2019-12-31-2019summary/">我的2019</a>
+    </h2>
+    <div class="post-item post-meta">
+        <span><i class="iconfont icon-today-sharp"></i>&nbsp;0001-01-01</span>
+
+<span><i class="iconfont icon-file-tray-sharp"></i>&nbsp;2060 words</span>
+
+<span><i class="iconfont icon-pricetags-sharp"></i>&nbsp;No tag</span>
+
+    </div>
+    <div class="post-item post-summary markdown-body">
+        转眼就到了2019年的最后一天了。看到了很多人的回顾和总结，又想到了今年发生的一些事情，心想我也可以写点流水账啊。 2019发生的最大的事，莫过于我从中国来到了加拿大。当然也有很多别的事情值得回忆：学了
+    </div>
+</div>
+
+<div class="post">
+    <h2 class="post-item post-title">
+        <a href="https://blog.thallium.com/post/2020-07-01-abc_dp/">部分题解/Tutorial for some problems of Atcoder Educational DP Contest</a>
+    </h2>
+    <div class="post-item post-meta">
+        <span><i class="iconfont icon-today-sharp"></i>&nbsp;0001-01-01</span>
+
+<span><i class="iconfont icon-file-tray-sharp"></i>&nbsp;955 words</span>
+
+<span><i class="iconfont icon-pricetags-sharp"></i>&nbsp;<a href="/tags/%E5%8A%A8%E6%80%81%E8%A7%84%E5%88%92/dp">动态规划/DP</a>&nbsp;</span>
+
+    </div>
+    <div class="post-item post-summary markdown-body">
+        A great contest to learn all kinds of dp. M - Candies Solution Let $dp_{i,j}$ be the number of ways to distribute $j$ candies to the first $i$ kids. If we give $k$ candies to the $i$-th kid, we should add $dp_{i-1,j-k}$ to $dp_{i,j}$. Since $k$ takes all the values from $0$ to $a_i$, so $dp_{i,j}=\sum_{k=0}^{a_i}dp_{i-1,j-k}$. Note that we take a segment of $dp_{i-1}$, so we can use prefix sum. There&rsquo;s one optimization: the first dimension of $dp$ is useless, we only need to store the latest $dp$ array. Code #include &lt;bits/stdc++.h&gt; #define forn(i, n) for (int i = 0;
+    </div>
+</div>
+<div class="pagination"><div class="pag-first">
+    <a href="/post/"><i class="iconfont icon-caret-back-circle-sharp"></i></a>
+  </div><div class="pag-previous">
+    <a href="/post/page/9/"><i class="iconfont icon-chevron-back-circle-sharp"></i></a>
+  </div><div class="pag-item">
+    <a href="/post/page/7/">7</a>
+  </div><div class="pag-item">
+    <a href="/post/page/8/">8</a>
+  </div><div class="pag-item">
+    <a href="/post/page/9/">9</a>
+  </div><div class="pag-item pag-current">
+    <a href="/post/page/10/">10</a>
+  </div><div class="pag-item">
+    <a href="/post/page/11/">11</a>
+  </div><div class="pag-next">
+    <a href="/post/page/11/"><i class="iconfont icon-chevron-forward-circle-sharp"></i></a>
+  </div><div class="pag-last">
+    <a href="/post/page/11/"><i class="iconfont icon-caret-forward-circle-sharp"></i></a>
+  </div></div>
+            </div>
+            <aside class="col-12 col-md-3 float-left sidebar">
+    
+    <div class="sidebar-item sidebar-pages">
+        <h3>Pages</h3>
+        <ul>
+            
+            <li>
+                <a href="/">Home</a>
+            </li>
+            
+            <li>
+                <a href="/archives/">Archives</a>
+            </li>
+            
+            <li>
+                <a href="/about/">About</a>
+            </li>
+            
+            <li>
+                <a href="/search/">Search</a>
+            </li>
+            
+            <li>
+                <a href="/tagss/">Tags</a>
+            </li>
+            
+        </ul>
+    </div>
+    
+    <div class="sidebar-item sidebar-links">
+        <h3>Links</h3>
+        <ul>
+            
+            <li>
+                <a href="https://github.com/thallium" target="_blank"><span>GitHub</span></a>
+            </li>
+            
+            <li>
+                <a href="https://codeforces.com/profile/Thallium54" target="_blank"><span>CodeForces</span></a>
+            </li>
+            
+            <li>
+                <a href="https://space.bilibili.com/3019370" target="_blank"><span>bilibili</span></a>
+            </li>
+            
+        </ul>
+    </div>
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+</aside>
+
+        </div>
+        <div class="btn">
+    <div class="btn-menu" id="btn-menu">
+        <i class="iconfont icon-grid-sharp"></i>
+    </div>
+    <div class="btn-toggle-mode">
+        <i class="iconfont icon-contrast-sharp"></i>
+    </div>
+    <div class="btn-scroll-top">
+        <i class="iconfont icon-chevron-up-circle-sharp"></i>
+    </div>
+</div>
+<aside class="sidebar-mobile" style="display: none;">
+  <div class="sidebar-wrapper">
+    
+    <div class="sidebar-item sidebar-pages">
+        <h3>Pages</h3>
+        <ul>
+            
+            <li>
+                <a href="/">Home</a>
+            </li>
+            
+            <li>
+                <a href="/archives/">Archives</a>
+            </li>
+            
+            <li>
+                <a href="/about/">About</a>
+            </li>
+            
+            <li>
+                <a href="/search/">Search</a>
+            </li>
+            
+            <li>
+                <a href="/tagss/">Tags</a>
+            </li>
+            
+        </ul>
+    </div>
+    
+    <div class="sidebar-item sidebar-links">
+        <h3>Links</h3>
+        <ul>
+            
+            <li>
+                <a href="https://github.com/thallium" target="_blank"><span>GitHub</span></a>
+            </li>
+            
+            <li>
+                <a href="https://codeforces.com/profile/Thallium54" target="_blank"><span>CodeForces</span></a>
+            </li>
+            
+            <li>
+                <a href="https://space.bilibili.com/3019370" target="_blank"><span>bilibili</span></a>
+            </li>
+            
+        </ul>
+    </div>
+    
+    <div class="sidebar-item sidebar-tags">
+        <h3>Tags</h3>
+        <div>
+            
+            <span>
+                <a href="/tags/bfs/">BFS</a>
+            </span>
+            
+            <span>
+                <a href="/tags/bitmasks/">bitmasks</a>
+            </span>
+            
+            <span>
+                <a href="/tags/contests/">Contests</a>
+            </span>
+            
+            <span>
+                <a href="/tags/css/">css</a>
+            </span>
+            
+            <span>
+                <a href="/tags/cugbacm/">CUGBACM</a>
+            </span>
+            
+            <span>
+                <a href="/tags/dfs/">DFS</a>
+            </span>
+            
+            <span>
+                <a href="/tags/html/">html</a>
+            </span>
+            
+            <span>
+                <a href="/tags/linux/">Linux</a>
+            </span>
+            
+            <span>
+                <a href="/tags/manacher/">Manacher</a>
+            </span>
+            
+            <span>
+                <a href="/tags/markdown/">markdown</a>
+            </span>
+            
+            <span>
+                <a href="/tags/st%E8%A1%A8/sparse-table/">ST表/Sparse Table</a>
+            </span>
+            
+            <span>
+                <a href="/tags/text/">text</a>
+            </span>
+            
+            <span>
+                <a href="/tags/themes/">themes</a>
+            </span>
+            
+            <span>
+                <a href="/tags/vscode/">VSCode</a>
+            </span>
+            
+            <span>
+                <a href="/tags/z-algorithm/">Z Algorithm</a>
+            </span>
+            
+            <span>
+                <a href="/tags/%E4%B8%BB%E5%B8%AD%E6%A0%91/persistent-segtree/">主席树/Persistent SegTree</a>
+            </span>
+            
+            <span>
+                <a href="/tags/%E4%B9%98%E6%B3%95%E9%80%86%E5%85%83/modular-inverse/">乘法逆元/Modular Inverse</a>
+            </span>
+            
+            <span>
+                <a href="/tags/%E4%BA%8C%E5%88%86/binary-search/">二分/Binary Search</a>
+            </span>
+            
+            <span>
+                <a href="/tags/%E5%88%86%E6%B2%BB/divide-and-conquer/">分治/Divide and Conquer</a>
+            </span>
+            
+            <span>
+                <a href="/tags/%E5%8A%A8%E6%80%81%E8%A7%84%E5%88%92/dp/">动态规划/DP</a>
+            </span>
+            
+            <span>
+                <a href="/tags/%E5%8D%95%E8%B0%83%E6%A0%88/monotone-stack/">单调栈/Monotone Stack</a>
+            </span>
+            
+            <span>
+                <a href="/tags/%E5%8D%95%E8%B0%83%E6%A0%88/monotonic-stack/">单调栈/Monotonic Stack</a>
+            </span>
+            
+            <span>
+                <a href="/tags/%E5%8D%9A%E5%BC%88%E8%AE%BA/game-theory/">博弈论/Game Theory</a>
+            </span>
+            
+            <span>
+                <a href="/tags/%E5%8F%8C%E6%8C%87%E9%92%88/two-pointers/">双指针/Two Pointers</a>
+            </span>
+            
+            <span>
+                <a href="/tags/%E5%90%8E%E7%BC%80%E6%95%B0%E7%BB%84/suffix-array/">后缀数组/Suffix Array</a>
+            </span>
+            
+            <span>
+                <a href="/tags/%E5%93%88%E5%B8%8C/hash/">哈希/Hash</a>
+            </span>
+            
+            <span>
+                <a href="/tags/%E5%9B%BE%E8%AE%BA/graph-theory/">图论/Graph Theory</a>
+            </span>
+            
+            <span>
+                <a href="/tags/%E5%AD%97%E7%AC%A6%E4%B8%B2/string/">字符串/String</a>
+            </span>
+            
+            <span>
+                <a href="/tags/%E5%B7%AE%E5%88%86/difference/">差分/Difference</a>
+            </span>
+            
+            <span>
+                <a href="/tags/%E5%B9%B6%E6%9F%A5%E9%9B%86/union-find/">并查集/Union Find</a>
+            </span>
+            
+            <span>
+                <a href="/tags/%E5%BC%BA%E8%BF%9E%E9%80%9A%E5%88%86%E9%87%8F/strongly-connected-components/">强连通分量/Strongly Connected Components</a>
+            </span>
+            
+            <span>
+                <a href="/tags/%E5%BF%AB%E9%80%9F%E5%B9%82/binary-power/">快速幂/Binary Power</a>
+            </span>
+            
+            <span>
+                <a href="/tags/%E6%80%9D%E7%BB%B4%E9%A2%98/">思维题</a>
+            </span>
+            
+            <span>
+                <a href="/tags/%E6%80%9D%E7%BB%B4%E9%A2%98/">思维题</a>
+            </span>
+            
+            <span>
+                <a href="/tags/%E6%8B%93%E6%89%91%E6%8E%92%E5%BA%8F/topological-sort/">拓扑排序/Topological Sort</a>
+            </span>
+            
+            <span>
+                <a href="/tags/%E6%95%B0%E5%AD%A6/">数学</a>
+            </span>
+            
+            <span>
+                <a href="/tags/%E6%95%B0%E5%AD%A6/">数学</a>
+            </span>
+            
+            <span>
+                <a href="/tags/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84/data-structure/">数据结构/Data Structure</a>
+            </span>
+            
+            <span>
+                <a href="/tags/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84/segtree/">数据结构/SegTree</a>
+            </span>
+            
+            <span>
+                <a href="/tags/%E6%95%B0%E8%AE%BA/number-theory/">数论/Number Theory</a>
+            </span>
+            
+            <span>
+                <a href="/tags/%E6%9C%80%E5%B0%8F%E7%94%9F%E6%88%90%E6%A0%91/mst/">最小生成树/MST</a>
+            </span>
+            
+            <span>
+                <a href="/tags/%E6%9C%80%E7%9F%AD%E8%B7%AF/shortest-path/">最短路/Shortest Path</a>
+            </span>
+            
+            <span>
+                <a href="/tags/%E6%9D%82%E9%A1%B9/misc/">杂项/Misc</a>
+            </span>
+            
+            <span>
+                <a href="/tags/%E6%9E%84%E9%80%A0/constructive-alg/">构造/Constructive Alg</a>
+            </span>
+            
+            <span>
+                <a href="/tags/%E6%A0%91/trees/">树/Trees</a>
+            </span>
+            
+            <span>
+                <a href="/tags/%E6%A0%91%E4%B8%8Adp/tree-dp/">树上DP/Tree DP</a>
+            </span>
+            
+            <span>
+                <a href="/tags/%E6%A0%91%E4%B8%8A%E9%97%AE%E9%A2%98/trees/">树上问题/Trees</a>
+            </span>
+            
+            <span>
+                <a href="/tags/%E6%A0%91%E7%8A%B6%E6%95%B0%E7%BB%84/fenwick-tree/">树状数组/Fenwick Tree</a>
+            </span>
+            
+            <span>
+                <a href="/tags/%E6%A6%82%E7%8E%87/probability/">概率/Probability</a>
+            </span>
+            
+            <span>
+                <a href="/tags/%E6%AC%A7%E6%8B%89%E5%87%BD%E6%95%B0/eulers-totient-function/">欧拉函数/Euler&#39;s totient function</a>
+            </span>
+            
+            <span>
+                <a href="/tags/%E7%BA%BF%E6%AE%B5%E6%A0%91/segtree/">线段树/SegTree</a>
+            </span>
+            
+            <span>
+                <a href="/tags/%E7%BB%84%E5%90%88%E5%AD%A6/combinatorics/">组合学/Combinatorics</a>
+            </span>
+            
+            <span>
+                <a href="/tags/%E8%83%8C%E5%8C%85%E9%97%AE%E9%A2%98/knapsack/">背包问题/Knapsack</a>
+            </span>
+            
+            <span>
+                <a href="/tags/%E8%A7%82%E5%AF%9F/observation/">观察/Observation</a>
+            </span>
+            
+            <span>
+                <a href="/tags/%E8%B4%AA%E5%BF%83/greedy/">贪心/Greedy</a>
+            </span>
+            
+        </div>
+    </div>
+    
+    
+    
+    <div class="sidebar-item sidebar-toc">
+        <h3>Table of Contents</h3>
+        
+    </div>
+    
+    
+  </div>
+</aside>
+    </main>
+
+    <footer>
+    <div class="container-lg clearfix">
+        <div class="col-12 footer">
+            
+            <span>&copy; 2020-2021
+                <a href="https://blog.thallium.com">Thallium</a>
+                
+                | Powered by <a href="https://github.com/dsrkafuu/hugo-theme-fuji/"
+                   target="_blank">Fuji-v2</a> &amp; <a href="https://gohugo.io/"
+                                                    target="_blank">Hugo</a> 
+            </span>
+        </div>
+    </div>
+</footer>
+
+    
+<script defer src="https://cdn.jsdelivr.net/npm/medium-zoom@1.0.6/dist/medium-zoom.min.js"></script>
+<script defer src="https://cdn.jsdelivr.net/npm/lazysizes@5.3.0/lazysizes.min.js"></script>
+<script defer src="https://cdn.jsdelivr.net/npm/prismjs@1.23.0/components/prism-core.min.js"></script>
+<script defer src="https://cdn.jsdelivr.net/npm/prismjs@1.23.0/plugins/autoloader/prism-autoloader.min.js"></script>
+
+
+
+<script defer src="/assets/js/fuji.min.js"></script>
+
+
+</body>
+
+</html>

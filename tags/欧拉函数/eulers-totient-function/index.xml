@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>欧拉函数/Euler&#39;s totient function on Thallim&#39;s Blog</title>
+    <link>https://blog.thallium.com/tags/%E6%AC%A7%E6%8B%89%E5%87%BD%E6%95%B0/eulers-totient-function/</link>
+    <description>Recent content in 欧拉函数/Euler&#39;s totient function on Thallim&#39;s Blog</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en</language><atom:link href="https://blog.thallium.com/tags/%E6%AC%A7%E6%8B%89%E5%87%BD%E6%95%B0/eulers-totient-function/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Codeforces 1295D - Same GCDs</title>
+      <link>https://blog.thallium.com/post/2020-01-29-cf1295d/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>https://blog.thallium.com/post/2020-01-29-cf1295d/</guid>
+      <description>FML Solution Let $g= \gcd(a,m)$, so we have $a=g\cdot k, m=g\cdot l,\gcd(l,k)=1$,first observation is that if we want $\gcd(a,m)=\gcd(a+x,m)$, $x$ has to be a multiple of $g$, let $x=n\cdot g$. Furthermore, $k+n$ and $l$ have to be coprime, so we need to find how many numbers ranging from $k$ to $k+l$ are coprime with $l$. For numbers bigger than $l$, if $\gcd(k+x,l)=1$, then $\gcd((k+x)\bmod l,l)=1$. Since $(k+x)\bmod l&amp;lt; l$, what we actually need to find is the number of numbers that are coprime with $l$ and smaller than $l$, i.e. $\varphi(l)$. 题解 让$g= \gc</description>
+    </item>
+    
+    <item>
+      <title>Kattis - Farey Sums题解</title>
+      <link>https://blog.thallium.com/post/2019-9-25-fareysums/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>https://blog.thallium.com/post/2019-9-25-fareysums/</guid>
+      <description>经过长时间思考并解决调问题的感觉太好了 ——xls 题目链接 网上的题解比较少而且都讲的比较跳跃，不知道是他们太聪明还是我太笨了。于是本着刨根问底的精神我详细推导了下过程。如果想麻烦了欢迎指正。 首先，far</description>
+    </item>
+    
+  </channel>
+</rss>

@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>拓扑排序/Topological Sort on Thallim&#39;s Blog</title>
+    <link>https://blog.thallium.com/tags/%E6%8B%93%E6%89%91%E6%8E%92%E5%BA%8F/topological-sort/</link>
+    <description>Recent content in 拓扑排序/Topological Sort on Thallim&#39;s Blog</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en</language><atom:link href="https://blog.thallium.com/tags/%E6%8B%93%E6%89%91%E6%8E%92%E5%BA%8F/topological-sort/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>SWERC2017 E - Ingredients</title>
+      <link>https://blog.thallium.com/post/2020-03-14-swerc2017e/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>https://blog.thallium.com/post/2020-03-14-swerc2017e/</guid>
+      <description>竟然一次就过了 Link Solution The solution combines shortest paths and 0/1 knapsack algorithms: First step is to find the cost and prestige of each dish, which is finding the shortest path on a DAG. This could be done in $O(n)$ using topological sort. Update the cost while doing topological sort: ms(cost,INF); queue&amp;lt;int&amp;gt; q; for1(i,id.size()){ if(deg[i]==0){ q.push(i); cost[i]=0; } } while(!empty(q)){ int now=q.front(); q.pop(); for(auto [dish,cost,prestige]:G[now]){ if(cost[now]+cost&amp;lt;cost[dish]){//choose the smallest cost cost[dish]=cost[now]+cost; pre[ }else if(cost[now]+cost==cost[dish]){//if the cost is same, choose the highest prestige pre[dish]=max(pre[dish],pre[now]+prestige); } deg[dish]--; if(deg[dish]==0) q.push(dish); } } The nest part is more familiar: using</description>
+    </item>
+    
+  </channel>
+</rss>

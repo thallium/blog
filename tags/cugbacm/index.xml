@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>CUGBACM on Thallim&#39;s Blog</title>
+    <link>https://blog.thallium.com/tags/cugbacm/</link>
+    <description>Recent content in CUGBACM on Thallim&#39;s Blog</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en</language><atom:link href="https://blog.thallium.com/tags/cugbacm/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>CUGBACM18级训练#3 题解</title>
+      <link>https://blog.thallium.com/post/2019-9-21-cugbacm3tutr/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>https://blog.thallium.com/post/2019-9-21-cugbacm3tutr/</guid>
+      <description>CUGBACM18级训练#3 题解 1.HDU1686 题意： 给出两个串 $S_1,S_2$，问$S_1$在$S_2$中出现的次数。 思路： kmp板子题，注意要用scanf。 2.HDU2594 题意： 给出两个字符串$S_1,S_2$，求最长的既</description>
+    </item>
+    
+    <item>
+      <title>CUGBACM18级训练#4 题解</title>
+      <link>https://blog.thallium.com/post/2019-9-22-cugb4tutr/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>https://blog.thallium.com/post/2019-9-22-cugb4tutr/</guid>
+      <description>CUGBACM18级训练#4 解题报告 B - Godfather Gym - 101649G 题意： 给出一个有n个点的树，问去掉哪个点后剩下的树中最大的节点数最小（如果有多个按从小到大的顺序输出）。 思路： 一开始没看见“保证是一棵树”想复杂了，先跑</description>
+    </item>
+    
+    <item>
+      <title>CUGBACM18级训练#6 题解</title>
+      <link>https://blog.thallium.com/post/2019-9-29-cugb6/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>https://blog.thallium.com/post/2019-9-29-cugb6/</guid>
+      <description>A - Keywords Search HDU - 2222 题意： 给出单词和文章，问多少个单词在文章中出现过。 思路： AC自动机板子题，之前也说过，不再赘述。 B - 病毒侵袭 HDU - 2896 题意： 给出n个单词（病毒）和m个长串（源码）问每个长串中有哪些单词出现过</description>
+    </item>
+    
+    <item>
+      <title>CUGBACM18级训练#8 题解/Tutorial</title>
+      <link>https://blog.thallium.com/post/2019-10-14-cugb8/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>https://blog.thallium.com/post/2019-10-14-cugb8/</guid>
+      <description>Link A - Watching TV Gym - 101498A Use a map&amp;lt;int,int&amp;gt; to count the number of channels in each frequency. Iterate the map to find the frequency that displays the largest number of channels. B - Longest Prefix Gym - 101498B Swapping any two letters means that you can rearrange the second string so just count the number of each character in the second string and then iterate the first string to see if you can put the same in each position. When you stops, that&amp;rsquo;s the longest prefix. C - Lunch Break Gym - 101498C Just output which one</description>
+    </item>
+    
+  </channel>
+</rss>

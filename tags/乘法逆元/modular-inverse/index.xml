@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>乘法逆元/Modular Inverse on Thallim&#39;s Blog</title>
+    <link>https://blog.thallium.com/tags/%E4%B9%98%E6%B3%95%E9%80%86%E5%85%83/modular-inverse/</link>
+    <description>Recent content in 乘法逆元/Modular Inverse on Thallim&#39;s Blog</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en</language><atom:link href="https://blog.thallium.com/tags/%E4%B9%98%E6%B3%95%E9%80%86%E5%85%83/modular-inverse/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Algorithm note: Modular Multiplicative Inverse and Modulo of Combinations</title>
+      <link>https://blog.thallium.com/post/2019-10-13-inverseandconbanition/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>https://blog.thallium.com/post/2019-10-13-inverseandconbanition/</guid>
+      <description>What is Modular Multiplicative Inverse? If $a\cdot x \equiv 1\pmod p$, $x$ is called a inverse of a(modulo p), referred to as $a^{-1}$. We usually use the minimum positive inverse. The use of Inverse The inverse is used when calculating the modulo of division. $$\dfrac{a}{b} \equiv a \cdot b^{-1}\pmod p$$ The ways to calculate the inverse of a number The Extended Euclidean algorithm We can rewrite $a\cdot x \equiv 1\pmod p$ as $a\cdot x +p\cdot k\equiv \gcd(p,a)\pmod p$ which can be solved using the Extended Euclidean algorithm. void exgcd(int a, int b, int&amp;amp; x, int&amp;amp; y) { if (b ==</description>
+    </item>
+    
+  </channel>
+</rss>

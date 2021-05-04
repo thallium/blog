@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>单调栈/Monotonic Stack on Thallim&#39;s Blog</title>
+    <link>https://blog.thallium.com/tags/%E5%8D%95%E8%B0%83%E6%A0%88/monotonic-stack/</link>
+    <description>Recent content in 单调栈/Monotonic Stack on Thallim&#39;s Blog</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en</language><atom:link href="https://blog.thallium.com/tags/%E5%8D%95%E8%B0%83%E6%A0%88/monotonic-stack/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Tutorial/题解 for CodeForces 1407D</title>
+      <link>https://blog.thallium.com/post/2020-09-08-cf1407d/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>https://blog.thallium.com/post/2020-09-08-cf1407d/</guid>
+      <description>Solution First let&amp;rsquo;s consider the case where $\max(h_{i + 1}, \ldots, h_{j - 1}) &amp;lt; \min(h_i, h_j)$. $h_i$ could be lower or higher than $h_j$. There can be multiple $i$ that satisfies the condition and we can observe the leftmost $i$ is the first that $h_i\ge h_j$, let&amp;rsquo;s denote this $i_{min}$, other $i$ between $[i_{min},j]$ must satisfy that $h_i$ is the maximum value among $[i,j-1]$. This can be solved using monotonic stack. Assume we store the indices in the stack, when adding a new index $j$, all the indices that will be removed are a valid position to jump to</description>
+    </item>
+    
+  </channel>
+</rss>

@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>思维题 on Thallim&#39;s Blog</title>
+    <link>https://blog.thallium.com/tags/%E6%80%9D%E7%BB%B4%E9%A2%98/</link>
+    <description>Recent content in 思维题 on Thallim&#39;s Blog</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en</language><atom:link href="https://blog.thallium.com/tags/%E6%80%9D%E7%BB%B4%E9%A2%98/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>AtCoder Beginner Contest 161E - Yutori</title>
+      <link>https://blog.thallium.com/post/2020-04-05-abc161e/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>https://blog.thallium.com/post/2020-04-05-abc161e/</guid>
+      <description>妙啊！ Solution We can construct an array $L$ such that the $x$-th workday is no earlier than day $L_x$, by choosing workdays as early as possible from the beginning to the end. Similarly, we can construct the array $R$ such that the $x$-th workday is no later than day $R_x$ from the end to the beginning. He is bounded to work on $i$-th day iff there exists a $x$ such that $L_x=R_x=i$. This problem can be solved in $O(N)$ time. 题解 我们可以构造一个数组$L$使得第</description>
+    </item>
+    
+    <item>
+      <title>Codeforces 1271C - Shawarma Tent</title>
+      <link>https://blog.thallium.com/post/2019-12-15-cf1271c/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>https://blog.thallium.com/post/2019-12-15-cf1271c/</guid>
+      <description>Solution The observation is that it&amp;rsquo;s optimal to put the tent adjacent to school. We can use 4 variables to count the number of houses on each side of the school. Output the coordinate on the side which has the most houses. 题解 很明显帐篷应该和学校挨着，所以我们可以用四个变量来记录学校的每一边有几个房子，最后输出最多的那一边即可。 Code #include &amp;lt;bits/stdc++.h&amp;gt; #define</description>
+    </item>
+    
+    <item>
+      <title>Codeforces 733D - Kostya the Sculptor</title>
+      <link>https://blog.thallium.com/post/2020-04-04-cf733d/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>https://blog.thallium.com/post/2020-04-04-cf733d/</guid>
+      <description>最近有点蠢 Solution WLOG, assume $a\leq b\leq c$. If we choose only one stone, the diameter of the sphere is $\frac a 2$. If we want to choose two stones, we should find another stone whose two of its edges are $b$ and $c$, since we must expand the shortest side to get a bigger sphere. We can use a set to maintain the length of the edge and the index. Code #include &amp;lt;bits/stdc++.h&amp;gt; #define forn(i, n) for (int i = 0; i &amp;lt; int(n); ++i) #define for1(i, n) for (int i = 1; i &amp;lt;= int(n);</description>
+    </item>
+    
+    <item>
+      <title>Gym101981J  - Prime Game</title>
+      <link>https://blog.thallium.com/post/2019-11-01-gym101981j/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>https://blog.thallium.com/post/2019-11-01-gym101981j/</guid>
+      <description>problem link To solve this problem, we need to count for each prime factors, how many intervals include them. First, let&amp;rsquo;s assume that all factors are distinct i.e. all factors only appears at one position. In this case, it&amp;rsquo;s easy to count the intervals that include them. For all primes at $p$, there are $p\cdot(n-p+1)$ intervals including them. However, one prime can appear multiple times so we need to substract the repeated intervals(interval contain the current position and last position). Formally, if a prime appears at $p$ and lastly appears at $q$, it adds $(n-p+1)\cdot q$ to answer. So our</description>
+    </item>
+    
+    <item>
+      <title>Tutorial for Codeforces 1358E - Are You Fired?</title>
+      <link>https://blog.thallium.com/post/2020-05-26-c1358e/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>https://blog.thallium.com/post/2020-05-26-c1358e/</guid>
+      <description>好几天没更新了 Solution First, let&amp;rsquo;s define the function $f_k(i)=a_i+a_{i+1}+\dots +a_{i+k-1}$, i.e. the sum of $k$ consecutive months starting at $i$. Now, let&amp;rsquo;s prove that if $k$ is one answer and $k\leq \dfrac n 2$, then $2\cdot k$ is also an answer: $f_{2k}(i)=f_k(i)+f_k(i+k)&amp;gt;0$. Thus we can always find an answer greater than $\dfrac n 2$. Then, consider the case where $x\ge 0$. If $k$ is an answer, since $f_{k+1}(i)=f_k(i)+a_{i+1}=f_k(i)+x&amp;gt;0$, $k+1$ is also an answer. Thus it&amp;rsquo;s sufficient to check if $k=n$ is the answer. Lastly, when $x&amp;lt;0$, we need the help of the prefix sum. Define</description>
+    </item>
+    
+  </channel>
+</rss>

@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>博弈论/Game Theory on Thallim&#39;s Blog</title>
+    <link>https://blog.thallium.com/tags/%E5%8D%9A%E5%BC%88%E8%AE%BA/game-theory/</link>
+    <description>Recent content in 博弈论/Game Theory on Thallim&#39;s Blog</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en</language><atom:link href="https://blog.thallium.com/tags/%E5%8D%9A%E5%BC%88%E8%AE%BA/game-theory/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>博弈论入门学习笔记</title>
+      <link>https://blog.thallium.com/post/2019-10-4-gametheory/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>https://blog.thallium.com/post/2019-10-4-gametheory/</guid>
+      <description>几个月前的笔记，才疏学浅，仅供参考~ 基本概念 PN点 什么是PN点 P点：前一个选手（previous person)将取胜的点，即必败点。 N点：下一个选手（next person)将取胜的点，即必胜点。 注意：</description>
+    </item>
+    
+  </channel>
+</rss>

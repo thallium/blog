@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Contests on Thallim&#39;s Blog</title>
+    <link>https://blog.thallium.com/tags/contests/</link>
+    <description>Recent content in Contests on Thallim&#39;s Blog</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en</language><atom:link href="https://blog.thallium.com/tags/contests/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>2020 ICPC East Central NA Regional Contest 总结与题解</title>
+      <link>https://blog.thallium.com/post/icpc_ecna/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>https://blog.thallium.com/post/icpc_ecna/</guid>
+      <description>算是有所进步但还是稍有遗憾，差一题就能进division championships 比赛过程 两个队友一个简称T，一个简称J。 开场我从前往后读，A比较长就直接跳过了，读了B感觉有点想法但又不是很确定就接着读，C很明显是个找最大环</description>
+    </item>
+    
+  </channel>
+</rss>

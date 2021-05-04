@@ -1,0 +1,1642 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
+<meta name="HandheldFriendly" content="True" />
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+<meta name="generator" content="Hugo 0.83.1" />
+
+
+
+<link rel="apple-touch-icon" sizes="180x180" href="https://cdn.jsdelivr.net/gh/amzrk2/cdn-stcapi@1/favicons/apple-touch-icon.png" />
+<link rel="icon" type="image/png" sizes="32x32" href="https://cdn.jsdelivr.net/gh/amzrk2/cdn-stcapi@1/favicons/favicon-32x32.png" />
+<link rel="icon" type="image/png" sizes="16x16" href="https://cdn.jsdelivr.net/gh/amzrk2/cdn-stcapi@1/favicons/favicon-16x16.png" />
+<link rel="manifest" href="https://cdn.jsdelivr.net/gh/amzrk2/cdn-stcapi@1/favicons/site.webmanifest" />
+<link rel="mask-icon" href="https://cdn.jsdelivr.net/gh/amzrk2/cdn-stcapi@1/favicons/safari-pinned-tab.svg" color="#8aa2d3" />
+<link rel="shortcut icon" href="https://cdn.jsdelivr.net/gh/amzrk2/cdn-stcapi@1/favicons/favicon.ico" />
+<meta name="theme-color" content="#ffffff" />
+
+
+<title>2020 ICPC East Central NA Regional Contest 总结与题解 - Thallim&#39;s Blog</title>
+
+
+<meta name="author" content="Thallium" />
+
+
+<meta name="description" content="A minimal Hugo theme with nice theme color." />
+
+
+
+<meta property="og:title" content="2020 ICPC East Central NA Regional Contest 总结与题解" />
+<meta name="twitter:title" content="2020 ICPC East Central NA Regional Contest 总结与题解" />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="https://blog.thallium.com/post/2021-03-10-2020_icpc_ecna/" /><meta property="og:description" content="算是有所进步但还是稍有遗憾，差一题就能进division championships 比赛过程 两个队友一个简称T，一个简称J。 开场我从前往后读，A比较长就直接跳过了，读了B感觉有点想法但又不是很确定就接着读，C很明显是个找最大环" />
+<meta name="twitter:description" content="算是有所进步但还是稍有遗憾，差一题就能进division championships 比赛过程 两个队友一个简称T，一个简称J。 开场我从前往后读，A比较长就直接跳过了，读了B感觉有点想法但又不是很确定就接着读，C很明显是个找最大环" /><meta property="og:image" content="https://blog.thallium.com/img/og.png" />
+<meta name="twitter:card" content="summary_large_image" />
+<meta name="twitter:image" content="https://blog.thallium.com/img/og.png" />
+
+
+<style>
+    @media (prefers-color-scheme: dark) {
+        body[data-theme='auto'] img {
+            filter: brightness(60%);
+        }
+    }
+
+    body[data-theme='dark'] img {
+        filter: brightness(60%);
+    }
+</style>
+
+
+
+<link rel="stylesheet" href="https://blog.thallium.com/assets/css/fuji.min.css" />
+
+
+
+
+
+</head>
+
+<body data-theme="auto">
+    <script data-cfasync="false">
+  
+  var fujiThemeData = localStorage.getItem('fuji_data-theme');
+  
+  if (!fujiThemeData) {
+    localStorage.setItem('fuji_data-theme', 'auto');
+  } else {
+    
+    if (fujiThemeData !== 'auto') {
+      document.body.setAttribute('data-theme', fujiThemeData === 'dark' ? 'dark' : 'light');
+    }
+  }
+</script>
+    <header>
+    <div class="container-lg clearfix">
+        <div class="col-12 header">
+            <a class="title-main" href="https://blog.thallium.com">Thallim&#39;s Blog</a>
+            
+            <span class="title-sub">My blog mainly about competitive programming and some other stuff</span>
+            
+        </div>
+    </div>
+</header>
+
+    <main>
+        <div class="container-lg clearfix">
+            
+            <div class="col-12 col-md-9 float-left content">
+                
+<article>
+    
+    <h2 class="post-item post-title">
+        <a href="https://blog.thallium.com/post/2021-03-10-2020_icpc_ecna/">2020 ICPC East Central NA Regional Contest 总结与题解</a>
+    </h2>
+    <div class="post-item post-meta">
+        <span><i class="iconfont icon-today-sharp"></i>&nbsp;0001-01-01</span>
+
+<span><i class="iconfont icon-file-tray-sharp"></i>&nbsp;4098 words</span>
+
+<span><i class="iconfont icon-pricetags-sharp"></i>&nbsp;No tag</span>
+
+    </div>
+    
+    <div class="post-content markdown-body">
+        <p>算是有所进步但还是稍有遗憾，差一题就能进division championships</p>
+<h2 id="比赛过程">比赛过程</h2>
+<p>两个队友一个简称T，一个简称J。</p>
+<p>开场我从前往后读，A比较长就直接跳过了，读了B感觉有点想法但又不是很确定就接着读，C很明显是个找最大环，一开始还觉得比较麻烦，但想想不是环就是链所以直接dfs就行了。同时队友J读到E发现就是个矩阵乘法于是开始写，我又跟榜做了G。之后不久队友J的E也过了。另一个队友T读了H是贪心但不会写，我此时在写B的暴力（但其实稍微想想暴力肯定超时但不知道为啥还是写完了）。B暴力写完才发现会超时，此时H还没做出来，我看了一眼也没想法，就扔给队友J了。然后发现B好像可以dp，然后就一边想一边写，虽然有点恶心但挺直接的，最后一遍过。写B的过程中队友J过了H，算是签完到了。此时才一个半小时，感觉非常好，比去年顺利多了。</p>
+<p>然后我在做K，感觉是dp，有点思路但不会写，队友J在做J，过了样例但是WA，队友T直接开I了（其实是最难的题orz）。于是三个人都卡题了，不知不觉过了一个半小时我终于放弃了，此时J题过了一大堆，于是我就跟队友J换了一下题，由于队友J用的python而我又懒的看所以就准备重写，然后没想到是个超级恶心模拟题，而且写了一堆bug，离结束还有半小时和队友J几乎同时过了J和K。然后仔细一看A发现很简单但输出格式很恶心，最后虽然勉强写完但没时间debug，以7题收场。</p>
+<h2 id="反思">反思</h2>
+<p>卡题太久没有及时放弃，哪怕去读读别的题。题没有都读一遍，队友J其实读了A但感觉很麻烦，但我感觉比J好做多了（可能我J写的太烂了）。L到最后也没人读，其实也不难，就是个二分图匹配的板子 题。所以说也不能一味的跟榜，毕竟每个人的知识点覆盖不一样。但K卡半天没做出来也不应该。</p>
+<h2 id="题解">题解</h2>
+<h3 id="a">A</h3>
+<p>数据很小，找lca直接暴力网上跳也可以。输出格式比较恶心，要多看几遍，注意不要把<code>11th, 12th, 13th</code>输出成 <code>11st, 12nd, 13rd</code>。</p>
+<pre><code class="language-cpp">#include &lt;bits/stdc++.h&gt;
+
+#define all(x) (x).begin(),(x).end()
+#define sz(x) int(x.size())
+
+using namespace std;
+using ll = long long;
+using pii = pair&lt;int, int&gt;;
+template&lt;typename... T&gt; void rd(T&amp;... args) {((cin&gt;&gt;args), ...);}
+template&lt;typename... T&gt; void wr(T... args) {((cout&lt;&lt;args&lt;&lt;&quot; &quot;), ...); cout&lt;&lt;'\n';}
+
+int main() {
+    ios::sync_with_stdio(false);
+    cin.tie(nullptr);
+    int n, T;
+    cin&gt;&gt;n&gt;&gt;T;
+    vector&lt;vector&lt;string&gt;&gt; a(n);
+    vector&lt;string&gt; name(n);
+    unordered_map&lt;string, int&gt; id;
+    for (int i=0; i&lt;n; i++) {
+        cin&gt;&gt;name[i];
+        id.try_emplace(name[i], id.size());
+        int x;
+        cin&gt;&gt;x;
+        a[i].resize(x);
+        for (auto&amp; s : a[i]) {
+            cin&gt;&gt;s;
+            id.try_emplace(s, id.size());
+        }
+    }
+    vector&lt;vector&lt;int&gt;&gt; g(id.size());
+    vector&lt;int&gt; ind(id.size());
+    for (int i=0; i&lt;n; i++) {
+        int u=id[name[i]];
+        for (auto&amp; s : a[i]) {
+            g[u].push_back(id[s]);
+            ind[id[s]]++;
+        }
+    }
+    vector&lt;int&gt; pa(id.size());
+    vector&lt;int&gt; dep(id.size());
+    auto dfs=[&amp;](auto&amp; dfs, int u, int p) -&gt; void {
+        pa[u] = p;
+        for (auto v : g[u]) {
+            if (v == p) continue;
+            dep[v]=dep[u]+1;
+            dfs(dfs, v, u);
+        }
+    };
+
+    auto lca=[&amp;](int x, int y) {
+        while (x!=y) {
+            if (dep[x]&lt;dep[y]) swap(x, y);
+            x=pa[x];
+        }
+        return x;
+    };
+
+    for (int i=0; i&lt;id.size(); i++) {
+        if (ind[i]==0) {
+            dfs(dfs, i, i);
+            break;
+        }
+    }
+    auto ordinal=[](int x) {
+        auto s=to_string(x);
+        if (x&gt;=11 &amp;&amp; x&lt;=13) return s+&quot;th&quot;;
+        if (x%10==1) return s+&quot;st&quot;;
+        if (x%10==2) return s+&quot;nd&quot;;
+        if (x%10==3) return s+&quot;rd&quot;;
+        return s+&quot;th&quot;;
+    };
+    while (T--) {
+        string s, t;
+        cin&gt;&gt;s&gt;&gt;t;
+        int l=lca(id[s], id[t]);
+        int m=dep[id[s]]-dep[l];
+        int n=dep[id[t]]-dep[l];
+        int swaped=0;
+        if (m&gt;n) {
+            swap(m, n);
+            swaped=1;
+            swap(s, t);
+        }
+        if (m==0) {
+            swap(s, t);
+            if (n==1) {
+                cout&lt;&lt;s&lt;&lt;&quot; is the child of &quot;&lt;&lt;t&lt;&lt;'\n';
+            } else {
+                n-=2;
+                cout&lt;&lt;s&lt;&lt;&quot; is the &quot;;
+                for (int i=0; i&lt;n; i++) cout&lt;&lt;&quot;great &quot;;
+                cout&lt;&lt;&quot;grandchild of &quot;&lt;&lt;t&lt;&lt;'\n';
+            }
+        } else if (m==n &amp;&amp; m&gt;0) {
+            if (swaped) swap(s, t);
+            if (n==1) cout&lt;&lt;s&lt;&lt;&quot; and &quot;&lt;&lt;t&lt;&lt;&quot; are siblings\n&quot;;
+            else {
+                n--;
+                cout&lt;&lt;s&lt;&lt;&quot; and &quot;&lt;&lt;t&lt;&lt;&quot; are &quot;&lt;&lt;ordinal(n)&lt;&lt;&quot; cousins\n&quot;;
+            }
+        } else if (n&gt;m &amp;&amp; m&gt;0) {
+            if (swaped) swap(s, t);
+            if (n-m==1)
+                cout&lt;&lt;s&lt;&lt;&quot; and &quot;&lt;&lt;t&lt;&lt;&quot; are &quot;&lt;&lt; ordinal(m-1)&lt;&lt;&quot; cousins, 1 time removed\n&quot;;
+            else 
+                cout&lt;&lt;s&lt;&lt;&quot; and &quot;&lt;&lt;t&lt;&lt;&quot; are &quot;&lt;&lt;ordinal(m-1)&lt;&lt;&quot; cousins, &quot;&lt;&lt;n-m&lt;&lt;&quot; times removed\n&quot;;
+        }
+    }
+        return 0;
+}
+</code></pre>
+<h3 id="b">B</h3>
+<p><code>dp[x][y][i][used][d]</code> 代表是否存在以坐标$(x, y)$ 的字符结尾，覆盖目标字符串的前<code>i</code>个字符，转向<code>used</code>次，结束时的方向是<code>d</code>的走法。注意长度为$i$的字符串最多转$i-1$次，虽然第一个字符是没有方向的，但为了转移方便就变成了所有方向，所以枚举转向次数的话要限制一下，不然会出现长度为2转两次的走法。</p>
+<pre><code class="language-cpp">{% raw %}
+#include &lt;bits/stdc++.h&gt;
+
+#define all(x) (x).begin(),(x).end()
+#define sz(x) int(x.size())
+
+using namespace std;
+using ll = long long;
+using pii = pair&lt;int, int&gt;;
+template&lt;typename... T&gt; void rd(T&amp;... args) {((cin&gt;&gt;args), ...);}
+template&lt;typename... T&gt; void wr(T... args) {((cout&lt;&lt;args&lt;&lt;&quot; &quot;), ...); cout&lt;&lt;'\n';}
+
+int dp[10][10][105][105][8];
+int main() {
+    ios::sync_with_stdio(false);
+    cin.tie(nullptr);
+    int n, m;
+    cin&gt;&gt;n&gt;&gt;m;
+    vector a(n, vector&lt;char&gt;(m));
+    for (int i=0; i&lt;n; i++) {
+        for (int j=0; j&lt;m; j++) {
+            cin&gt;&gt;a[i][j];
+        }
+    }
+    int limit;
+    string s;
+    cin&gt;&gt;limit&gt;&gt;s;
+    limit=min(limit, int(s.size()));
+    const vector&lt;pair&lt;int, int&gt;&gt; dirs{{1, 0}, {-1, 0}, {0,1}, {0, -1}, {1, 1}, {1, -1}, {-1, 1}, {-1, -1}};
+    for (int i=0; i&lt;n; i++) {
+        for (int j=0; j&lt;m; j++) {
+            if (a[i][j]==s[0]) {
+                for (int d=0; d&lt;8; d++) 
+                    dp[i][j][0][0][d]=1;
+            }
+        }
+    }
+    for (int i=1; i&lt;s.size(); i++) {
+        for (int x=0; x&lt;n; x++) {
+            for (int y=0; y&lt;m; y++) {
+                if (a[x][y]!=s[i]) continue;
+                for (int used=0; used&lt;=min(limit, i-1); used++) {
+                    for (int d=0; d&lt;8; d++) {
+                        for (int pd=0; pd&lt;8; pd++) {
+                            auto [dx, dy]=dirs[d];
+                            unsigned nx=x+dx, ny=y+dy;
+                            int pused=used-(d!=pd);
+                            // if (i==1) pused=0;
+                            if (nx&lt;n &amp;&amp; ny&lt;m &amp;&amp; pused&gt;=0 &amp;&amp; dp[nx][ny][i-1][pused][pd]) {
+                                dp[x][y][i][used][d]=1;
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    }
+    for (int i=0; i&lt;n; i++) {
+        for (int j=0; j&lt;m; j++) {
+            for (int d=0; d&lt;8; d++)
+                if (dp[i][j][s.size()-1][limit][d]) 
+                    return cout&lt;&lt;&quot;Yes&quot;, 0;
+        }
+    }
+    cout&lt;&lt;&quot;No&quot;;
+    return 0;
+}
+</code></pre>
+<p>{% endraw %}</p>
+<h3 id="c">C</h3>
+<p>由于每个物品最多只有一个人要，所以每个点的出度最多为1，所以每个连通分量要么是环要么是链。直接dfs即可。</p>
+<pre><code class="language-cpp">#include &lt;bits/stdc++.h&gt;
+
+#define all(x) (x).begin(),(x).end()
+#define sz(x) int(x.size())
+
+using namespace std;
+using ll = long long;
+using pii = pair&lt;int, int&gt;;
+template&lt;typename... T&gt; void rd(T&amp;... args) {((cin&gt;&gt;args), ...);}
+template&lt;typename... T&gt; void wr(T... args) {((cout&lt;&lt;args&lt;&lt;&quot; &quot;), ...); cout&lt;&lt;'\n';}
+
+int main() {
+    ios::sync_with_stdio(false);
+    cin.tie(nullptr);
+    int n;
+    cin&gt;&gt;n;
+    vector&lt;vector&lt;int&gt;&gt; g(n);
+    struct node {
+        string name, has, wants;
+    };
+    vector&lt;node&gt; a(n);
+    unordered_map&lt;string, int&gt; names, toys;
+    unordered_map&lt;string, string&gt; wanted_by;
+    for (auto&amp; [name, has, wants] : a) {
+        cin&gt;&gt;name&gt;&gt;has&gt;&gt;wants;
+        names.try_emplace(name, names.size());
+        toys.try_emplace(has, toys.size());
+        toys.try_emplace(wants, toys.size());
+        wanted_by[wants]=name;
+    }
+    for (int i=0; i&lt;n; i++) {
+        if (wanted_by.count(a[i].has))
+            g[i].push_back(names[wanted_by[a[i].has]]);
+    }
+    vector&lt;int&gt; vis(n);
+    int ans=0;
+    auto dfs=[&amp;](auto&amp; dfs, int u, int dep) -&gt; void{
+        vis[u]=1;
+        for (auto v : g[u]) {
+            if (vis[v]==1) {
+                ans=max(ans, dep+1);
+            } else {
+                dfs(dfs, v, dep+1);
+            }
+        }
+        vis[u]=2;
+    };
+    for (int i=0; i&lt;n; i++) {
+        if (!vis[i]) {
+            dfs(dfs, i, 0);
+        }
+    }
+    if (ans) cout&lt;&lt;ans;
+    else cout&lt;&lt;&quot;No trades possible&quot;;
+    return 0;
+}
+</code></pre>
+<h3 id="d">D</h3>
+<p>还没来得及补</p>
+<h3 id="e">E</h3>
+<p>非常简单的矩阵乘法，队友写的，没要代码。。。</p>
+<h3 id="f">F</h3>
+<p>矩阵求逆，模运算下的高斯消元。队友赛后补的</p>
+<pre><code class="language-cpp">using namespace std;
+#include &lt;bits/stdc++.h&gt;
+#include &lt;string&gt;
+#define ll long long
+#define all(x) (x).begin(),(x).end()
+#define sz(x) int(x.size())
+#define rep(i, a, b) for(int i = a; i &lt; (b); ++i)
+#define FOR(i,n) for(int (i)=0;(i)&lt;(n);++(i))
+#define PRE(i,m,n,in) for(int (i)=(m);(i)&lt;(n);i+=in)
+#define RPRE(i,m,n,in) for(int (i)=(m);(i)&gt;=(n);i-=in)
+#define srt(v) sort(v.begin(),v.end())
+#define printv(a) printa(a,0,a.size())
+#define debug(x) cout&lt;&lt;#x&quot; = &quot;&lt;&lt;(x)&lt;&lt;endl
+#define printa(a,L,R) for(int i=L;i&lt;R;i++) cout&lt;&lt;a[i]&lt;&lt;(i==R-1?&quot;\n&quot;:&quot; &quot;)
+#define printv(a) printa(a,0,a.size())
+#define print2d(a,r,c) for(int i=0;i&lt;r;i++) for(int j=0;j&lt;c;j++) cout&lt;&lt;a[i][j]&lt;&lt;(j==c-1?&quot;\n&quot;:&quot; &quot;)
+typedef vector&lt;string&gt;VS;
+typedef pair&lt;int,int&gt;pii;
+typedef pair&lt;ll,ll&gt;pll;
+typedef vector&lt;ll&gt;VL;
+typedef vector&lt;int&gt;VI;
+typedef vector&lt;VI&gt;VVI;
+typedef vector&lt;VL&gt;VVL;
+typedef vector&lt;pii&gt;VII;
+
+const int MOD = 37;
+const int INF = 2; 
+
+int gauss (vector &lt; vector&lt;int&gt; &gt; &amp;a, vector&lt;int&gt; &amp; ans, const vector&lt;ll&gt;&amp;inv) {
+  int n = (int) a.size(); int m = (int) a[0].size() - 1;
+  vector&lt;int&gt; where (m, -1);
+  for (int col=0, row=0; col&lt;m &amp;&amp; row&lt;n; ++col) {
+    int sel = row;
+    for (int i=row; i&lt;n; ++i)
+      if ( a[i][col] &gt; a[sel][col]) sel = i;
+    if (a[sel][col] == 0) continue;
+    for (int i=col; i&lt;=m; ++i)
+      swap (a[sel][i], a[row][i]);
+    where[col] = row;
+    for (int i=0; i&lt;n; ++i) 
+      if (i != row) {
+        int c = (a[i][col] * inv[a[row][col]]) % MOD;
+        for (int j=col; j&lt;=m; ++j)
+          a[i][j] = (a[i][j] - (a[row][j]*c % MOD) + MOD) % MOD;
+      }
+    ++row;
+  }
+
+  ans.assign (m, 0);
+  for (int i=0; i&lt;m; ++i)
+    if (where[i] != -1)
+      ans[i] = (a[where[i]][m] * inv[a[where[i]][i]]) % MOD;
+  for (int i=0; i&lt;n; ++i) {
+    int sum = 0;
+    for (int j=0; j&lt;m; ++j)
+      sum = (MOD + sum + (ans[j] * a[i][j]) % MOD) % MOD;
+    if (abs (sum - a[i][m]) != 0)
+      return 0;
+  }
+  for (int i=0; i&lt;m; ++i)
+    if (where[i] == -1) return INF;
+  return 1;
+}
+
+
+int main() {
+  ios_base::sync_with_stdio(false);
+  cin.tie(NULL);
+  string ns; getline(cin, ns); int n = stoi(ns);
+  string s1; getline(cin, s1); 
+  string s2; getline(cin, s2);
+  vector&lt;ll&gt; inv(MOD);
+  inv[1]=1;
+  for(int i = 2; i &lt; MOD; ++i) inv[i] = MOD - (MOD/i) * inv[MOD % i] % MOD;
+  vector&lt; vector &lt;int&gt; &gt; v1( n , vector &lt;int&gt; ()); 
+  vector&lt; vector &lt;int&gt; &gt; v2( n , vector &lt;int&gt; ()); 
+  for(int i = 0; i &lt; s1.size(); i++) {
+    int num;
+    if(s1[i] &gt;= 'A' &amp;&amp; s1[i] &lt;= 'Z') {
+      num = int(s1[i]) - 65;
+    }
+    else if(s1[i] == ' ') num = 36;
+    else num = (s1[i] - '0') + 26;
+    v1[i % n].push_back(num);
+  }  
+  for(int i = 0; i &lt; s2.size(); i++) {
+    int num;
+    if(s2[i] &gt;= 'A' &amp;&amp; s2[i] &lt;= 'Z') {
+      num = int(s2[i]) - 65;
+    }
+    else if(s2[i] == ' ') num = 36;
+    else num = (s2[i] - '0') + 26;
+    v2[i % n].push_back(num);
+  }
+  int consistent = 0;
+  int many = 0;
+  int no = 0;
+  vector &lt;vector &lt;int&gt; &gt; sol;
+  for(int i = 0; i &lt; n; i++) {
+    vector&lt;vector&lt;int&gt;&gt;a(v1[0].size(), vector&lt;int&gt;(n + 1));
+    vector&lt;int&gt;b(n);
+    for(int j = 0; j &lt; v1[0].size(); j++) {
+      for(int k = 0; k &lt; n; k++) {
+        a[j][k] = v1[k][j];
+      }
+      a[j][n] = v2[i][j]; 
+    }
+    vector&lt;int&gt;ans;
+    int num = gauss(a, ans, inv);
+    if(num == 0) no++;
+    else if(num == 1) {
+      consistent++;
+      sol.push_back(ans);
+    }
+    else many++;
+  }
+  if(consistent == n) print2d(sol, n, n);
+  else if(no &gt;= 1)cout &lt;&lt; &quot;No solution&quot; &lt;&lt; endl;
+  else if(many &gt;= 1) cout &lt;&lt; &quot;Too many solutions&quot; &lt;&lt; endl;
+  return 0;
+}
+</code></pre>
+<h3 id="g">G</h3>
+<p>直接模拟即可</p>
+<pre><code class="language-cpp">#include &lt;bits/stdc++.h&gt;
+
+#define all(x) (x).begin(),(x).end()
+#define sz(x) int(x.size())
+
+using namespace std;
+using ll = long long;
+using pii = pair&lt;int, int&gt;;
+template&lt;typename... T&gt; void rd(T&amp;... args) {((cin&gt;&gt;args), ...);}
+template&lt;typename... T&gt; void wr(T... args) {((cout&lt;&lt;args&lt;&lt;&quot; &quot;), ...); cout&lt;&lt;'\n';}
+
+int main() {
+    ios::sync_with_stdio(false);
+    cin.tie(nullptr);
+    int n, m;
+    cin&gt;&gt;n&gt;&gt;m;
+    vector&lt;int&gt; a(n), rank(n);
+    iota(all(a), 0);
+    iota(all(rank), 0);
+    while (m--) {
+        char c;
+        int u, v;
+        cin&gt;&gt;c&gt;&gt;u&gt;&gt;c&gt;&gt;v;
+        u--, v--;
+        if (rank[u]&gt;rank[v]) {
+            for (int i=rank[v]; i&lt;rank[u]; i++) {
+                a[i]=a[i+1];
+                rank[a[i]]=i;
+            }
+            a[rank[u]+1]=v;
+            rank[v]=rank[u]+1;
+        }
+    }
+    for (auto i : a) cout&lt;&lt;&quot;T&quot;&lt;&lt;i+1&lt;&lt;' ';
+    return 0;
+}
+</code></pre>
+<h3 id="h">H</h3>
+<p>根据deadline排序，然后维护有多少槽位可供不需要纸的和需要纸的人用（代码里的<code>have</code>数组）,不需要纸的人也可以用需要纸的人的槽位。然后根据人数相应的更新数组。</p>
+<p>队友的赛时的源代码</p>
+<pre><code class="language-python">from collections import *
+from functools import *
+from math import *
+import sys
+
+input = sys.stdin.readline
+sys.setrecursionlimit(2147483647)
+ml = lambda: map(int, input().split())
+
+s, n = ml()
+people = defaultdict(lambda: [0, 0])
+for _ in range(n):
+    deadline, need = input().split()
+    deadline = int(deadline)
+    people[deadline][need[0] == &quot;y&quot;] += 1
+
+have = [0, 0]
+prev = 0
+for deadline in sorted(people.keys()):
+    have[1] += deadline - prev
+    have[0] += (deadline - prev) * (s - 1)
+    prev = deadline
+
+    dont, need = people[deadline]
+
+    do = min(dont, have[0])
+    dont -= do
+    have[0] -= do
+
+    if dont + need &gt; have[1]:
+        print(&quot;No&quot;)
+        break
+    have[1] -= dont + need
+else:
+    print(&quot;Yes&quot;)
+</code></pre>
+<p>我用C++又写了一遍:</p>
+<pre><code class="language-cpp">#include &lt;bits/stdc++.h&gt;
+
+#define all(x) (x).begin(),(x).end()
+#define sz(x) int(x.size())
+
+using namespace std;
+using ll = long long;
+using pii = pair&lt;int, int&gt;;
+template&lt;typename... T&gt; void rd(T&amp;... args) {((cin&gt;&gt;args), ...);}
+template&lt;typename... T&gt; void wr(T... args) {((cout&lt;&lt;args&lt;&lt;&quot; &quot;), ...); cout&lt;&lt;'\n';}
+
+int main() {
+    ios::sync_with_stdio(false);
+    cin.tie(nullptr);
+    int s, n;
+    cin&gt;&gt;s&gt;&gt;n;
+    map&lt;int, array&lt;int, 2&gt;&gt; people;
+    for (int i=0; i&lt;n; i++) {
+        int deadline;
+        char need;
+        cin&gt;&gt;deadline&gt;&gt;need;
+        people[deadline][need=='y']++;
+    }
+    ll have[2]{};
+    int prev=0;
+    for (auto&amp; [deadline, v] : people) {
+        have[1]+=deadline-prev;
+        have[0]+=ll(deadline-prev)*(s-1);
+        prev=deadline;
+
+        auto [dont, need]=v;
+
+        int Do=min&lt;ll&gt;(dont, have[0]);
+        dont-=Do;
+        have[0]-=Do;
+        if (dont+need&gt;have[1]) {
+            return cout&lt;&lt;&quot;No\n&quot;, 0;
+        }
+        have[1]-=dont+need;
+    }
+    cout&lt;&lt;&quot;Yes\n&quot;;
+    return 0;
+}
+</code></pre>
+<h3 id="i">I</h3>
+<p>还没补</p>
+<h3 id="j">J</h3>
+<p>根据题意模拟即可</p>
+<pre><code class="language-cpp">#include &lt;bits/stdc++.h&gt;
+
+#define all(x) (x).begin(),(x).end()
+#define sz(x) int(x.size())
+
+using namespace std;
+using ll = long long;
+using pii = pair&lt;int, int&gt;;
+template&lt;typename... T&gt; void rd(T&amp;... args) {((cin&gt;&gt;args), ...);}
+template&lt;typename... T&gt; void wr(T... args) {((cout&lt;&lt;args&lt;&lt;&quot; &quot;), ...); cout&lt;&lt;'\n';}
+
+int main() {
+    ios::sync_with_stdio(false);
+    cin.tie(nullptr);
+    vector a(9, vector(9, 0));
+    for (auto&amp; v: a) for (auto&amp; i : v) cin&gt;&gt;i;
+    auto check_row=[&amp;](int row, auto&amp; cnt, int x) {
+        for (int i=0; i&lt;9; i++) {
+            cnt[row][i][x]=0;
+        }
+    };
+    auto check_col=[&amp;](int col, auto&amp; cnt, int x) {
+        for (int i=0; i&lt;9; i++) {
+            cnt[i][col][x]=0;
+        }
+    };
+    auto check_grid=[&amp;](int r, int c, auto&amp; cnt, int x) {
+        int num=r/3*3+c/3;
+        r=num/3*3, c=num%3*3;
+        for (int i=r; i&lt;r+3; i++) {
+            for (int j=c; j&lt;c+3; j++) {
+                cnt[i][j][x]=0;
+            }
+        }
+    };
+    auto count_row=[&amp;](int row, auto&amp; cnt, int x) {
+        int c=0;
+        for (int i=0; i&lt;9; i++) {
+            if (a[row][i]) continue;
+            c+=cnt[row][i][x];
+        }
+        return c;
+    };
+    auto count_col=[&amp;](int col, auto&amp; cnt, int x) {
+        int c=0;
+        for (int i=0; i&lt;9; i++) {
+            if (a[i][col]) continue;
+            c+=cnt[i][col][x];
+        }
+        return c;
+    };
+    auto count_grid=[&amp;](int r, int c, auto&amp; cnt, int x) {
+        int num=r/3*3+c/3;
+        r=num/3*3, c=num%3*3;
+        int cc=0;
+        for (int i=r; i&lt;r+3; i++) {
+            for (int j=c; j&lt;c+3; j++) {
+                if (a[i][j]) continue;
+                cc+=cnt[i][j][x];
+            }
+        }
+        return cc;
+    };
+    while (true) {
+        int found=0;
+        vector cnt(9, vector(9, vector(10, 1)));
+        for (int i=0; i&lt;9; i++) {
+            for (int j=0; j&lt;9; j++) {
+                cnt[i][j][0]=0;
+                if (a[i][j]!=0) {
+                    check_col(j, cnt, a[i][j]);
+                    check_row(i, cnt, a[i][j]);
+                    check_grid(i, j, cnt, a[i][j]);
+                }
+            }
+        }
+        for (int i=0; i&lt;9; i++) {
+            for (int j=0; j&lt;9; j++) {
+                if (a[i][j]==0) {
+                    if (count(all(cnt[i][j]), 1)==1) {
+                        found=1;
+                        auto it=find(all(cnt[i][j]), 1);
+                        a[i][j]=it-cnt[i][j].begin();
+                        goto next;
+                    }
+                    for (int v=1; v&lt;=9; v++) {
+                        if ((count_col(j, cnt, v)==1 || count_row(i, cnt, v)==1 || count_grid(i, j, cnt, v)==1) &amp;&amp; cnt[i][j][v]) {
+                            found=1;
+                            a[i][j]=v;
+                            goto next;
+                        }
+                    }
+                }
+            }
+        }
+next:
+        if (found==0) break;
+    }
+    int cc=0;
+    for (auto&amp; v : a) for (auto i : v) cc+=i==0;
+    if (cc) {
+        cout&lt;&lt;&quot;Not easy\n&quot;;
+        for (auto&amp; v : a) {
+            for (auto&amp; i : v) {
+                if (i==0) cout&lt;&lt;'.';
+                else cout&lt;&lt;i;
+                cout&lt;&lt;' ';
+            }
+            cout&lt;&lt;'\n';
+        }
+    } else {
+        cout&lt;&lt;&quot;Easy\n&quot;;
+        for (auto&amp; v : a) {
+            for (auto i : v) cout&lt;&lt;i&lt;&lt;' ';
+            cout&lt;&lt;'\n';
+        }
+    }
+    return 0;
+}
+</code></pre>
+<h3 id="k">K</h3>
+<p>我们可以用一次实验把当前问题变成两个更小的子问题，假设当前的最大高度是<code>h</code>, 还剩<code>n</code>个pallet，如果我们用<code>x</code>个箱子试一次，如果pallet坏了的话那么问题就变成了：最大高度为<code>h-1</code>, 还剩<code>n-1</code>个pallet；如果没坏的话问题就变成了高度为<code>h-x</code>，还剩<code>x</code>个pallet。所以我们可以用dp。求范围的过程与dp类似。</p>
+<pre><code class="language-cpp">#include &lt;bits/stdc++.h&gt;
+
+#define all(x) (x).begin(),(x).end()
+#define sz(x) int(x.size())
+
+using namespace std;
+using ll = long long;
+using pii = pair&lt;int, int&gt;;
+template&lt;typename... T&gt; void rd(T&amp;... args) {((cin&gt;&gt;args), ...);}
+template&lt;typename... T&gt; void wr(T... args) {((cout&lt;&lt;args&lt;&lt;&quot; &quot;), ...); cout&lt;&lt;'\n';}
+
+int main() {
+    ios::sync_with_stdio(false);
+    cin.tie(nullptr);
+    int n, m;
+    cin&gt;&gt;n&gt;&gt;m;
+    vector need(n+1, vector(m+1, 0));
+    for (int i=0; i&lt;=n; i++) need[i][1]=i;
+
+    for (int i=1; i&lt;=n; i++) {
+        for (int pallet=2; pallet&lt;=m; pallet++) {
+            int mn=n+1;
+            for (int j=1; j&lt;=i; j++) {
+                int v1=need[j-1][pallet-1], v2=need[i-j][pallet];
+                mn=min(mn, max(v1, v2));
+            }
+            need[i][pallet]=mn+1;
+        }
+    }
+    int l=n, r=0;
+    int ans=need[n][m];
+    for (int i=1; i&lt;=n; i++) {
+        if (max(need[i-1][m-1], need[n-i][m])+1==ans){
+            l=min(l, i);
+            r=max(r, i);
+        }
+    }
+    cout&lt;&lt;ans&lt;&lt;' ';
+    if (l==r) cout&lt;&lt;l;
+    else cout&lt;&lt;l&lt;&lt;'-'&lt;&lt;r;
+    return 0;
+}
+</code></pre>
+<p>队友的二分做法：（和扔鸡蛋问题类似）</p>
+<pre><code class="language-python">from collections import *
+from functools import *
+from math import *
+import sys
+
+input = sys.stdin.readline
+sys.setrecursionlimit(2147483647)
+ml = lambda: map(int, input().split())
+
+def binomialCoeff(x, n, k):
+    sum = 0
+    term = 1
+    i = 1
+    while (i &lt;= n and sum &lt; k):
+        term *= x - i + 1
+        term /= i
+        sum += term
+        i += 1
+    return sum
+
+def minTrials(eggs, floors):
+    if eggs == 0:
+        return floors and inf
+    low = 1
+    high = floors
+
+    while low &lt; high:
+        mid = low + high &gt;&gt; 1
+        if binomialCoeff(mid, eggs, floors) &lt; floors:
+            low = mid + 1
+        else:
+            high = mid
+
+    return low
+
+def findX(eggs, floors):
+    low = 1
+    high = floors
+
+    while low &lt; high:
+        mid = low + high &gt;&gt; 1
+        if minTrials(eggs, floors - mid) &lt;= ans - 1:
+            high = mid
+        else:
+            low = mid + 1
+
+    return low
+
+
+def findY(eggs, floors):
+    low = 1
+    high = floors
+
+    while low &lt; high:
+        mid = low + high + 1 &gt;&gt; 1
+        if minTrials(eggs - 1, mid - 1) &lt;= ans - 1:
+            low = mid
+        else:
+            high = mid - 1
+
+    return low
+
+# range: x to y
+floors, eggs = ml()
+n = floors
+m = eggs
+# worst case: doesn't break on x and breaks on y
+# find smallest x s.t. minTrials(floors - x, eggs) &lt;= ans - 1
+# find biggest y s.t. minTrials(y - 1, eggs - 1) &lt;= ans - 1
+
+ans = minTrials(eggs, floors)
+x = findX(eggs, floors)
+y = findY(eggs, floors)
+
+if x == y:
+    print(ans, x)
+else:
+    print(ans, str(x) + &quot;-&quot; + str(y))
+</code></pre>
+<h3 id="l">L</h3>
+<p>可以观察到一定是上面的几个门用A通道，剩下下面的用B通道，所以可以枚举A和B分界的位置，然后剩下的问题就是公寓匹配门、门匹配工作站了，跑两次二分图最大权匹配即可。之前做过匹配的题的话这题应该是很简单的，可以当时没人读到，但队友读了也不一定能反应过来是匹配问题233。</p>
+<pre><code class="language-cpp">#include &lt;bits/stdc++.h&gt;
+
+#define all(x) (x).begin(),(x).end()
+#define sz(x) int(x.size())
+
+using namespace std;
+using ll = long long;
+using pii = pair&lt;int, int&gt;;
+template&lt;typename... T&gt; void rd(T&amp;... args) {((cin&gt;&gt;args), ...);}
+template&lt;typename... T&gt; void wr(T... args) {((cout&lt;&lt;args&lt;&lt;&quot; &quot;), ...); cout&lt;&lt;'\n';}
+
+template&lt;typename T&gt;
+class Hungarian {
+public:
+    int n, m;
+    vector&lt; vector&lt;T&gt; &gt; a;
+    vector&lt;T&gt; u, v;
+    vector&lt;int&gt; pa, pb, way;
+    vector&lt;T&gt; minv;
+    vector&lt;bool&gt; used;
+    T inf;
+    Hungarian(int _n, int _m) : n(_n), m(_m), a(n, vector&lt;T&gt;(m)), u(n+1), v(m+1), pa(n+1, -1), pb(m+1, -1), way(m, -1), minv(m), used(m+1) {
+        assert(n &lt;= m);
+        inf = numeric_limits&lt;T&gt;::max();
+    }
+    inline void add_row(int i) {
+        fill(minv.begin(), minv.end(), inf);
+        fill(used.begin(), used.end(), false);
+        pb[m] = i;
+        pa[i] = m;
+        int j0 = m;
+        do {
+            used[j0] = true;
+            int i0 = pb[j0];
+            T delta = inf;
+            int j1 = -1;
+            for (int j = 0; j &lt; m; j++) {
+                if (!used[j]) {
+                    T cur = a[i0][j] - u[i0] - v[j];
+                    if (cur &lt; minv[j]) {
+                        minv[j] = cur;
+                        way[j] = j0;
+                    }
+                    if (minv[j] &lt; delta) {
+                        delta = minv[j];
+                        j1 = j;
+                    }
+                }
+            }
+            for (int j = 0; j &lt;= m; j++) {
+                if (used[j]) {
+                    u[pb[j]] += delta;
+                    v[j] -= delta;
+                } else {
+                    minv[j] -= delta;
+                }
+            }
+            j0 = j1;
+        } while (pb[j0] != -1);
+        do {
+            int j1 = way[j0];
+            pb[j0] = pb[j1];
+            pa[pb[j0]] = j0;
+            j0 = j1;
+        } while (j0 != m);
+    }
+    inline T current_score() {
+        return -v[m];
+    }
+    inline T solve() {
+        for (int i = 0; i &lt; n; i++) {
+            add_row(i);
+        }
+        return current_score();
+    }
+};
+int main() {
+    ios::sync_with_stdio(false);
+    cin.tie(nullptr);
+    int n;
+    cin&gt;&gt;n;
+    vector g1(n, vector(2*n, 0));
+    auto g2=g1;
+    for (auto&amp; v : g1)
+        for (auto&amp; i : v) cin&gt;&gt;i;
+    for (auto&amp; v : g2)
+        for (auto&amp; i : v) cin&gt;&gt;i;
+    int mn_cost=1e9;
+    vector&lt;array&lt;int, 3&gt;&gt; ans(n);
+    for (int i=-1; i&lt;n; i++) {
+        vector ng1(n, vector(n, 0));
+        auto ng2=ng1;
+        for (int j=0; j&lt;n; j++) {
+            for (int u=0; u&lt;n; u++) {
+                ng1[u][j]=g1[u][j*2+(j&gt;i)];
+                ng2[u][j]=g2[u][j*2+(j&gt;i)];
+            }
+        }
+        Hungarian&lt;int&gt; h1(n, n), h2(n, n);
+        h1.a=ng1, h2.a=ng2;
+        if (int cur=h1.solve() + h2.solve(); cur &lt;mn_cost) {
+            mn_cost=cur;
+            for (int j=0; j&lt;n; j++) {
+                ans[j]={j, h1.pa[j]*2+(h1.pa[j]&gt;i),h2.pb[h1.pa[j]]};
+            }
+        }
+    }
+    cout&lt;&lt;mn_cost&lt;&lt;'\n';
+    for (auto [x, y , z] : ans) {
+        cout&lt;&lt;x+1&lt;&lt;' '&lt;&lt;y/2+1&lt;&lt;char('A'+y%2)&lt;&lt;' '&lt;&lt;z+1&lt;&lt;'\n';
+    }
+    return 0;
+}
+</code></pre>
+
+    </div>
+</article>
+
+
+<div class="license markdown-body">
+    <blockquote>
+        <p>Unless otherwise noted, the content of this site is licensed under <a rel="license" href="http://creativecommons.org/licenses/by-nc-sa/4.0/"
+               target="_blank">CC BY-NC-SA 4.0</a>.</p>
+    </blockquote>
+</div>
+
+
+
+            </div>
+            <aside class="col-12 col-md-3 float-left sidebar">
+    
+    <div class="sidebar-item sidebar-pages">
+        <h3>Pages</h3>
+        <ul>
+            
+            <li>
+                <a href="/">Home</a>
+            </li>
+            
+            <li>
+                <a href="/archives/">Archives</a>
+            </li>
+            
+            <li>
+                <a href="/about/">About</a>
+            </li>
+            
+            <li>
+                <a href="/search/">Search</a>
+            </li>
+            
+            <li>
+                <a href="/tagss/">Tags</a>
+            </li>
+            
+        </ul>
+    </div>
+    
+    <div class="sidebar-item sidebar-links">
+        <h3>Links</h3>
+        <ul>
+            
+            <li>
+                <a href="https://github.com/thallium" target="_blank"><span>GitHub</span></a>
+            </li>
+            
+            <li>
+                <a href="https://codeforces.com/profile/Thallium54" target="_blank"><span>CodeForces</span></a>
+            </li>
+            
+            <li>
+                <a href="https://space.bilibili.com/3019370" target="_blank"><span>bilibili</span></a>
+            </li>
+            
+        </ul>
+    </div>
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    <div class="sidebar-item sidebar-toc">
+        <h3>Table of Contents</h3><nav id="TableOfContents">
+  <ul>
+    <li><a href="#比赛过程">比赛过程</a></li>
+    <li><a href="#反思">反思</a></li>
+    <li><a href="#题解">题解</a>
+      <ul>
+        <li><a href="#a">A</a></li>
+        <li><a href="#b">B</a></li>
+        <li><a href="#c">C</a></li>
+        <li><a href="#d">D</a></li>
+        <li><a href="#e">E</a></li>
+        <li><a href="#f">F</a></li>
+        <li><a href="#g">G</a></li>
+        <li><a href="#h">H</a></li>
+        <li><a href="#i">I</a></li>
+        <li><a href="#j">J</a></li>
+        <li><a href="#k">K</a></li>
+        <li><a href="#l">L</a></li>
+      </ul>
+    </li>
+  </ul>
+</nav></div>
+</aside>
+
+        </div>
+        <div class="btn">
+    <div class="btn-menu" id="btn-menu">
+        <i class="iconfont icon-grid-sharp"></i>
+    </div>
+    <div class="btn-toggle-mode">
+        <i class="iconfont icon-contrast-sharp"></i>
+    </div>
+    <div class="btn-scroll-top">
+        <i class="iconfont icon-chevron-up-circle-sharp"></i>
+    </div>
+</div>
+<aside class="sidebar-mobile" style="display: none;">
+  <div class="sidebar-wrapper">
+    
+    <div class="sidebar-item sidebar-pages">
+        <h3>Pages</h3>
+        <ul>
+            
+            <li>
+                <a href="/">Home</a>
+            </li>
+            
+            <li>
+                <a href="/archives/">Archives</a>
+            </li>
+            
+            <li>
+                <a href="/about/">About</a>
+            </li>
+            
+            <li>
+                <a href="/search/">Search</a>
+            </li>
+            
+            <li>
+                <a href="/tagss/">Tags</a>
+            </li>
+            
+        </ul>
+    </div>
+    
+    <div class="sidebar-item sidebar-links">
+        <h3>Links</h3>
+        <ul>
+            
+            <li>
+                <a href="https://github.com/thallium" target="_blank"><span>GitHub</span></a>
+            </li>
+            
+            <li>
+                <a href="https://codeforces.com/profile/Thallium54" target="_blank"><span>CodeForces</span></a>
+            </li>
+            
+            <li>
+                <a href="https://space.bilibili.com/3019370" target="_blank"><span>bilibili</span></a>
+            </li>
+            
+        </ul>
+    </div>
+    
+    <div class="sidebar-item sidebar-tags">
+        <h3>Tags</h3>
+        <div>
+            
+            <span>
+                <a href="/tags/bfs/">BFS</a>
+            </span>
+            
+            <span>
+                <a href="/tags/bitmasks/">bitmasks</a>
+            </span>
+            
+            <span>
+                <a href="/tags/contests/">Contests</a>
+            </span>
+            
+            <span>
+                <a href="/tags/css/">css</a>
+            </span>
+            
+            <span>
+                <a href="/tags/cugbacm/">CUGBACM</a>
+            </span>
+            
+            <span>
+                <a href="/tags/dfs/">DFS</a>
+            </span>
+            
+            <span>
+                <a href="/tags/html/">html</a>
+            </span>
+            
+            <span>
+                <a href="/tags/linux/">Linux</a>
+            </span>
+            
+            <span>
+                <a href="/tags/manacher/">Manacher</a>
+            </span>
+            
+            <span>
+                <a href="/tags/markdown/">markdown</a>
+            </span>
+            
+            <span>
+                <a href="/tags/st%E8%A1%A8/sparse-table/">ST表/Sparse Table</a>
+            </span>
+            
+            <span>
+                <a href="/tags/text/">text</a>
+            </span>
+            
+            <span>
+                <a href="/tags/themes/">themes</a>
+            </span>
+            
+            <span>
+                <a href="/tags/vscode/">VSCode</a>
+            </span>
+            
+            <span>
+                <a href="/tags/z-algorithm/">Z Algorithm</a>
+            </span>
+            
+            <span>
+                <a href="/tags/%E4%B8%BB%E5%B8%AD%E6%A0%91/persistent-segtree/">主席树/Persistent SegTree</a>
+            </span>
+            
+            <span>
+                <a href="/tags/%E4%B9%98%E6%B3%95%E9%80%86%E5%85%83/modular-inverse/">乘法逆元/Modular Inverse</a>
+            </span>
+            
+            <span>
+                <a href="/tags/%E4%BA%8C%E5%88%86/binary-search/">二分/Binary Search</a>
+            </span>
+            
+            <span>
+                <a href="/tags/%E5%88%86%E6%B2%BB/divide-and-conquer/">分治/Divide and Conquer</a>
+            </span>
+            
+            <span>
+                <a href="/tags/%E5%8A%A8%E6%80%81%E8%A7%84%E5%88%92/dp/">动态规划/DP</a>
+            </span>
+            
+            <span>
+                <a href="/tags/%E5%8D%95%E8%B0%83%E6%A0%88/monotone-stack/">单调栈/Monotone Stack</a>
+            </span>
+            
+            <span>
+                <a href="/tags/%E5%8D%95%E8%B0%83%E6%A0%88/monotonic-stack/">单调栈/Monotonic Stack</a>
+            </span>
+            
+            <span>
+                <a href="/tags/%E5%8D%9A%E5%BC%88%E8%AE%BA/game-theory/">博弈论/Game Theory</a>
+            </span>
+            
+            <span>
+                <a href="/tags/%E5%8F%8C%E6%8C%87%E9%92%88/two-pointers/">双指针/Two Pointers</a>
+            </span>
+            
+            <span>
+                <a href="/tags/%E5%90%8E%E7%BC%80%E6%95%B0%E7%BB%84/suffix-array/">后缀数组/Suffix Array</a>
+            </span>
+            
+            <span>
+                <a href="/tags/%E5%93%88%E5%B8%8C/hash/">哈希/Hash</a>
+            </span>
+            
+            <span>
+                <a href="/tags/%E5%9B%BE%E8%AE%BA/graph-theory/">图论/Graph Theory</a>
+            </span>
+            
+            <span>
+                <a href="/tags/%E5%AD%97%E7%AC%A6%E4%B8%B2/string/">字符串/String</a>
+            </span>
+            
+            <span>
+                <a href="/tags/%E5%B7%AE%E5%88%86/difference/">差分/Difference</a>
+            </span>
+            
+            <span>
+                <a href="/tags/%E5%B9%B6%E6%9F%A5%E9%9B%86/union-find/">并查集/Union Find</a>
+            </span>
+            
+            <span>
+                <a href="/tags/%E5%BC%BA%E8%BF%9E%E9%80%9A%E5%88%86%E9%87%8F/strongly-connected-components/">强连通分量/Strongly Connected Components</a>
+            </span>
+            
+            <span>
+                <a href="/tags/%E5%BF%AB%E9%80%9F%E5%B9%82/binary-power/">快速幂/Binary Power</a>
+            </span>
+            
+            <span>
+                <a href="/tags/%E6%80%9D%E7%BB%B4%E9%A2%98/">思维题</a>
+            </span>
+            
+            <span>
+                <a href="/tags/%E6%80%9D%E7%BB%B4%E9%A2%98/">思维题</a>
+            </span>
+            
+            <span>
+                <a href="/tags/%E6%8B%93%E6%89%91%E6%8E%92%E5%BA%8F/topological-sort/">拓扑排序/Topological Sort</a>
+            </span>
+            
+            <span>
+                <a href="/tags/%E6%95%B0%E5%AD%A6/">数学</a>
+            </span>
+            
+            <span>
+                <a href="/tags/%E6%95%B0%E5%AD%A6/">数学</a>
+            </span>
+            
+            <span>
+                <a href="/tags/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84/data-structure/">数据结构/Data Structure</a>
+            </span>
+            
+            <span>
+                <a href="/tags/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84/segtree/">数据结构/SegTree</a>
+            </span>
+            
+            <span>
+                <a href="/tags/%E6%95%B0%E8%AE%BA/number-theory/">数论/Number Theory</a>
+            </span>
+            
+            <span>
+                <a href="/tags/%E6%9C%80%E5%B0%8F%E7%94%9F%E6%88%90%E6%A0%91/mst/">最小生成树/MST</a>
+            </span>
+            
+            <span>
+                <a href="/tags/%E6%9C%80%E7%9F%AD%E8%B7%AF/shortest-path/">最短路/Shortest Path</a>
+            </span>
+            
+            <span>
+                <a href="/tags/%E6%9D%82%E9%A1%B9/misc/">杂项/Misc</a>
+            </span>
+            
+            <span>
+                <a href="/tags/%E6%9E%84%E9%80%A0/constructive-alg/">构造/Constructive Alg</a>
+            </span>
+            
+            <span>
+                <a href="/tags/%E6%A0%91/trees/">树/Trees</a>
+            </span>
+            
+            <span>
+                <a href="/tags/%E6%A0%91%E4%B8%8Adp/tree-dp/">树上DP/Tree DP</a>
+            </span>
+            
+            <span>
+                <a href="/tags/%E6%A0%91%E4%B8%8A%E9%97%AE%E9%A2%98/trees/">树上问题/Trees</a>
+            </span>
+            
+            <span>
+                <a href="/tags/%E6%A0%91%E7%8A%B6%E6%95%B0%E7%BB%84/fenwick-tree/">树状数组/Fenwick Tree</a>
+            </span>
+            
+            <span>
+                <a href="/tags/%E6%A6%82%E7%8E%87/probability/">概率/Probability</a>
+            </span>
+            
+            <span>
+                <a href="/tags/%E6%AC%A7%E6%8B%89%E5%87%BD%E6%95%B0/eulers-totient-function/">欧拉函数/Euler&#39;s totient function</a>
+            </span>
+            
+            <span>
+                <a href="/tags/%E7%BA%BF%E6%AE%B5%E6%A0%91/segtree/">线段树/SegTree</a>
+            </span>
+            
+            <span>
+                <a href="/tags/%E7%BB%84%E5%90%88%E5%AD%A6/combinatorics/">组合学/Combinatorics</a>
+            </span>
+            
+            <span>
+                <a href="/tags/%E8%83%8C%E5%8C%85%E9%97%AE%E9%A2%98/knapsack/">背包问题/Knapsack</a>
+            </span>
+            
+            <span>
+                <a href="/tags/%E8%A7%82%E5%AF%9F/observation/">观察/Observation</a>
+            </span>
+            
+            <span>
+                <a href="/tags/%E8%B4%AA%E5%BF%83/greedy/">贪心/Greedy</a>
+            </span>
+            
+        </div>
+    </div>
+    
+    
+    
+    <div class="sidebar-item sidebar-toc">
+        <h3>Table of Contents</h3>
+        <nav id="TableOfContents">
+  <ul>
+    <li><a href="#比赛过程">比赛过程</a></li>
+    <li><a href="#反思">反思</a></li>
+    <li><a href="#题解">题解</a>
+      <ul>
+        <li><a href="#a">A</a></li>
+        <li><a href="#b">B</a></li>
+        <li><a href="#c">C</a></li>
+        <li><a href="#d">D</a></li>
+        <li><a href="#e">E</a></li>
+        <li><a href="#f">F</a></li>
+        <li><a href="#g">G</a></li>
+        <li><a href="#h">H</a></li>
+        <li><a href="#i">I</a></li>
+        <li><a href="#j">J</a></li>
+        <li><a href="#k">K</a></li>
+        <li><a href="#l">L</a></li>
+      </ul>
+    </li>
+  </ul>
+</nav>
+    </div>
+    
+    
+  </div>
+</aside>
+    </main>
+
+    <footer>
+    <div class="container-lg clearfix">
+        <div class="col-12 footer">
+            
+            <span>&copy; 2020-2021
+                <a href="https://blog.thallium.com">Thallium</a>
+                
+                | Powered by <a href="https://github.com/dsrkafuu/hugo-theme-fuji/"
+                   target="_blank">Fuji-v2</a> &amp; <a href="https://gohugo.io/"
+                                                    target="_blank">Hugo</a> 
+            </span>
+        </div>
+    </div>
+</footer>
+
+    
+<script defer src="https://cdn.jsdelivr.net/npm/medium-zoom@1.0.6/dist/medium-zoom.min.js"></script>
+<script defer src="https://cdn.jsdelivr.net/npm/lazysizes@5.3.0/lazysizes.min.js"></script>
+<script defer src="https://cdn.jsdelivr.net/npm/prismjs@1.23.0/components/prism-core.min.js"></script>
+<script defer src="https://cdn.jsdelivr.net/npm/prismjs@1.23.0/plugins/autoloader/prism-autoloader.min.js"></script>
+
+
+
+<script defer src="/assets/js/fuji.min.js"></script>
+
+
+</body>
+
+</html>

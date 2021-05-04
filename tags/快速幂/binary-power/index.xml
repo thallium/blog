@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>快速幂/Binary Power on Thallim&#39;s Blog</title>
+    <link>https://blog.thallium.com/tags/%E5%BF%AB%E9%80%9F%E5%B9%82/binary-power/</link>
+    <description>Recent content in 快速幂/Binary Power on Thallim&#39;s Blog</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en</language><atom:link href="https://blog.thallium.com/tags/%E5%BF%AB%E9%80%9F%E5%B9%82/binary-power/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>CodeForces1128C - Primes and Multiplication</title>
+      <link>https://blog.thallium.com/post/2019-10-1-cf1128c/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>https://blog.thallium.com/post/2019-10-1-cf1128c/</guid>
+      <description>long long爆的好啊！！ 题目链接 我们把要求的式子展开$$f(x, 1) \cdot f(x, 2) \cdot \ldots \cdot f(x, n) \=g(1,p_1)\cdot g(1,p_2)\cdot \ldots \cdot g(1,p_n) \g(2,p_1)\cdot g(2,p_2)\cdot \ldots \cdot g(2,p_n) \g(3,p_1)\cdot g(3,p_2)\cdot \ldots \cdot g(3,p_n) \ \vdots \g(n,p_1)\cdot g(n,p_2)\cdot \ldots \cdot g(n,p_n) $$ 然后每次计算一列，由于$p$是质数，当且仅当$n=k\cdot p^j$时$</description>
+    </item>
+    
+  </channel>
+</rss>

@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>分治/Divide and Conquer on Thallim&#39;s Blog</title>
+    <link>https://blog.thallium.com/tags/%E5%88%86%E6%B2%BB/divide-and-conquer/</link>
+    <description>Recent content in 分治/Divide and Conquer on Thallim&#39;s Blog</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en</language><atom:link href="https://blog.thallium.com/tags/%E5%88%86%E6%B2%BB/divide-and-conquer/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Codeforces 1285D - Dr. Evil Underscores</title>
+      <link>https://blog.thallium.com/post/2020-01-10-cf1285d/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>https://blog.thallium.com/post/2020-01-10-cf1285d/</guid>
+      <description>Almost Solution Let&amp;rsquo;s start with the highest bit since it&amp;rsquo;s the most significant. We need to divide elements into two groups, one with elements which is $1$ on this bit and the other with elements which is $0$ on this bit. If either group is empty, we can always assign 0 or 1 to this bit to make this bit 0 in the answer and we can just proceed to the next bit, otherwise this bit is always 1. In order to know which value to assign we will solve the same problem recursively for each of the groups for</description>
+    </item>
+    
+  </channel>
+</rss>

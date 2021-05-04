@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>单调栈/Monotone Stack on Thallim&#39;s Blog</title>
+    <link>https://blog.thallium.com/tags/%E5%8D%95%E8%B0%83%E6%A0%88/monotone-stack/</link>
+    <description>Recent content in 单调栈/Monotone Stack on Thallim&#39;s Blog</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en</language><atom:link href="https://blog.thallium.com/tags/%E5%8D%95%E8%B0%83%E6%A0%88/monotone-stack/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Codeforces 1300E - Water Balance</title>
+      <link>https://blog.thallium.com/post/2020-02-29-cf1300e/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>https://blog.thallium.com/post/2020-02-29-cf1300e/</guid>
+      <description>Monotone stack is such an interest stuff. Solution To be honest, I don&amp;rsquo;t really know how to explain the solution clearly. It&amp;rsquo;s kind of a &amp;ldquo;greedy&amp;rdquo; solution: for each tank, you try to use this to reduce the water in previous tanks. Specifically, you can see water tanks as a succession of groups, if the current group has a smaller average value than the left one, then merge them. The stack is used to store the number of tanks and the sum of water. 题解 这个题有点贪心的意思，我们可</description>
+    </item>
+    
+    <item>
+      <title>Codeforces 1313C2 - Skyscrapers (hard version)</title>
+      <link>https://blog.thallium.com/post/2020-02-25-cf1313c2/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>https://blog.thallium.com/post/2020-02-25-cf1313c2/</guid>
+      <description>Time to learn monotone stack. Solution It&amp;rsquo;s quite obvious that the answer goes non-decreasing from the start and at some point turns to non-increasing. We want to find the optimal turning point. We can build two arrays $pre$ and $suf$ of length n. The ith element of $pre$ represents the maximum sum of floors from 1 to i if the floors are non-decreasing. Similar definition for $suf$. The turning point t is where $pre_t+suf_t-m_t$ is maximum. For example: let $m={1,2,3,2,1}$ | |0|1|2|3|4 |-|-|-|-|- pre|1|3|6|7|5 suf|5|7|6|3|1 m |1|2|3|2|1 pre+suf-m|5|8|9|8|5 We can build the arrays by maintaining a mono-increasing stack stack&amp;lt;pair&amp;lt;ll,ll&amp;gt;&amp;gt; to</description>
+    </item>
+    
+    <item>
+      <title>单调栈常见模型</title>
+      <link>https://blog.thallium.com/post/2020-05-19-monostack/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>https://blog.thallium.com/post/2020-05-19-monostack/</guid>
+      <description>总结一下加深印象 左边第一个比当前小 严格单调递增栈，如果求的是数字栈内就存数字，如果求距离栈内就存数字+下标或者数字+到栈内前一个元素的距离。 举例 [2,1,6,4,5] [] 空栈，说明2之前没有比2小的元素，然后2入栈 [2] 为了保</description>
+    </item>
+    
+    <item>
+      <title>题解/Tutorial for Codeforces 56E - Domino Principle</title>
+      <link>https://blog.thallium.com/post/2020-07-05-cf56e/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>https://blog.thallium.com/post/2020-07-05-cf56e/</guid>
+      <description>单调栈好题，非常独特的视角。 Solution Each element {x,i}in the stack represents a consecutive group of dominos such that if one domino can reach x, all the dominos starting from the i-th position until the next group will fall. So when we move to a new domino, we should firstly pop out all the domino that within the reach of the current domino. Then the top domino would be the closest domino that won&amp;rsquo;t fall if we pull of the current domino, i.e. the answer for the current domino. 题解</description>
+    </item>
+    
+  </channel>
+</rss>
