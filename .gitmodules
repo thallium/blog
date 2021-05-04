@@ -1,0 +1,12 @@
+[submodule "themes/fuji"]
+	path = themes/fuji
+	url = https://github.com/amzrk2/hugo-theme-fuji.git
+[submodule "themes/even"]
+	path = themes/even
+	url = https://github.com/olOwOlo/hugo-theme-even.git
+[submodule "themes/themes/even"]
+	path = themes/themes/even
+	url = https://github.com/ouuan/hugo-theme-even
+[submodule "themes/harbor"]
+	path = themes/harbor
+	url = git@github.com:thallium/harbor.git
