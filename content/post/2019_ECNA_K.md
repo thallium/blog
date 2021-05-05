@@ -22,7 +22,8 @@ For the 5 types of bins, there's are $5!$ combinations of relative order. Let $\
 
 For $i=2,\dots, 5$, $\textit{BestCost}\_{i, j}$ can be calculated from $\textit{BestCost}\_{i-1, j}$:
 
-$$\textit{BestCost}_{i, jj}=\min_{j\le jj-cnt_k} \textit{BestCost}_{i-1, j}+\textit{EndCost}_{k, j}, ~~\text{for each type } k=0,\dots, 5$$
+$$\textit{BestCost} _{i,jj}=\min _{j\le jj-cnt_k}\textit{BestCost} _{i-1, j}+\textit{EndCost} _{k, j},~~\text{for each type } k=0,\dots,5$$
+
 
 Time complexity: $O(5^5\cdot n^2)$ (correct me if I'm wrong).
 
@@ -31,7 +32,7 @@ Time complexity: $O(5^5\cdot n^2)$ (correct me if I'm wrong).
 首先先算出把每一种箱子放到结尾为$j$的位置的花费，然后遍历 $5!$ 种相对位置顺序，然后记录把前$i$种箱子放到结尾为$j$的位置的花费。 具体转移公式看上面吧，懒得复制了QAQ.
 
 ## Code
-{% raw %}
+
 ```cpp
 #include <bits/stdc++.h>
 
@@ -127,4 +128,3 @@ int main() {
     return 0;
 }
 ```
-{% endraw %}
