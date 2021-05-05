@@ -6,6 +6,7 @@ languageCode = "en"
 DefaultContentLanguage = "en"
 enableInlineShortcodes = true
 footnoteReturnLinkContents = "^"
+enableEmoji = true
 math = true
 # DO NOT REMOVE THIS
 theme = "harbor"

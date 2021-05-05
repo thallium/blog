@@ -7,7 +7,10 @@ layout: post
 math: true
 ---
 
-算是有所进步但还是稍有遗憾，差一题就能进division championships
+算是有所进步但还是稍有遗憾，差一题就能进division championships. 
+
+更新：所有7题队都以wildcard的身份晋级<abbr title="North America Division Championships">NADC</abbr>了，而且如果本学校只有wildcard队的话，会被分到最弱的central division，然后我们又莫名其妙的拿了个第6，晋级<abbr title="North America Championships">NAC</abbr>了:joy:
+
 
 <!--more-->
 
