@@ -27,6 +27,7 @@ body {
 a {
   outline: none;
   text-decoration: none;
+  color: #5E81AC;
 }
 
 .error-text {

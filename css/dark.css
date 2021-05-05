@@ -1,5 +1,5 @@
 html {
-    background-color: #171717 !important;
+    background-color: #2E3440 !important;
 }
 body {
     filter: invert(100%) hue-rotate(180deg) brightness(105%) contrast(85%);
