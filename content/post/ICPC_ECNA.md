@@ -1,5 +1,6 @@
 ---
 title: 2020 ICPC East Central NA Regional Contest 总结与题解
+date: 2021-03-10
 categories: [题解/Tutorial]
 tags: [Contests]
 layout: post

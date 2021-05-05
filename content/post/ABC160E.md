@@ -1,0 +1,114 @@
+---
+published: true
+date: 2020-03-31
+title: AtCoder Beginner Contest 160E - Distributing Integers
+category: 题解/Tutorial
+tags:
+  - 动态规划/DP
+  - 树上DP/Tree DP
+  - 数学
+  - 组合学/Combinatorics
+  - DFS
+layout: post
+math: true
+---
+
+做出这题的一瞬间我整个人都舒服了。
+
+<!--more-->
+
+## Solution
+
+[Similar Problem]({% post_url 2020/03/2020-03-30-CF1187E %})
+
+This is the similar idea as that problem. That is if we know the answer for some vertex we cant get the answer for the adjacent vertex in $O(n)$ time.
+
+First we need to figure out how to calculate the answer for a single vertex: Let we ignore the constrains at first, just write numbers on the tree in any order, except write 1 on the root node. We have $(\operatorname{size}(u)-1)!$ ways to do this.
+
+Then we consider the constrains, that is some vertices must be used before some other vertices on the same subtree. Note that this order is subtree independent, so now let's only consider which subtree the number is written on and put the order in each subtree aside. In this situation we have $(\operatorname{size}(u)-1)!\prod_{v\in\operatorname{ch}(u)}\frac 1 {\operatorname{size}(v)!}$, where $u$ is the root node and $v$ is $u$'s neighbor.
+
+Finally we can consider the order. First let's define $dp_u$ as number of the ways of writing integers, in which integers are only to the subtree with the root being vertex $u$, such that 1 is written on vertex $u$. In each subtree, there are $dp_v$ ways to write the numbers, so we have $dp_u=(\operatorname{size}(u)-1)!\prod_{v\in\operatorname{ch}(u)}\frac {dp_v} {\operatorname{size}(v)!}$
+
+Now we have the formula which allow us to calculate $dp_i$ bottom-up. Next let's how the $dp_i$ change after rerooting:
+
+Let $u$ be the current root and the $v$ be one of $u$'s neighbors, $dp_u$ would become $\dfrac{dp_u\cdot(n-\cdot\operatorname{size}(v)-1)!\operatorname{size}(v)!}{(n-1)!\cdot dp_v}$. $dp_v$ will become $\dfrac {dp_v\cdot(n-1)!\cdot dp_u}{(\operatorname{size}(v)-1)!\cdot (n-\operatorname{size}(v))!}=\dfrac{dp_u\cdot \operatorname{size}(v)}{n-\operatorname{size}(v)}$. We can use this formula to calculate answer for each vertex while doing DFS.
+
+## Code
+
+```cpp
+#include <bits/stdc++.h>
+
+#define forn(i, n) for (int i = 0; i < int(n); ++i)
+#define for1(i, n) for (int i = 1; i <= int(n); ++i)
+#define fore(i, l, r) for (int i = int(l); i <= int(r); ++i)
+#define ford(i, n) for (int i = int(n)-1; i >= 0; --i)
+#define pb push_back
+#define eb emplace_back
+#define ms(a, x) memset(a, x, sizeof(a))
+#define F first
+#define S second
+#define endl '\n'
+#define all(x) (x).begin(),(x).end()
+
+using namespace std;
+typedef long long ll;
+typedef pair<int, int> pii;
+const int INF = 0x3f3f3f3f;
+mt19937 gen(chrono::high_resolution_clock::now().time_since_epoch().count());
+//template<typename... Args>
+//void write(Args... args) { ((cout << args << " "), ...); cout<<endl;}
+
+const int N=2e5+5;
+vector<int> G[N];
+const int mod=1e9+7;
+ll ans[N];
+ll fac[N],inv[N];
+ll binpow(ll a,int b){
+   ll res=1;
+   for(;b;b>>=1){
+       if(b&1) res=res*a%mod;
+       a=a*a%mod;
+   }
+   return res;
+}
+ll dp[N],sz[N];
+int n;
+void cal(int u,int f){
+    sz[u]=1;
+    int res=1;
+    for(auto to:G[u]){
+        if(to!=f){
+            cal(to,u);
+            sz[u]+=sz[to];
+            res=res*dp[to]%mod*inv[sz[to]]%mod;
+        }
+    }
+    res=res*fac[sz[u]-1]%mod;
+    dp[u]=res;
+}
+void dfs(int u,int f,int par){
+    ans[u]=par;
+    for(auto to:G[u]) if(to!=f){
+        dfs(to,u,par*sz[to]%mod*binpow(n-sz[to],mod-2)%mod);
+    }
+}
+int main() {
+    ios::sync_with_stdio(false);
+    cin.tie(nullptr);
+    cin>>n;
+    fac[0]=1;
+    for(int i=1;i<=n;i++) fac[i]=fac[i-1]*i%mod;
+    inv[n]=binpow(fac[n],mod-2);
+    for(int i=n-1;i>=0;i--) inv[i]=inv[i+1]*(i+1)%mod;
+    forn(i,n-1){
+        int x,y;
+        cin>>x>>y;
+        G[x].pb(y);
+        G[y].pb(x);
+    }
+    cal(1,0);
+    dfs(1,0,dp[1]);
+    for1(i,n) cout<<ans[i]<<endl;
+    return 0;
+}
+```
