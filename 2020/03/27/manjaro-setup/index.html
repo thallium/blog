@@ -1,0 +1,68 @@
+<!doctype html><html lang=en><head><meta charset=utf-8><title>Manjaro 折腾记录</title><meta http-equiv=x-ua-compatible content="IE=edge"><meta name=viewport content="width=device-width,initial-scale=1"><link rel=alternate type=application/rss+xml href=https://tgc-thallium.com/blog/index.xml title="Thallium's Blog"><meta name=twitter:card content="summary"><meta name=twitter:title content="Manjaro 折腾记录"><meta name=twitter:description content="随缘更新，想到啥就记啥"><link rel=stylesheet href=https://tgc-thallium.com/blog/fontawesome/css/all.min.css><link rel=stylesheet href=https://tgc-thallium.com/blog/css/main.css><link id=dark-mode-theme rel=stylesheet href=https://tgc-thallium.com/blog/css/dark.css><script>var darkTheme=document.getElementById('dark-mode-theme'),storedTheme=localStorage.getItem('dark-mode-storage');storedTheme==='dark'?darkTheme.disabled=!1:storedTheme==='light'&&(darkTheme.disabled=!0)</script><script src=https://tgc-thallium.com/blog/js/main.bundle.js></script><script src=https://tgc-thallium.com/blog/js/instantpage.min.js type=module defer></script><meta name=generator content="Hugo 0.83.1"></head><body><header><nav class=navbar><div class=nav><ul class=nav-links><li><a href=/blog/ id=Home><em class="fas fa-home fa-lg"></em></a></li><li><a href=/blog/about/ id=About><em class="fas fa-user fa-lg"></em></a></li><li><a href=/blog/tags/ id=Tags><em class="fas fa-tag fa-lg"></em></a></li><li><a href=/blog/categories/ id=Categories><em class="fas fa-list fa-lg"></em></a></li><li><a href=/blog/archives/ id=Archives><em class="fas fa-archive fa-lg"></em></a></li><li><a href=/blog/search/ id=Search><em class="fas fa-search fa-lg"></em></a></li></ul></div></nav><div class=intro-header><div class=container><div class=post-heading><h1>Manjaro 折腾记录</h1><span class=meta-post><em class="fa fa-calendar-alt"></em>&nbsp;Mar 27, 2020</span></div></div></div></header><div class=container role=main><article class=article class=blog-post><link rel=stylesheet href=https://cdn.jsdelivr.net/npm/katex@0.13.5/dist/katex.min.css integrity=sha384-L+Gq2Cso/Y2x8fX4wausgiZT8z0QPZz7OqPuz4YqAycQJyrJT9NRLpjFBD6zlOia crossorigin=anonymous><script defer src=https://cdn.jsdelivr.net/npm/katex@0.13.5/dist/katex.min.js integrity=sha384-z64WtjpyrKFsxox9eI4SI8eM9toXdoYeWb5Qh+8PO+eG54Bv9BZqf9xNhlcLf/sA crossorigin=anonymous></script><script defer src=https://cdn.jsdelivr.net/npm/katex@0.13.5/dist/contrib/auto-render.min.js integrity=sha384-vZTG03m+2yp6N6BNi5iM4rW4oIwk5DfcNdFfxkk9ZWpDriOkXX8voJBFrAO7MpVl crossorigin=anonymous></script><script>document.addEventListener("DOMContentLoaded",function(){renderMathInElement(document.body,{delimiters:[{left:'$$',right:'$$',display:!0},{left:'$',right:'$',display:!1},{left:'\\(',right:'\\)',display:!1},{left:'\\[',right:'\\]',display:!0}],throwOnError:!1})})</script><p>随缘更新，想到啥就记啥</p><h2 id=配置>配置</h2><h3 id=触摸板>触摸板</h3><p>一开始发现触摸板右键和左键效果是一样的，双指轻按还是中键……</p><p>解决方法：</p><p>编辑 <code>/etc/X11/xorg.conf.d/30-touchpad.conf</code></p><div class=highlight><pre style=color:#272822;background-color:#fafafa;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-shell data-lang=shell>Section <span style=color:#d88200>&#34;InputClass&#34;</span>
+    Identifier <span style=color:#d88200>&#34;touchpad&#34;</span>
+    MatchIsTouchpad <span style=color:#d88200>&#34;on&#34;</span>
+    MatchDevicePath <span style=color:#d88200>&#34;/dev/input/event*&#34;</span>
+    Driver <span style=color:#d88200>&#34;libinput&#34;</span>
+    Option <span style=color:#d88200>&#34;Tapping&#34;</span> <span style=color:#d88200>&#34;on&#34;</span>
+    Option <span style=color:#d88200>&#34;ButtonMapping&#34;</span> <span style=color:#d88200>&#34;1 3 2&#34;</span>
+    Option <span style=color:#d88200>&#34;TappingButtonMap&#34;</span> <span style=color:#d88200>&#34;lmr&#34;</span>
+EndSection
+</code></pre></div><h3 id=映射capshjkl为方向键>映射caps+hjkl为方向键</h3><p>编辑<code>~/.Xmodmap</code></p><div class=highlight><pre style=color:#272822;background-color:#fafafa;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-shell data-lang=shell>clear lock
+keycode  <span style=color:#111>43</span> <span style=color:#f92672>=</span> h H Left H
+keycode  <span style=color:#111>44</span> <span style=color:#f92672>=</span> j J Down J
+keycode  <span style=color:#111>45</span> <span style=color:#f92672>=</span> k K Up K
+keycode  <span style=color:#111>46</span> <span style=color:#f92672>=</span> l L Right L
+keycode  <span style=color:#111>66</span> <span style=color:#f92672>=</span> Mode_switch Caps_Lock
+keycode  <span style=color:#111>31</span> <span style=color:#f92672>=</span> i I KP_Home I
+keycode  <span style=color:#111>32</span> <span style=color:#f92672>=</span> o O KP_End O
+</code></pre></div><p>Then update xmodmap:</p><p>{% highlight shell %}
+xmodmap ~/.Xmodmap
+{% endhighlight %}</p><p>解决挂起后失效的问题：</p><p>{% highlight shell %}
+sudo touch /usr/lib/systemd/system-sleep/xkeyboard
+sudo chmod 755 /usr/lib/systemd/system-sleep/xkeyboard
+{% endhighlight %}</p><p>编辑<code>xkeyboard</code></p><div class=highlight><pre style=color:#272822;background-color:#fafafa;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-shell data-lang=shell><span style=color:#75715e>#!/bin/bash
+</span><span style=color:#75715e></span>
+<span style=color:#00a8c8>case</span> <span style=color:#111>$1</span> in
+    pre<span style=color:#f92672>)</span>
+        <span style=color:#111>exit</span> <span style=color:#ae81ff>0</span>
+    <span style=color:#111>;;</span>
+    post<span style=color:#f92672>)</span>
+        <span style=color:#111>export</span> <span style=color:#111>DISPLAY</span><span style=color:#f92672>=</span>:0
+        sleep <span style=color:#ae81ff>10</span>
+        xmodmap /home/thallium/.Xmodmap
+    <span style=color:#111>;;</span>
+<span style=color:#00a8c8>esac</span>
+</code></pre></div><h3 id=主题>主题</h3><p><a href=https://github.com/horst3180/arc-theme>arc</a></p><p>{% highlight shell %}
+sudo pacman -S arc-gtk-theme
+{% endhighlight %}</p><h2 id=软件>软件</h2><h3 id=vim配置>vim配置</h3><p>待更新</p><h3 id=fcitx码表>fcitx码表</h3><p>待更新</p><h3 id=autojump>Autojump</h3><p>快速跳转文件夹，再也不用长长的cd了～</p><h4 id=安装>安装</h4><p>{% highlight shell %}
+yay autojump
+{% endhighlight %}</p><h4 id=source-the-correct-autojump-file>Source the correct autojump file</h4><p>{% highlight shell %}
+echo &ldquo;/usr/share/autojump/autojump.bash&rdquo; &#187; ~/.bashrc
+chmod 755 /usr/share/autojump/autojump.bash
+source ~/.bashrc
+{% endhighlight %}</p><h4 id=注意事项>注意事项</h4><p>快速跳转的文件夹需要正常访问一次。</p><h3 id=截图-deepin-screenshot>截图: Deepin screenshot</h3><p>一开始用的是火焰截图，但是不能自动识别窗口，后来偶然发现deepin screenshot感觉挺不错的。</p><p>{% highlight shell %}
+sudo pacman -S deepin-screenshot
+{% endhighlight %}</p><p>如果不能正常复制到剪贴板，安装<code>xfce4-clipman</code></p><h3 id=词典>词典</h3><p><a href=https://github.com/ChestnutHeng/Wudao-dict>Wudao dict</a></p><p>安装：</p><p>{% highlight shell %}
+git clone <a href=https://github.com/chestnutheng/wudao-dict>https://github.com/chestnutheng/wudao-dict</a>
+cd ./wudao-dict/wudao-dict
+sudo bash setup.sh
+{% endhighlight %}</p><h2 id=问题解决>问题解决</h2><h3 id=修改etcprofile导致循环登录>修改<code>/etc/profile</code>导致循环登录</h3><p>2020.03.27</p><p>一般的解决方法是从命令行登录然后恢复之前的修改，但我从命令行也是循环登录……于是想到能不能从windows修改然后发现有个软件叫linux file system for windows，然后问题就解决了。真的太不容易了，心态差点崩了……</p><h3 id=gnome-shell内存泄漏问题>Gnome-shell内存泄漏问题</h3><p>gnome传统艺能，<code>alt+F2</code>再输入<code>r</code>可以重新启动shell。</p><h3 id=让gvim默认在新标签中启动>让gvim默认在新标签中启动</h3><p>编辑<code>/usr/share/applications/gvim.desktop</code></p><p>把
+{% highlight shell %}
+Exec=gvim -f %F
+{% endhighlight %}
+改成
+{% highlight shell %}
+Exec=gvim -p &ndash;remote-tab-silent %F
+{% endhighlight %}</p><h3 id=i3wm下运行qqtimwechat>i3wm下运行QQ/TIM/Wechat</h3><p>2020-04-13</p><p><a href=http://www.waimaosns.cc/arch-linux-i3wm-run-deepin-qq-tim/>原作者</a></p><p>{% highlight shell %}
+nohup /usr/lib/gsd-xsettings > /dev/null 2>&1 &
+cd /opt/deepinwine/apps/Deepin-TIM
+./run.sh
+{% endhighlight %}</p><p>最后将第一步添加到i3启动项里。</p><div class=blog-tags><a href=https://tgc-thallium.com/blog/tags/linux/>Linux</a>&nbsp;</div></article></div><footer><div class=social-icons><a href=https://github.com/thallium name=GitHub><em class="fab fa-github"></em></a></div><div class=container><p class="credits copyright"><a href=https://tgc-thallium.com/blog/about>hugo author</a>
+&nbsp;&copy;
+2021
+&nbsp;/&nbsp;
+<a href=https://tgc-thallium.com/blog/>Thallium's Blog</a>
+&nbsp;&ndash;&nbsp;
+<em class="fas fa-moon" id=dark-mode-toggle></em></p><p class="credits theme-by">Powered By <a href=https://gohugo.io>Hugo</a>&nbsp;
+Theme
+<a href=https://github.com/matsuyoshi30/harbor>Harbor</a></p></div></footer></body></html>
