@@ -1,4 +1,4 @@
-baseURL = "https://tgc-thallium.com/blog/"
+baseURL = "https://blog.tgc-thallium.com/"
 title = "Thallium's Blog"
 author = "Thallium"
 paginate = 3
