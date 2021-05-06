@@ -2,7 +2,7 @@
 published: true
 date: 2021-01-24
 title: 题解/Tutorial for 2019 ICPC East Central North American(ECNA) Regional Contest K - Where Have You Bin
-category: 题解/Tutorial
+category: 题解/Solutions
 tags: 
 - 动态规划/DP
 layout: post
