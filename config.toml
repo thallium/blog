@@ -1,5 +1,3 @@
-baseURL = "https://blog.tgc-thallium.com/"
-title = "Thallium's Blog"
 author = "Thallium"
 paginate = 3
 languageCode = "en"
@@ -84,3 +82,11 @@ theme = "harbor"
     startLevel = 2
   [markup.highlight]
     style = "monokailight"
+
+[languages]
+  [languages.en]
+    title = "Thallium's Blog"
+    baseURL = "https://blog.tgc-thallium.com/"
+  [languages.zh-hans]
+    title = "Thallium的博客"
+    baseURL = "https://blog-zh.tgc-thallium.com/"
