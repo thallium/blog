@@ -86,7 +86,7 @@ theme = "harbor"
 [languages]
   [languages.en]
     title = "Thallium's Blog"
-    baseURL = "https://blog.tgc-thallium.com/"
+    baseURL = "https://blog.tgc-thallium.com/en"
   [languages.zh-hans]
     title = "Thallium的博客"
-    baseURL = "https://blog-zh.tgc-thallium.com/"
+    baseURL = "https://blog.tgc-thallium.com/zh-hans"
