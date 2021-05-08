@@ -21,8 +21,9 @@ jobs:
           # extended: true
 
       - name: Build
-        run: hugo --minify
-             cat "blog.tgc-thallium.com" > public/CNAME
+      - run: hugo --minify
+      - run: touch public/CNAME
+      - run: cat "blog.tgc-thallium.com" > public/CNAME
 
       - name: Deploy
         uses: peaceiris/actions-gh-pages@v3
