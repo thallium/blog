@@ -1,8 +1,8 @@
 ---
 published: true
 date: 2020-03-14
-title: Comparison of std::array and std::tuple / std::array和std::tuple的比较
-category: 杂项/Miscellany 
+title: Comparison of std::array and std::tuple
+categories: [Miscellany] 
 tags: 
 layout: post
 math: true

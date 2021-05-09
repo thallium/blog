@@ -1,6 +1,6 @@
 ---
 title: "Search"
-type: "archives"
+type: "search"
 ---
 
 {{<search>}}

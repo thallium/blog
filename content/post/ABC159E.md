@@ -2,13 +2,13 @@
 published: true
 date: 2020-03-25
 title: AtCoder Beginner Contest 159E - Dividing Chocolate
-category: 题解/Tutorial
+categories: [Solutions]
 tags: 
-- 动态规划/DP
+- DP
 layout: post
 math: true
 ---
-看了一上午才看明白大佬的代码
+It took me the whole morning to understand the code.
 <!--more-->
 
 ## Solution

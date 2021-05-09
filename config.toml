@@ -1,19 +1,21 @@
 author = "Thallium"
-paginate = 3
+paginate = 5
 languageCode = "en"
-DefaultContentLanguage = "en"
+defaultContentLanguage = "en"
 enableInlineShortcodes = true
 footnoteReturnLinkContents = "^"
 enableEmoji = true
 math = true
+baseURL = "https://blog.tgc-thallium.com/"
 # DO NOT REMOVE THIS
 theme = "harbor"
 
 [Author]
-  name = "hugo author"
+  name = "Gengchen"
 
 [permalinks]
-    post = "/:year/:month/:day/:filename/"
+    # post = "/:year/:month/:day/:filename/"
+    post = "/:filename/"
     page = "/:filename/"
 
 [outputs]
@@ -86,7 +88,7 @@ theme = "harbor"
 [languages]
   [languages.en]
     title = "Thallium's Blog"
-    baseURL = "https://blog.tgc-thallium.com/en/"
+    weight = 1
   [languages.zh-hans]
     title = "Thallium的博客"
-    baseURL = "https://blog.tgc-thallium.com/zh-hans/"
+    weight = 2

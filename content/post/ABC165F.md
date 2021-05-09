@@ -1,15 +1,15 @@
 ---
 published: true
 date: 2020-05-02
-title: Tutorial for AtCoder beginner contest 165F - LIS on Tree
-category: 题解/Tutorial
+title: Solution for AtCoder beginner contest 165F - LIS on Tree
+category: Tutorial
 tags:
 - DFS
-- 动态规划/DP
+- DP
 layout: post
 math: true
 ---
-很有趣的一道题
+Very interesting problem.
 <!--more-->
 
 ## Solution

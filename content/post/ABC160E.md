@@ -1,25 +1,25 @@
 ---
 published: true
 date: 2020-03-31
-title: AtCoder Beginner Contest 160E - Distributing Integers
-category: 题解/Tutorial
+title: Solution for AtCoder Beginner Contest 160E - Distributing Integers
+categories: [Solutions]
 tags:
-  - 动态规划/DP
-  - 树上DP/Tree DP
-  - 数学
-  - 组合学/Combinatorics
+  - DP
+  - Tree DP
+  - Math
+  - Combinatorics
   - DFS
 layout: post
 math: true
 ---
 
-做出这题的一瞬间我整个人都舒服了。
+It's satisfying to solve this problem
 
 <!--more-->
 
 ## Solution
 
-[Similar Problem]({% post_url 2020/03/2020-03-30-CF1187E %})
+[Similar Problem]( {{< ref "CF1187E.md" >}} )
 
 This is the similar idea as that problem. That is if we know the answer for some vertex we cant get the answer for the adjacent vertex in $O(n)$ time.
 

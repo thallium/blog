@@ -1,10 +1,10 @@
 ---
 published: true
 date: 2020-07-01
-title: 部分题解/Tutorial for some problems of Atcoder Educational DP Contest 
-category: 题解/Tutorial
+title: Solutions for partial problems of Atcoder Educational DP Contest 
+categories: [Solutions]
 tags:
-- 动态规划/DP
+- DP
 layout: post
 math: true
 ---
@@ -240,10 +240,6 @@ int main() {
 ### Solution
 
 Let $dp_i$ be the answer for the rabbits that is 1 in the binary representation of $i$. First we let all the rabbits be in the same group. Then we can use `for(int j=i;j;j=(j-1)&i)` to traverse each subset of $i$ and update the answer.
-
-### 题解
-
-$dp_i$表示只考虑$i$的二进制表示中是1的位置的兔子的答案。一开始假设所有兔子都在同一个组里。然后用`for(int j=i;j;j=(j-1)&i)`遍历$i$的所有子集然后更新答案。
 
 ### Code
 

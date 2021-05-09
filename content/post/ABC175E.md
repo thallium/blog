@@ -1,10 +1,10 @@
 ---
 published: true
 date: 2020-08-24
-title: Tutorial/题解 for AtCoder beginner contest 175E - Picking Goods
-category: 题解/Tutorial
+title: Solution for AtCoder beginner contest 175E - Picking Goods
+categories: [Solutions]
 tags:
-- 动态规划/DP 
+- DP 
 layout: post
 math: true
 ---
