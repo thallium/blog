@@ -22,8 +22,6 @@ jobs:
 
       - name: Build
         run: hugo --minify
-      - name: CNAME
-        run: touch public/CNAME && echo "blog.tgc-thallium.com" > public/CNAME
 
       - name: Deploy
         uses: peaceiris/actions-gh-pages@v3
