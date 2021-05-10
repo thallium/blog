@@ -2,7 +2,7 @@
 published: true
 date: 2020-02-19
 title: DAG上最长路
-category: 算法笔记
+categories: [算法笔记]
 tags: 
 - 图论
 - 动态规划

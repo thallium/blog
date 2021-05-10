@@ -2,7 +2,7 @@
 published: true
 date: 2020-05-19
 title: 单调栈常见模型
-category: 算法笔记
+categories: [算法笔记]
 tags:
 - 数据结构
 - 单调栈

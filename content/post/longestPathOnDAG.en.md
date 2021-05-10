@@ -2,7 +2,7 @@
 published: true
 date: 2020-02-19
 title: Finding the longest path on a DAG
-category: Alg Notes
+categories: [Alg Notes]
 tags: 
 - Graph Theory
 - DP

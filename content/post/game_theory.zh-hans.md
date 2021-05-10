@@ -1,6 +1,6 @@
 ---
 published: true
-date: 2019-10-4
+date: 2019-10-04
 title: 博弈论入门学习笔记
 category: 算法笔记
 tags: 

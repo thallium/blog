@@ -2,7 +2,7 @@
 published: true
 date: 2020-04-24
 title: Solution for Atcoder beginner contest 162F -  Select Half Select Half
-category: Tutorial
+categories: [Solutions]
 tags:
 - DP
 layout: post

@@ -19,8 +19,7 @@ theme = "harbor"
     page = "/:filename/"
 
 [outputs]
-    # section = ["JSON", "HTML"]
-    section = ["HTML"]
+    section = ["JSON", "HTML"]
 
 [[params.nav]]
     identifier = "home"

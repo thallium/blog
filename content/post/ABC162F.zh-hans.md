@@ -2,7 +2,7 @@
 published: true
 date: 2020-04-24
 title: Atcoder beginner contest 162F -  Select Half Select Half 题解
-category: 题解
+categories: [题解]
 tags:
 - 动态规划
 layout: post

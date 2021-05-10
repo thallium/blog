@@ -1,6 +1,7 @@
 ---
-title: "Some math model"
+title: "一些数学模型"
 date: 2021-05-05T22:34:22-04:00
+categories: [算法笔记]
 tags:
 - 数学
 ---

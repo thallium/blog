@@ -2,7 +2,7 @@
 published: true
 date: 2020-07-01
 title: 部分题解 Atcoder Educational DP Contest 
-category: 题解
+categories: [题解]
 tags:
 - 动态规划
 layout: post

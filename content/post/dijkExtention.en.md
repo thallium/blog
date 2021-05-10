@@ -2,7 +2,7 @@
 published: true
 date: 2019-11-10
 title: Extension of Dijkstra
-category: Algorithm Notes
+categories: [Alg Notes]
 tags: 
 - Shortest Path 
 - Graph Theory

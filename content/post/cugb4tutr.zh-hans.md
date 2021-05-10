@@ -8,8 +8,6 @@ tags:
 layout: post
 ---
 
-# CUGBACM18级训练#4 解题报告
-
 <!--more-->
 
 ## B - Godfather Gym - 101649G

@@ -2,7 +2,7 @@
 published: true
 date: 2021-02-07
 title: 题解 2018 ICPC Asia Singapore Regional Contest
-category: 比赛题解
+categories: [比赛题解]
 tags: 
 layout: post
 ---

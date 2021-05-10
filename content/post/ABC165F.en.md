@@ -2,7 +2,7 @@
 published: true
 date: 2020-05-02
 title: Solution for AtCoder beginner contest 165F - LIS on Tree
-category: Tutorial
+categories: [Solutions]
 tags:
 - DFS
 - DP

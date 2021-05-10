@@ -1,6 +1,7 @@
 ---
 title: "Algorithm note: Modular Multiplicative Inverse and Modulo of Combinations"
 date: 2019-10-13
+categories: [Alg Notes]
 tags: 
 - Math
 - Number Theory

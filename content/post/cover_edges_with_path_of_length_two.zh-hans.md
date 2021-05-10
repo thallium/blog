@@ -1,6 +1,7 @@
 ---
-title: "Cover all edges with path of length two - 用长为2的路径覆盖所有边"
+title: "用长为2的路径覆盖所有边"
 date: 2021-05-05T23:20:52-04:00
+categories: [算法笔记]
 tags:
 - DFS
 - 图论
