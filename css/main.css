@@ -54,19 +54,22 @@ a {
   text-align: right;
 }
 
-.nav-logo {
+.nav .lang {
   float: left;
+}
+
+.lang a{
+  font-weight: bold;
+}
+
+.nav em {
   transition: transform 300ms ease-out;
 }
 
-.nav-logo:hover {
+.nav em:hover {
   transform: scale(1.1);
 }
 
-.nav-logo img {
-  display: block;
-  width: auto;
-}
 
 .nav-links {
   margin: 0;
