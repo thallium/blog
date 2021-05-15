@@ -87,8 +87,10 @@ theme = "harbor"
 
 [languages]
   [languages.en]
+    languageName = "English"
     title = "Thallium's Blog"
     weight = 1
   [languages.zh-hans]
+    languageName = "中文"
     title = "Thallium的博客"
     weight = 2
