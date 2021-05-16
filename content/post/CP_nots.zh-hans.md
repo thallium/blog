@@ -9,15 +9,6 @@ layout: post
 ---
 仅用做提醒自己，看不懂概不负责～
 <!--more-->
-## Vim 重新缩进
-
-`gg=G`
-
-## `partial_sum`求前缀和
-
-```cpp
-partial_sum(a.begin(),a.end(),sum.begin()+1);
-```
 
 ## LIS 和 LNDS
 
@@ -50,7 +41,7 @@ int LNDS(vector<int>& a){
 ## Maximum subarray sum
 
 ```cpp
-int cur=0,max_sum=0;//max_sum=-1e8 if at least one element must be chosen
+int cur=0, max_sum=0;//max_sum=-1e8 if at least one element must be chosen
 for(auto it:a){
     cur=max(cur+it,it);
     max_sum=max(max_sum,cur);
@@ -94,3 +85,10 @@ if((x-l|r-x)>=0)
 如果$sum-xor$是奇数，那么无解。
 
 否则$A=(sum-xor)/2$，根据A和xor的每一位填就行了，注意如果某一位两数都是1的话也是无解。
+
+## 优先队列模板参数自动推断
+
+可以少写一点代码，需要比较新的g++版本，codeforces上不能用。
+```cpp
+priority_queue q(greater<>{}, vector<int>{});
+```
