@@ -2,7 +2,7 @@
 published: true
 date: 2020-04-21
 title: 算法竞赛杂记
-category: 杂项
+categories: [杂项]
 tags:
 
 layout: post
@@ -88,7 +88,13 @@ if((x-l|r-x)>=0)
 
 ## 优先队列模板参数自动推断
 
-可以少写一点代码，需要比较新的g++版本，codeforces上不能用。
+可以少写一点代码，需要比较新的g++版本。
 ```cpp
-priority_queue q(greater<>{}, vector<int>{});
+priority_queue q(greater{}, vector<int>{});
+```
+
+## 精确计算$\lceil\log_2 x\rceil$
+
+```cpp
+x==1 ? 0 : __lg(x-1)+1;
 ```
