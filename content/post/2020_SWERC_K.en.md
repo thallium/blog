@@ -5,6 +5,7 @@ categories: [Solutions]
 tags: [Suffix Array, Binary Search, Hashing]
 ---
 
+<!--more-->
 ## Solution 1: Suffix Array
 
 For each suffix starting from $i$, the length of the shortest unique substring which is a prefix of that suffix is $\max(lcp_i, lcp_{i+1})+1$ where $lcp_0$ and $lcp_{n}$ is defined to be $0$. Note that if that length is greater than the length of suffix, it's an invalid substring
