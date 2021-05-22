@@ -17,6 +17,7 @@ pprint::PrettyPrinter P(cerr);
 #define de_nc(...) P.compact(false);P.print(__VA_ARGS__)
 #else
 #define de(...)
+#define de_nc(...)
 #endif
 ```
 
