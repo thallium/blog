@@ -20,6 +20,7 @@ auto calsz = [&](auto &dfs, int u, int p) -> void {
     for (auto v : g[u]) {
         if (v == p) continue;
         dfs(dfs, v, u);
+        sz[u] += sz[v];
     }
     out[u] = timer;
 };
@@ -35,7 +36,7 @@ auto dfs = [&](auto &dfs, int u, int pa, bool keep) -> void {
         dfs(dfs, bigChild, u, 1); // bigChild marked as big and not cleared from cnt
     for (auto v : g[u])
         if (v != pa && v != bigChild)
-            for (int p = in[u]; p < out[u]; p++) {
+            for (int p = in[v]; p < out[v]; p++) {
                 // add info of light subtree
             }
     // add info of u
