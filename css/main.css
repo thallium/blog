@@ -525,3 +525,43 @@ footer em {
     margin-top: 40px;
   }
 }
+
+/* collapsible block */
+.collapsible__button {
+  background-color: rgba(68, 138, 255, 0.1);
+  cursor: pointer;
+  padding: 8px;
+  width: 100%;
+  border: none;
+  outline: none;
+  text-align: left;
+  font-size: 13px;
+  transition: background 0.2s;
+  border-radius: .3rem;
+}
+
+.collapsible__button::after {
+    content: '\25be';
+    float: right;
+}
+
+.collapsible__button--active + .collapsible_content {
+  display: block
+}
+
+.collapsible__button--active {
+  border-radius: .3rem .3rem 0 0;
+}
+.collapsible__button--active::after {
+    content: '\25b4';
+    float: right;
+}
+
+/* Style the collapsible content. Note: hidden by default */
+.collapsible_content {
+  padding: 0 15px;
+
+  border-left: solid #448aff;
+  display: none;
+  overflow: auto;
+}
