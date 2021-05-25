@@ -98,3 +98,31 @@ priority_queue q(greater{}, vector<int>{});
 ```cpp
 x==1 ? 0 : __lg(x-1)+1;
 ```
+
+## 用交换相邻元素的排序数组的最小操作次数
+
+是数组中逆序对的数目
+
+## a个0，b个1组成的01字符串字典序第k小
+
+先预处理i个0,j个1的字符串个数，然后从高位到底位枚举
+```cpp
+vector dp(a+1, vector(b+1, 0LL));
+dp[0][0]=1;
+for (int i=0; i<=a; i++) {
+    for (int j=0; j<=b; j++) {
+        if (i>0) {
+            dp[i][j]+=dp[i-1][j];
+        }
+        if (j) {
+            dp[i][j]+=dp[i][j-1];
+        }
+    }
+}
+auto find_kth=[&](auto& find_kth, int A, int B, ll k) {
+    if (A==0) return string(B, 'b');
+    if (B==0) return string(A, 'a');
+    if (k<=dp[A-1][B]) return "a"+find_kth(find_kth, A-1, B, k);
+    return "b"+find_kth(find_kth, A, B-1, k-dp[A-1][B]);
+};
+```
