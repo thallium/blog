@@ -14,3 +14,9 @@ tags:
 ## 将直线上多个点移动到连续的位置
 
 假设起点为$a$, 也就是说最小化$\sum_i|x_i-(a+i)|=\sum_i|(x_i+i)-a|$, 于是问题又转化成了将坐标为$x_i-i$的点移动到一点的问题，取中间的坐标即可。
+
+## Chicken McNugget Theorem
+
+假设$n, m$互质，最大的不能被表示为$an+bm, a, b\ge 0$的数是$nm-m-n$.
+
+[source](https://artofproblemsolving.com/wiki/index.php/Chicken_McNugget_Theorem)
