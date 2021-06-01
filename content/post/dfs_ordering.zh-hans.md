@@ -34,18 +34,18 @@ auto dfs = [&](auto &dfs, int u, int pa, bool keep) -> void {
         if (v != pa && v != bigChild)
             dfs(dfs, v, u, 0); // run a dfs on small childs and clear them from cnt
     if (bigChild != -1)
-        dfs(dfs, bigChild, u, 1); // bigChild marked as big and not cleared from cnt
-    for (auto v : g[u])
-        if (v != pa && v != bigChild)
-            for (int p = in[v]; p < out[v]; p++) {
-                // add info of light subtree
-            }
-    // add info of u
+        dfs(dfs, bigChild, u, 1); // don't clear info of bigchild from cnt
+    for (int i=in[u]; i<out[u];
+        i=(bigChild!=-1 && i+1==in[bigChild] ? out[bigChild] : i+1)) {
+        int v=order[i];
+        // add info of light subtree
+    }
 
     // now you have all the info of the subtree of u, and you can answer query about u now
     if (keep == 0) {
-        for (int p = in[u]; p < out[u]; p++)
-            // remove info of subtree
+        for (int i = in[u]; i < out[u]; i++)
+        int v=order[i];
+        // remove info of subtree
     }
 };
 ```
