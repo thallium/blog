@@ -21,4 +21,6 @@ pprint::PrettyPrinter P(cerr);
 #endif
 ```
 
-注意需要把头文件的目录加到`CPLUS_INCLUDE_PATH`环境变量里，或者使用`-I`标记。变异时加上`-DLOCAL`标记以j定义`LOCAL`，可以换成其他的词，只要保证oj里没有这个标记就行。
+注意需要把头文件的目录加到`CPLUS_INCLUDE_PATH`环境变量里，或者使用`-I`标记。编译时加上`-DLOCAL`标记以定义`LOCAL`，可以换成其他的词，只要保证oj里没有这个标记就行。
+
+如果你使用预编译头文件的话，要把include的那一行放到`bits/stdc++.h`里，然后重新编译`bits/stdc++.h`。

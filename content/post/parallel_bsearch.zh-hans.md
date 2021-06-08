@@ -1,0 +1,349 @@
+---
+title: "整体二分学习笔记"
+date: 2021-06-05T12:36:59-04:00
+categories: [算法笔记]
+tags: [整体二分,离线技巧,二分]
+---
+
+整体二分在国外称为parallel binary search，是一种用于同时解决大量二分搜索的**离线算法**。 
+<!--more-->
+
+## 适用问题的描述
+
+一种常见的类型是：给出多个修改与询问，每个询问有一个目标，问多少个修改之后目标可以达到。修改和询问需要满足以下性质：
+
+- 询问的答案可以二分（废话）
+- 修改对目标的贡献互相独立
+- 修改对目标的贡献与目标无关
+- 修改可以撤销
+
+当然不是所有问题都要严格符合这种形式，整体二分的本质就是将询问归类，一起处理归类在一起询问。
+
+## 思路
+
+- 假设当前有一些询问的答案在某个区间中，我们将区间一分为二
+- 判断这些询问是否达到目标，将询问分为达到目标和没达到目标两个集合，同时可能会修改没达到目标的询问的目标（这一步要具体问题具体分析）
+- 分别递归左右两个区间
+
+## 例题
+
+### 多次询问数组第k小
+
+正常的思路是对于每个询问二分一次。但我们也可以所有询问一起二分，根据左半部分的数的个数判断每个询问应该分到哪个集合中。
+
+核心代码如下(简洁起见没用离散化, `query[i]`是第i个询问的k值，`sum(l, r)`是在[l, r]区间中的数的个数)
+
+```cpp
+void solve(int l, int r, vector<int> id) {
+    if (l==r || id.empty()) {
+        for (auto i : id) ans[i]=l;
+        return;
+    }
+    vector<int> less, more;
+    int mid=(l+r)/2;
+    for (auto i : id) {
+        if (query[i]<=sum(l, mid)) less.push_back(i);
+        else {
+            query[i]-=sum(l, mid);
+            more.push_back(i);
+        }
+    }
+    solve(l, mid, less);
+    solve(mid+1, r, more);
+}
+```
+
+### 静态数组区间第k小
+
+[题目链接](https://www.luogu.com.cn/problem/P3834)
+
+这题的一般做法是在可持久化线段树（主席树）上二分，并且可以在线回答询问。整体二分思路有相似也有不同，假设目前询问的区间是$[ql, qr]$,答案在$[l, r]$中，令$mid=(l+r)/2$我们将整个数组中在$[l, mid]$中的数放入一个权值树状数组中，然后查询位置在$[ql, qr]$中的数的个数，与k做比较并由此判断再往哪个区间继续二分。
+
+这里一个有优化是每次更新树状数组的时候不必扫过整个数组，我们可以像划分询问那样划分数组，这样添加的数都是在$[l, r]$中的数。
+
+
+{{% collapse "代码" %}}
+```cpp
+#include <bits/stdc++.h>
+
+using namespace std;
+
+#define all(x) (x).begin(),(x).end()
+
+constexpr int M=3e5;
+namespace fenwick {
+  int n;
+  int t[M];
+
+    using T=int;
+  void update(int i, T x) {
+    while (i < n) {
+      t[i] += x;
+      i |= (i + 1);
+    }
+  }
+
+
+  template <typename U> U query(int i) {
+    U res{};
+    for (; i >= 0; i = (i & (i + 1)) - 1)
+      res += t[i];
+    return res;
+  }
+
+  template <typename U>
+  U query(int l, int r) { return query<U>(r) - (l ? query<U>(l - 1) : U{}); }
+};
+struct Num{
+    int x, i;
+};
+
+struct Query {
+    int l, r, k, id;
+};
+int main() {
+    cin.tie(nullptr)->sync_with_stdio(false);
+    int n, q;
+    cin>>n>>q;
+    vector<Num> a(n);
+    vector<int> comp(n), aa(n);
+    for (int i=0; i<n; i++) {
+        cin>>aa[i];
+        comp[i]=aa[i];
+    }
+    sort(all(comp));
+    comp.erase(unique(all(comp)), comp.end()); 
+    for (int i=0; i<n; i++) a[i]={static_cast<int>(lower_bound(all(comp), aa[i])-comp.begin()), i}; // 离散化
+    vector<Query> Q(q);
+    for (int i=0; i<q; i++) {
+        auto& [l, r, k, id]=Q[i];
+        cin>>l>>r>>k;
+        id=i;
+        l--, r--;
+    }
+    fenwick::n=n;
+    vector<int> ans(q);
+    // abegin 和 aend 是原数组中值在[l, r]中的数的区间， qbegin 和 qend是答案在[l, r]中的询问的区间
+    auto solve=[&](auto& solve, int l, int r, auto abegin, auto aend, auto qbegin, auto qend) {
+        if (l==r || qbegin==qend) {
+            for (auto it=qbegin; it!=qend; ++it) ans[it->id]=l;
+            return;
+        }
+        int mid=(l+r)/2;
+        auto amid=partition(abegin, aend, [&](Num& x){ // 划分原数组，并更新树状数组
+            if (x.x<=mid) {
+                fenwick::update(x.i, 1);
+                return true;
+            }
+            return false;
+        });
+        auto qmid=partition(qbegin, qend, [&](Query& q) { // 划分询问
+            int t=fenwick::query<int>(q.l, q.r);
+            if (q.k<=t) return true;
+            else {
+                q.k-=t;
+                return false;
+            }
+        });
+        for (auto it=abegin; it!=amid; ++it) fenwick::update(it->i, -1); // 撤销之前的操作以清空树状数组
+        solve(solve, l, mid, abegin, amid, qbegin, qmid);
+        solve(solve, mid+1, r, amid, aend, qmid, qend);
+    };
+    solve(solve, 0, (int)comp.size(), a.begin(), a.end(), Q.begin(), Q.end());
+    for (auto x : ans) cout<<comp[x]<<'\n';
+}
+```
+{{% /collapse %}}
+
+
+### Meteors
+
+[题目链接](https://loj.ac/p/2169)
+
+- 假设当前有一些询问的答案在某个修改区间中，我们将修改区间从中间分开
+- 应用左半部分的修改
+- 判断这些询问是否达到目标，将询问分为达到目标和没达到目标两个集合，同时将左半部分修改的贡献从没达到目标的询问中减去
+- 撤销左半部分的修改
+- 递归两个修改区间
+此题的修改和询问都非常明确，所以基本可以直接套用上面的思路。
+
+这里给出两种核心函数的写法，第一种是别人的写法，第二种是我改进之后的，第一种可能好理解一些，建议先看第一种。两种效率基本一样，选自己喜欢的即可。
+
+{{% collapse "核心函数(写法1)" %}}
+```cpp
+// 修改的范围是[low, high], 答案在[low, high]中的询问存在members里
+auto solve = [&](auto & solve, int low, int high, vector<int> &members) {
+    if (members.empty() && low == high) { // 区间长度为1,或者没有符合条件的询问
+        for (auto x : members) // 记录答案
+            ans[x] = low;
+        return;
+    }
+
+    int mid = (low + high) / 2;
+    for (int i = low; i <= mid; i++) {
+        apply_modification(i, 1); // 应用左半部分的修改
+    }
+    vector<int> left, right;
+    for (const auto &m : members) {
+        ll has = 0;
+        for (const auto &sec : own[m]) {
+            has += fenwick::query<ll>(sec);
+            if (has >= need[m]) break;
+        }
+        if (has >= need[m]) { // 询问的条件被满足，说明该询问 的答案在左半区间
+            left.push_back(m);
+        } else { // 反之，答案在右半区间
+            need[m] -= has; // 减去左半部分修改的贡献
+            right.push_back(m); 
+        }
+    }
+    for (int i = low; i <= mid; i++) {
+        apply_modification(i, -1); // 撤销修改
+    }
+    solve(solve, low, mid, left);
+    vector<int>().swap(left); // 清空数组，优化内存使用
+    solve(solve, mid + 1, high, right);
+    vector<int>().swap(right);
+};
+```
+{{% /collapse %}}
+<br/>
+
+{{% collapse "核心函数(写法2)" %}}
+```cpp
+// 修改的范围是[low, high], 符合条件的询问的区间是[begin, end)，begin和end是迭代器，方便传给partition.
+auto solve=[&](auto& solve, int low, int high, auto begin, auto end) {
+    if (begin==end || low==high) {
+        for (auto i=begin; i!=end; i++) ans[*i]=low; // 记录答案
+        return;
+    }
+    int mid=(low+high)/2;
+    for (int i=low; i<=mid; i++) {
+        apply_modification(i, 1);
+    }
+    auto m=partition(begin, end, [&](int m) { // 利用partition函数直接原地划分集合，避免新开数组，优化内存
+        ll has=0;
+        for (const auto& sec : own[m]) {
+            has+=fenwick::query<ll>(sec);
+            if (has>=need[m]) break;
+        }
+        if (has>=need[m]) {
+            return true;
+        } else {
+            need[m]-=has;
+            return false;
+        }
+    });
+    for (int i=low; i<=mid; i++) {
+        apply_modification(i, -1);
+    }
+    solve(solve, low, mid, begin, m);
+    solve(solve, mid+1, high, m, end);
+};
+```
+{{% /collapse %}}
+
+<br/>
+
+{{% collapse 完整代码 %}}
+```cpp
+#include <bits/stdc++.h>
+
+using namespace std;
+#define all(x) (x).begin(),(x).end()
+using ll = long long;
+using pii = pair<int, int>;
+
+constexpr int M=3e5;
+namespace fenwick { // 此题时间很严，需要用静态数组实现的树状数组
+  int n;
+  ll t[M];
+
+    using T=ll;
+  void update(int i, T x) {
+    while (i < n) {
+      t[i] += x;
+      i |= (i + 1);
+    }
+  }
+
+  void update(int l, int r, T x) {
+      update(l, x);
+      if (r+1<n) update(r+1, -x);
+  }
+
+  template <typename U> U query(int i) {
+    U res{};
+    for (; i >= 0; i = (i & (i + 1)) - 1)
+      res += t[i];
+    return res;
+  }
+
+};
+int main() {
+    cin.tie(nullptr)->sync_with_stdio(false);
+    int n, m;
+    cin>>n>>m;
+    vector<vector<int>> own(n);
+    for (int i=0; i<m; i++) {
+        int x;
+        cin>>x;
+        own[x-1].push_back(i);
+    }
+    vector<ll> need(n);
+    for (auto& x : need) cin>>x;
+    int q;
+    cin>>q;
+    vector<int> l(q), r(q), val(q);
+    for (int i=0; i<q; i++) {
+        cin>>l[i]>>r[i]>>val[i];
+        l[i]--, r[i]--;
+    }
+    fenwick::n=m;
+    vector<int> members(n);
+    iota(all(members), 0);
+    auto apply_modification=[&](int q, int flag) {
+        int v=val[q]*flag;
+        if (l[q]<=r[q]) fenwick::update(l[q], r[q], v);
+        else {
+            fenwick::update(l[q], m-1, v);
+            fenwick::update(0, r[q], v);
+        }
+    };
+    vector<int> ans(n, -1);
+    auto solve=[&](auto& solve, int low, int high, auto begin, auto end) {
+        if (begin==end || low==high) {
+            for (auto i=begin; i!=end; i++) ans[*i]=low;
+            return;
+        }
+        int mid=(low+high)/2;
+        for (int i=low; i<=mid; i++) {
+            apply_modification(i, 1);
+        }
+        auto m=partition(begin, end, [&](int m) {
+            ll has=0;
+            for (const auto& sec : own[m]) {
+                has+=fenwick::query<ll>(sec);
+                if (has>=need[m]) break;
+            }
+            if (has>=need[m]) {
+                return true;
+            } else {
+                need[m]-=has;
+                return false;
+            }
+        });
+        for (int i=low; i<=mid; i++) {
+            apply_modification(i, -1);
+        }
+        solve(solve, low, mid, begin, m);
+        solve(solve, mid+1, high, m, end);
+    };
+    solve(solve, 0, q, members.begin(), members.end());
+    for (auto x :  ans) {
+        if (x!=q) cout<<x+1<<'\n';
+        else cout<<"NIE\n";
+    }
+}
+```
+{{% /collapse %}}
