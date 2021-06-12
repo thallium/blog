@@ -21,9 +21,11 @@ tags: [整体二分,离线技巧,二分]
 
 ## 思路
 
-- 假设当前有一些询问的答案在某个区间中，我们将区间一分为二
-- 判断这些询问是否达到目标，将询问分为达到目标和没达到目标两个集合，同时可能会修改没达到目标的询问的目标（这一步要具体问题具体分析）
-- 分别递归左右两个区间
+1. 假设当前有一些询问的答案在某个区间中，我们将区间一分为二
+2. 应用某一些修改，这些修改是可以帮助我们判断答案在在哪一半区间的修改
+3. 判断这些询问是否达到目标，将询问分为达到目标和没达到目标两个集合，同时可能会修改没达到目标的询问的目标（这一步要具体问题具体分析）
+4. 撤销步骤2中的修改
+5. 分别递归左右两个区间
 
 ## 例题
 
@@ -57,10 +59,13 @@ void solve(int l, int r, vector<int> id) {
 
 [题目链接](https://www.luogu.com.cn/problem/P3834)
 
-这题的一般做法是在可持久化线段树（主席树）上二分，并且可以在线回答询问。整体二分思路有相似也有不同，假设目前询问的区间是$[ql, qr]$,答案在$[l, r]$中，令$mid=(l+r)/2$我们将整个数组中在$[l, mid]$中的数放入一个权值树状数组中，然后查询位置在$[ql, qr]$中的数的个数，与k做比较并由此判断再往哪个区间继续二分。
+这题的一般做法是在可持久化线段树（主席树）上二分，并且可以在线回答询问。整体二分思路有相似也有不同，假设目前询问的区间是$[ql, qr]$,答案在$[l, r]$中，令$mid=(l+r)/2$，此时我们新建一个和原数组一样长的辅助数组，将整个数组中在$[l, mid]$中的数在辅助数组中各自的位置上+1，然后查询位置在$[ql, qr]$中的数的个数（也就是辅助数组中$[ql, qr]$的区间和），与k做比较并由此判断再往哪个区间继续二分。
 
-这里一个有优化是每次更新树状数组的时候不必扫过整个数组，我们可以像划分询问那样划分数组，这样添加的数都是在$[l, r]$中的数。
+这里要注意要是每次构建辅助数组的时候都扫过整个数组，时间会爆炸，所以我们可以像划分询问那样划分数组，这样添加的数都是在$[l, r]$中的数。
 
+**关于划分的写法：**
+
+常见的写法是用两个数组存左边和右边的询问，但其实可以直接利用`std::partition`或者`std::stable_partition`直接在原数组上划分，内存和时间上都更优（时间少10%左右，内存少30%左右），而且个人感觉写起来更简洁一些？后面所有题都有partition的写法，部分有数组的写法，选择自己喜欢的即可。
 
 {{% collapse "代码" %}}
 ```cpp
@@ -155,21 +160,248 @@ int main() {
 ```
 {{% /collapse %}}
 
+### 动态区间第k小
+
+[题目链接](https://www.luogu.com.cn/problem/P2617)
+
+修改无非就是把原来的数删掉（在辅助数组中减1），再加上修改之后的数，和上一题大同小异。区别是由于有了时间顺序，不能像上一题先修改再询问了，要把修改和询问放在一个数组（其实上一题也能放在一个数组里，只是为了方便理解分成了两个数组），而且要用`std::stable_partition`以保证相对时间顺序不变。
+
+{{% collapse "代码1（partition）" %}}
+```cpp
+#include <algorithm>
+#include <bits/stdc++.h>
+
+using namespace std;
+
+#define all(x) (x).begin(), (x).end()
+
+constexpr int M = 3e5;
+int N;
+int t[M];
+
+using T = int;
+void update(int i, T x) {
+    while (i < N) {
+        t[i] += x;
+        i |= (i + 1);
+    }
+}
+
+template <typename U> U query(int i) {
+    U res{};
+    for (; i >= 0; i = (i & (i + 1)) - 1)
+        res += t[i];
+    return res;
+}
+
+template <typename U> U query(int l, int r) {
+    return query<U>(r) - (l ? query<U>(l - 1) : U{});
+}
+
+struct op {
+    int type;
+    // if type==0, add j to position i, a[i]=k
+    // if type==1, query k-th smallest element in [i, j], id is the index of the query
+    int i, j, k, id;
+};
+int main() {
+    cin.tie(nullptr)->sync_with_stdio(false);
+    int n, q;
+    cin >> n >> q;
+    vector<op> ops;
+    vector<int> comp, a(n);
+    for (int i = 0; i < n; i++) {
+        cin >> a[i];
+        comp.push_back(a[i]);
+        ops.push_back({0, i, 1, a[i], -1});
+    }
+    int qcnt = 0;
+    for (int i = 0; i < q; i++) {
+        char ch;
+        cin >> ch;
+        if (ch == 'Q') {
+            int l, r, k;
+            cin >> l >> r >> k;
+            ops.push_back({1, l - 1, r - 1, k, qcnt++});
+        } else {
+            int x, y;
+            cin >> x >> y;
+            x--;
+            ops.push_back({0, x, -1, a[x], -1});
+            comp.push_back(y);
+            a[x] = y;
+            ops.push_back({0, x, 1, y, -1});
+        }
+    }
+    // 离散化
+    sort(all(comp));
+    comp.erase(unique(all(comp)), comp.end());
+    for (auto &[type, i, j, k, id] : ops) {
+        if (type == 0) k = lower_bound(all(comp), k) - comp.begin();
+    }
+    N = n;
+    vector<int> ans(qcnt);
+    auto solve = [&](auto &solve, int l, int r, auto begin, auto end) {
+        if (l == r || begin == end) {
+            for (auto it = begin; it != end; ++it)
+                if (it->type == 1) ans[it->id] = l;
+            return;
+        }
+        int mid = (l + r) / 2;
+        // 因为要保证相对顺序不变所以要用stable_partition
+        auto qmid = stable_partition(begin, end, [&](op &q) {
+            auto &[type, i, j, k, id] = q;
+            if (type == 1) {
+                int cnt = query<int>(i, j);
+                if (cnt >= k) return true;
+                else {
+                    k -= cnt;
+                    return false;
+                }
+            } else {
+                if (k <= mid) {
+                    update(i, j);
+                    return true;
+                } else
+                    return false;
+            }
+        });
+        for (auto it = begin; it != qmid; ++it)
+            if (it->type == 0) update(it->i, -it->j);
+        solve(solve, l, mid, begin, qmid);
+        solve(solve, mid + 1, r, qmid, end);
+    };
+    solve(solve, 0, (int)comp.size(), ops.begin(), ops.end());
+    for (auto x : ans)
+        cout << comp[x] << '\n';
+}
+```
+{{% /collapse %}}
+
+{{% collapse "代码2（数组）" %}}
+```cpp
+#include <bits/stdc++.h>
+
+using namespace std;
+#define all(x) (x).begin(), (x).end()
+
+constexpr int M = 3e5;
+int N;
+int t[M];
+
+using T = int;
+void update(int i, T x) {
+    while (i < N) {
+        t[i] += x;
+        i |= (i + 1);
+    }
+}
+
+template <typename U> U query(int i) {
+    U res{};
+    for (; i >= 0; i = (i & (i + 1)) - 1)
+        res += t[i];
+    return res;
+}
+
+template <typename U> U query(int l, int r) {
+    return query<U>(r) - (l ? query<U>(l - 1) : U{});
+}
+
+struct op {
+    int type;
+    // if type==0, add j to position i, a[i]=k
+    // if type==1, query k-th smallest element in [i, j], id is the index
+    int i, j, k, id;
+};
+int main() {
+    cin.tie(nullptr)->sync_with_stdio(false);
+    int n, q;
+    cin >> n >> q;
+    vector<op> ops;
+    vector<int> comp, a(n);
+    for (int i = 0; i < n; i++) {
+        cin >> a[i];
+        comp.push_back(a[i]);
+        ops.push_back({0, i, 1, a[i], -1});
+    }
+    int qcnt = 0;
+    for (int i = 0; i < q; i++) {
+        char ch;
+        cin >> ch;
+        if (ch == 'Q') {
+            int l, r, k;
+            cin >> l >> r >> k;
+            ops.push_back({1, l - 1, r - 1, k, qcnt++});
+        } else {
+            int x, y;
+            cin >> x >> y;
+            x--;
+            ops.push_back({0, x, -1, a[x], -1});
+            comp.push_back(y);
+            a[x] = y;
+            ops.push_back({0, x, 1, y, -1});
+        }
+    }
+    sort(all(comp));
+    comp.erase(unique(all(comp)), comp.end());
+    for (auto &[type, i, j, k, id] : ops) {
+        if (type == 0) k = lower_bound(all(comp), k) - comp.begin();
+    }
+    N = n;
+    vector<int> ans(qcnt);
+    auto solve = [&](auto &solve, int l, int r, vector<op> &ops) {
+        if (l == r || ops.empty()) {
+            for (auto &q : ops) {
+                if (q.type == 1) ans[q.id] = l;
+            }
+            return;
+        }
+        int mid = (l + r) / 2;
+        vector<op> left, right;
+        for (auto &q : ops) {
+            auto &[type, i, j, k, id] = q;
+            if (type == 1) {
+                int cnt = query<int>(i, j);
+                if (cnt >= k) left.push_back(q);
+                else {
+                    k -= cnt;
+                    right.push_back(q);
+                }
+            } else {
+                if (k <= mid) {
+                    update(i, j);
+                    left.push_back(q);
+                } else
+                    right.push_back(q);
+            }
+        }
+        for (auto &q : left)
+            if (q.type == 0) update(q.i, -q.j);
+        vector<op>().swap(ops);
+        solve(solve, l, mid, left);
+        solve(solve, mid + 1, r, right);
+    };
+    solve(solve, 0, (int)comp.size(), ops);
+    for (auto x : ans)
+        cout << comp[x] << '\n';
+}
+```
+{{% /collapse %}}
 
 ### Meteors
 
 [题目链接](https://loj.ac/p/2169)
 
+思路:
 - 假设当前有一些询问的答案在某个修改区间中，我们将修改区间从中间分开
 - 应用左半部分的修改
 - 判断这些询问是否达到目标，将询问分为达到目标和没达到目标两个集合，同时将左半部分修改的贡献从没达到目标的询问中减去
 - 撤销左半部分的修改
 - 递归两个修改区间
-此题的修改和询问都非常明确，所以基本可以直接套用上面的思路。
 
-这里给出两种核心函数的写法，第一种是别人的写法，第二种是我改进之后的，第一种可能好理解一些，建议先看第一种。两种效率基本一样，选自己喜欢的即可。
 
-{{% collapse "核心函数(写法1)" %}}
+{{% collapse "核心函数(数组)" %}}
 ```cpp
 // 修改的范围是[low, high], 答案在[low, high]中的询问存在members里
 auto solve = [&](auto & solve, int low, int high, vector<int> &members) {
@@ -209,7 +441,7 @@ auto solve = [&](auto & solve, int low, int high, vector<int> &members) {
 {{% /collapse %}}
 <br/>
 
-{{% collapse "核心函数(写法2)" %}}
+{{% collapse "核心函数(partition)" %}}
 ```cpp
 // 修改的范围是[low, high], 符合条件的询问的区间是[begin, end)，begin和end是迭代器，方便传给partition.
 auto solve=[&](auto& solve, int low, int high, auto begin, auto end) {
