@@ -15,7 +15,6 @@ tags: [整体二分,离线技巧,二分]
 - 询问的答案可以二分（废话）
 - 修改对目标的贡献互相独立
 - 修改对目标的贡献与目标无关
-- 修改可以撤销
 
 当然不是所有问题都要严格符合这种形式，整体二分的本质就是将询问归类，一起处理归类在一起询问。
 
@@ -389,6 +388,110 @@ int main() {
 ```
 {{% /collapse %}}
 
+### [ZJOI2013]K大数查询
+
+[题目链接](https://www.luogu.com.cn/problem/P3332)
+
+$[l, r]$中每个集合加入一个数就相当于在辅助数组中$[l, r]$的位置上加1,所以我们需要一个可以区间加的数据结构，最简单的就是树状数组啦。其他和上一题没区别。
+
+{{% collapse "代码" %}}
+```cpp
+#include <bits/stdc++.h>
+
+using namespace std;
+#define all(x) (x).begin(), (x).end()
+
+template <typename T> struct fenwick_rg {
+    int n;
+    vector<T> sum1, sum2;
+    fenwick_rg(int n_) : n(n_), sum1(n+1), sum2(n+1) {}
+
+    void update(int p, T x) {
+        p++;
+        for (int i = p; i <= n; i += i & -i)
+            sum1[i] += x, sum2[i] += x * p;
+    }
+    void update(int l, int r, T x) { update(l, x), update(r + 1, -x); }
+
+    T query(int p) {
+        p++;
+        T res{};
+        for (int i = p; i; i -= i & -i)
+            res += (p + 1) * sum1[i] - sum2[i];
+        return res;
+    }
+
+    T query(int l, int r) { return query(r) - query(l - 1); }
+};
+
+struct op {
+    int type;
+    // if type==0, add k to [l, r]
+    // if type==1, query k-th smallest element in [l, r], id is the index
+    int l, r;
+    long long k;
+    int id;
+    op(int t, int _l, int _r, long long _k, int _id)
+        : type(t), l(_l), r(_r), k(_k), id(_id) {}
+};
+int main() {
+    cin.tie(nullptr)->sync_with_stdio(false);
+    int n, q;
+    cin >> n >> q;
+    vector<op> ops;
+    vector<int> comp;
+    int qcnt = 0;
+    for (int i = 0; i < q; i++) {
+        int op;
+        int l, r, k;
+        cin >> op>>l>>r>>k;;
+        if (op == 2) {
+            ops.push_back({1, l - 1, r - 1, k, qcnt++});
+        } else {
+            ops.push_back({0, l-1, r-1, k, -1});
+            comp.push_back(k);
+        }
+    }
+    sort(all(comp));
+    comp.erase(unique(all(comp)), comp.end());
+    for (auto &[type, i, j, k, id] : ops) {
+        if (type == 0) k = lower_bound(all(comp), k) - comp.begin();
+    }
+    fenwick_rg<long long> tr(n);
+    vector<int> ans(qcnt);
+    auto solve = [&](auto &solve, int l, int r, auto ql, auto qr) {
+        if (l == r || ql == qr) {
+            for (auto it = ql; it != qr; ++it)
+                if (it->type == 1) ans[it->id] = l;
+            return;
+        }
+        int mid = (l + r) / 2;
+        auto qmid = stable_partition(ql, qr, [&](op &q) {
+            auto &[type, l, r, k, id] = q;
+            if (type == 1) {
+                long long cnt = tr.query(l, r);
+                if (cnt >= k) return false;
+                k -= cnt;
+                return true;
+            } else {
+                if (k > mid) {
+                    tr.update(l, r, 1);
+                    return false;
+                } else return true;
+            }
+        });
+        for (auto it = qmid; it != qr; ++it)
+            if (it->type == 0) tr.update(it->l, it->r, -1);
+        solve(solve, l, mid, ql, qmid);
+        solve(solve, mid + 1, r, qmid, qr);
+    };
+    solve(solve, 0, (int)comp.size(), ops.begin(), ops.end());
+    for (auto x : ans)
+        cout << comp[x] << '\n';
+}
+```
+{{% /collapse %}}
+
 ### Meteors
 
 [题目链接](https://loj.ac/p/2169)
@@ -576,6 +679,110 @@ int main() {
         if (x!=q) cout<<x+1<<'\n';
         else cout<<"NIE\n";
     }
+}
+```
+{{% /collapse %}}
+
+
+### AGC002D Stamp Rally
+
+[题目链接](https://atcoder.jp/contests/agc002/tasks/agc002_d)
+
+这题思路其实不难，假设当前答案在$[l, r]$内，令$mid=(l+r)/2$，将编号从0到mid的边放入并查集中然后判断连通块大小即可，但问题是这题的目标修改不了，没法像前面的题一样减掉前面的贡献，而每次加边如果都从0到mid的话时间会爆炸，所以要尽可能利用并查集之前的信息，所以我们将递归改成用队列实现，这样区间的顺序就变成了从小到大，就可以很好的利用之前的信息，只有区间到头了的时候才会清空并查集。如果把区间想象成一棵线段树的话，前面的递归可以看成dfs,队列就是bfs,由于树高是$\log(n)$的，所以时间是$O(n\log(n))$的。
+
+{{% collapse "代码" %}}
+```cpp
+#include <bits/stdc++.h>
+
+#define all(x) (x).begin(),(x).end()
+using namespace std;
+using ll = long long;
+using pii = pair<int, int>;
+
+struct Q {
+    int x, y, z, id;
+};
+struct UF {
+    int n;
+    vector<int> pa; // parent or size, positive number means parent, negative number means size
+    explicit UF(int _n) : n(_n), pa(n, -1) {}
+
+    int find(int x) {
+        assert(0 <= x && x < n);
+        return pa[x] < 0 ? x : pa[x]=find(pa[x]);
+    }
+
+    bool same(int x, int y) {
+        return find(x)==find(y);
+    }
+
+    bool join(int x, int y) {
+        assert(0 <= x && x < n);
+        assert(0 <= y && y < n);
+        x=find(x), y=find(y);
+        if (x==y) return false;
+        if (-pa[x] < -pa[y]) swap(x, y); // size of x is smaller than size of y
+        pa[x]+=pa[y];
+        pa[y]=x;
+        return true;
+    }
+
+    int size(int x) {
+        assert(0 <= x && x < n);
+        return -pa[find(x)];
+    }
+};
+
+int main() {
+    ios::sync_with_stdio(false);
+    cin.tie(nullptr);
+    int n, m;
+    cin>>n>>m;
+    vector<pair<int, int>> edges(m);
+    for (auto& [x, y] : edges) {
+        cin>>x>>y;
+        x--, y--;
+    }
+    int q;
+    cin>>q;
+    vector<int> ans(q);
+    vector<Q> queries(q);
+    for (int i=0; i<q; i++) {
+        auto& [x, y, z, id] = queries[i];
+        cin>>x>>y>>z;
+        x--, y--;
+        id=i;
+    }
+    UF uf(n);
+    queue<tuple<int, int, int, int>> que;
+    que.emplace(0, m-1, 0, q);
+    int cur=0; // cur用来记录当前哪些边被加进了并查集里
+    while (!que.empty()) {
+        auto [l, r, ql, qr]=que.front();
+        que.pop();
+        if (l==r || ql==qr) {
+            for (auto it=ql; it!=qr; ++it) {
+                ans[queries[it].id]=l;
+            }
+            continue;
+        }
+        int mid=(l+r)/2;
+        if (cur>mid) uf=UF(n), cur=0;
+        for (; cur<=mid; cur++) {
+            uf.join(edges[cur].first, edges[cur].second);
+        }
+        auto qmid=partition(queries.begin()+ql, queries.begin()+qr, [&](Q& qu) {
+            auto& [x, y, z, _]=qu;
+            int sz;
+            if (uf.same(x, y)) sz=uf.size(x);
+            else sz=uf.size(x)+uf.size(y);
+            if (sz>=z) return true;
+            else return false;
+        })-queries.begin();
+        que.emplace(l, mid, ql, qmid);
+        que.emplace(mid+1, r, qmid, qr);
+    }
+    for (auto x : ans) cout<<x+1<<'\n';
 }
 ```
 {{% /collapse %}}
