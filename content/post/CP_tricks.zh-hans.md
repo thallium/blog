@@ -126,3 +126,8 @@ auto find_kth=[&](auto& find_kth, int A, int B, ll k) {
     return "b"+find_kth(find_kth, A, B-1, k-dp[A-1][B]);
 };
 ```
+
+## 位运算技巧
+
+[可以看这](https://baobaobear.github.io/post/20191012-binary-skill/)
+
