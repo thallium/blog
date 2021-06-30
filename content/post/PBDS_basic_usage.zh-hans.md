@@ -1,16 +1,16 @@
 ---
 published: true
 date: 2020-03-13
-title: Basic Usage of PB_DS
-categories: [Alg Notes]
-tags: 
+title: PB_DS的基础用法
+categories: [杂项]
+tags: [数据结构]
 layout: post
 ---
-Basic usage of Policy-Based Data Structure (PB_DS)
+Policy-Based Data Structure(PB_DS)的基础用法
 <!--more-->
-# Hash Table
+# 哈希表
 
-## Usage
+## 用法
 ```cpp
 #include <ext/pb_ds/assoc_container.hpp>
 using namespace __gnu_pbds;
@@ -18,9 +18,9 @@ cc_hash_table<int, int> table;//collision-chaining hash table
 gp_hash_table<int, int> table;//probing hash table
 ```
 
-Use it like a `unordered_map`.
+可以像`unordered_map`一样用。
 
-## A slightly better hash Function
+## 稍微好一点的哈希函数
 ```cpp
 struct custom_hash {
     size_t operator()(uint64_t x) const {
@@ -31,7 +31,7 @@ struct custom_hash {
 };
 ```
 
-## Unbeatable hash function
+## 无敌哈希函数
 ```cpp
 struct custom_hash {
     static uint64_t splitmix64(uint64_t x) {
@@ -48,59 +48,84 @@ struct custom_hash {
     }
 };
 ```
-# Balanced BST
+# 平衡树
 
-## Declaration
+## 声明
 
-### Header
+### 头文件
 ```cpp
 #include <ext/pb_ds/tree_policy.hpp>
 #include <ext/pb_ds/assoc_container.hpp>
 using namespace __gnu_pbds;
 ```
-### Make a map
+### 用作`std::map`
 ```cpp
 tree<int, int, less<int>, rb_tree_tag, tree_order_statistics_node_update> t;
 ```
-### Make a set
+### 用作`std::set`
 ```cpp
 tree<int, null_type, less<int>, rb_tree_tag, tree_order_statistics_node_update> t;
 ```
-### Make a multi-set
+### 用作`std::multiset`
 
 ```cpp
 tree<pair<int,int>, null_type, less<pair<int,int>>, rb_tree_tag, tree_order_statistics_node_update> t;
 ```
 
-Alternatively, you can use `std::less_equal`, but `lower_bound` and `upper_bound` will swap their functionality.
+也可以用`std::less_equal`，但`lower_bound` 和 `upper_bound` 函数会交换功能并且`find`会失效，所以不是很推荐。
 
 ```cpp
 tree<int, null_type, less_equal<int>, rb_tree_tag, tree_order_statistics_node_update> t;
 ```
-## Beyond std::set : ranking
+## 比`std::set`更强的功能：排名
 
-Your must use `tree_order_statistics_node_update` to get order statistic:
+必须在声明里用`tree_order_statistics_node_update`以获得与排名相关的功能:
 ```cpp
-size_type order_of_key(key_const_reference);// returns the number of elements that are smaller than key
-iterator find_by_order(size_type order)// order starts from 0
+size_type order_of_key(key_const_reference);// 返回比key小的元素的个数
+iterator find_by_order(size_type order) // 返回排名为order的元素的迭代器，排名从0开始
 ```
-## Use lower_bound and upper_bound to find precursor and successor
 
-Find precursor:
+e.g. 求[逆序对](https://www.luogu.com.cn/problem/P1908)
+
+```cpp
+#include <bits/extc++.h>
+using namespace std;
+using namespace __gnu_pbds;
+int main() {
+    ios::sync_with_stdio(false);
+    cin.tie(nullptr);
+    // 注意此处用了less_equal以允许重复的元素
+    tree<int, null_type, less_equal<int>, rb_tree_tag, tree_order_statistics_node_update> st;
+    int n;
+    cin >> n;
+    vector<int> a(n);
+    for (auto& x : a) cin >> x;
+    long long ans=0;
+    for (int i=n-1; i>=0; i--) {
+        ans += st.order_of_key(a[i]);
+        st.insert(a[i]);
+    }
+    cout << ans << '\n';
+}
+```
+
+## 使用 `lower_bound` 和 `upper_bound` 找前驱和后继
+
+前驱：
 ```cpp
 *prev(t.lower_bound(x))//set
 prev(t.lower_bound({x,0}))->first//multi-set
 ```
 
-Find successor
+后继：
 ```cpp
 *t.upper_bound(x);//set
 *t.lower_bound({x+1,0});
 ```
 
-# Priority Queue
+# 优先队列
 
-## Prototype
+## 原型
 ```cpp
 template<typename  Value_Type,
 	  typename  Cmp_Fn = std::less<Value_Type>,
@@ -109,32 +134,32 @@ template<typename  Value_Type,
 	  class priority_queue;
 ```
 
-## Usage
+## 用法
 
-Just use the default parameter and you will get the best performance(must include the namespace):
+默认的模板参数就是性能最好的，注意必须要带上`__gnu_pbds`命名空间以区分`std::priority_queue`。
 ```cpp
 #include<ext/pb_ds/priority_queue.hpp>
 __gnu_pbds::priority_queue<int>;
 ```
 
-All the five tags:
+所有的5种tag:
 - `binary_heap_tag`
 - `binomial_heap_tag`
 - **`pairing_heap_tag`**
 - `thin_heap_tag`
 - `rc_binomial_heap_tag`
 
-## What's different from `std::priority_queue`
+## 和 `std::priority_queue`的不同之处
 
 ```cpp
-point_iterator push(const_reference r_val);//return a iterator after push
-void PB_DS_CLASS_C_DEC:: join(PB_DS_CLASS_C_DEC& other)//clean other after join
-void split(Pred prd,priority_queue &other)  
-void modify(point_iterator it,const key) 
+point_iterator push(const_reference r_val); //push会返回指向插入后元素的point迭代器（和遍历迭代器不一样）
+void PB_DS_CLASS_C_DEC:: join(PB_DS_CLASS_C_DEC& other) //合并两个堆同时清空other
+void split(Pred prd,priority_queue &other) // 根据prd函数的返回值（true或false）分裂两个堆
+void modify(point_iterator it,const key) // 某些堆支持快速修改堆中的元素，比如用在dijkstra中
 begin();
-end();//begin and end iterator
+end();//begin 和 end 迭代器
 ```
-# Reference
+# 参考资料
 
 [Policy-Based Data Structure](https://gcc.gnu.org/onlinedocs/libstdc++/manual/policy_data_structures.html)
 
