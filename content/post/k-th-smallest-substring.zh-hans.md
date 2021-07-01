@@ -33,15 +33,16 @@ $$path_u=occur_u+\sum_{v\in next}path_v$$
 using namespace std;
 using ll = long long;
 
+int t;
 struct SAM {
     struct state {
         int len = 0, link = -1;
         unordered_map<char, int> next;
         bool is_term;
-        ll occur = 0, path_cnt[2] = {};
+        ll occur = 0, path_cnt=0;
     };
-
-    int last = 0; // the index of the equivalence class of the whole string
+    // the index of the equivalence class of the whole string
+    int last = 0;
     vector<state> st;
 
     void extend(char c) {
@@ -91,21 +92,19 @@ struct SAM {
         for (auto [_, v] : st[i].next) {
             dfs(v);
             st[i].occur += st[v].occur;
-            st[i].path_cnt[0] += st[v].path_cnt[0];
-            st[i].path_cnt[1] += st[v].path_cnt[1];
+            st[i].path_cnt += st[v].path_cnt;
         }
-        st[i].path_cnt[0]++;
-        st[i].path_cnt[1]+=st[i].occur;
+        st[i].path_cnt += t ? st[i].occur : 1;
     }
 
-    string query(ll k, int t) {
+    string query(ll k) {
         string ans;
         int cur = 0;
-        while (k > 0 && cur != last) {
+        while (k > 0) {
             for (char c = 'a'; c <= 'z'; c++) {
                 if (!st[cur].next.count(c)) continue;
                 auto &nxt = st[st[cur].next[c]];
-                if (nxt.path_cnt[t] < k) k -= nxt.path_cnt[t];
+                if (nxt.path_cnt < k) k -= nxt.path_cnt;
                 else {
                     ans += c;
                     cur = st[cur].next[c];
@@ -114,19 +113,20 @@ struct SAM {
                 }
             }
         }
-        return k==0 ? ans : "-1";
+        return ans;
     }
 };
 int main() {
     ios::sync_with_stdio(false);
     cin.tie(nullptr);
     string s;
-    int t, k;
+    int k;
     cin >> s >> t >> k;
     int len = (int)s.size();
     SAM sa(s);
     sa.dfs(0);
-    cout << sa.query(k, t);
+    if (sa.st[0].path_cnt<k) cout<< -1 <<'\n';
+    else cout << sa.query(k);
     return 0;
 }
 ```
