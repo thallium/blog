@@ -72,7 +72,7 @@ tree<int, null_type, less<int>, rb_tree_tag, tree_order_statistics_node_update> 
 tree<pair<int,int>, null_type, less<pair<int,int>>, rb_tree_tag, tree_order_statistics_node_update> t;
 ```
 
-也可以用`std::less_equal`，但`lower_bound` 和 `upper_bound` 函数会交换功能并且`find`会失效，所以不是很推荐。
+也可以用`std::less_equal`，但`lower_bound` 和 `upper_bound` 函数会交换功能并且`find`会失效，所以谨慎使用。
 
 ```cpp
 tree<int, null_type, less_equal<int>, rb_tree_tag, tree_order_statistics_node_update> t;
