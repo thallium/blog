@@ -15,8 +15,10 @@ tags: [DFS]
 用于删掉轻子树的信息
 
 ```cpp
+vector<int> order(n), in(n), out(n), sz(n, 1);
+int timer=0;
 auto calsz = [&](auto &dfs, int u, int p) -> void {
-    dfs_order[timer]=u;
+    order[timer]=u;
     in[u] = timer++;
     for (auto v : g[u]) {
         if (v == p) continue;
@@ -43,9 +45,10 @@ auto dfs = [&](auto &dfs, int u, int pa, bool keep) -> void {
 
     // now you have all the info of the subtree of u, and you can answer query about u now
     if (keep == 0) {
-        for (int i = in[u]; i < out[u]; i++)
-        int v=order[i];
-        // remove info of subtree
+        for (int i = in[u]; i < out[u]; i++) {
+            int v=order[i];
+            // remove info of subtree
+        }
     }
 };
 ```
