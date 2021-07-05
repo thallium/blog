@@ -15,42 +15,40 @@ tags: [DFS]
 用于删掉轻子树的信息
 
 ```cpp
-vector<int> order(n), in(n), out(n), sz(n, 1);
-int timer=0;
-auto calsz = [&](auto &dfs, int u, int p) -> void {
-    order[timer]=u;
-    in[u] = timer++;
+vector<int> bch(n, -1);
+int cur_big=-1;
+auto get_big = [&](auto &dfs, int u, int p) -> int {
+    int sz = 1, mx = 0;
     for (auto v : g[u]) {
         if (v == p) continue;
-        dfs(dfs, v, u);
-        sz[u] += sz[v];
+        int csz = dfs(dfs, v, u);
+        if (csz > mx) mx = csz, bch[u] = v;
+        sz += csz;
     }
-    out[u] = timer;
+    return sz;
 };
-
+auto add=[&](auto& slf, int u, int p, int x) -> void {
+    // update info of u here
+    for (auto v : g[u]) {
+        if (v==p || v==cur_big) continue;
+        slf(slf, v, u, x);
+    }
+};
 auto dfs = [&](auto &dfs, int u, int pa, bool keep) -> void {
-    int mx = -1, bigChild = -1;
+    int big = bch[u];
     for (auto v : g[u])
-        if (v != pa && sz[v] > mx) mx = sz[v], bigChild = v;
-    for (auto v : g[u])
-        if (v != pa && v != bigChild)
-            dfs(dfs, v, u, 0); // run a dfs on small childs and clear them from cnt
-    if (bigChild != -1)
-        dfs(dfs, bigChild, u, 1); // don't clear info of bigchild from cnt
-    for (int i=in[u]; i<out[u];
-        i=(bigChild!=-1 && i+1==in[bigChild] ? out[bigChild] : i+1)) {
-        int v=order[i];
-        // add info of light subtree
+        if (v != pa && v != big)
+            dfs(dfs, v, u, 0);
+    if (big != -1) {
+        dfs(dfs, big, u, 1);
+        cur_big=big;
     }
-
-    // now you have all the info of the subtree of u, and you can answer query about u now
-    if (keep == 0) {
-        for (int i = in[u]; i < out[u]; i++) {
-            int v=order[i];
-            // remove info of subtree
-        }
-    }
+    add(add, u, pa, 1);
+    // now you get all the info of subtree of u, answer queries about u here.
+    cur_big=-1;
+    if (!keep) add(add, u, pa, -1);
 };
+
 ```
 
 ### 利用二分查询子树信息
