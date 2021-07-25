@@ -1,20 +1,173 @@
-<!doctype html><html lang=en><head><meta charset=utf-8><title>动态规划</title><meta http-equiv=x-ua-compatible content="IE=edge"><meta name=viewport content="width=device-width,initial-scale=1"><link rel=alternate type=application/rss+xml href=https://blog.tgc-thallium.com/index.xml title=Thallium的博客><meta name=twitter:card content="summary"><meta name=twitter:title content="动态规划"><meta name=twitter:description content><link rel=stylesheet href=https://blog.tgc-thallium.com/fontawesome/css/all.min.css><link rel=stylesheet href=https://blog.tgc-thallium.com/css/main.css><link id=dark-mode-theme rel=stylesheet href=https://blog.tgc-thallium.com/css/dark.css><script>var darkTheme=document.getElementById('dark-mode-theme'),storedTheme=localStorage.getItem('dark-mode-storage');storedTheme==='dark'?darkTheme.disabled=!1:storedTheme==='light'&&(darkTheme.disabled=!0)</script><script src=https://blog.tgc-thallium.com/js/main.bundle.js></script><script src=https://blog.tgc-thallium.com/js/instantpage.min.js type=module defer></script><script src=https://blog.tgc-thallium.com/js/collapse.js type=module defer></script><meta name=generator content="Hugo 0.85.0"></head><body><header><nav class=navbar><div class=nav><p class=lang><i class="fas fa-globe"></i>
-<a href=https://blog.tgc-thallium.com/ title=无翻译>English</a></p><ul class=nav-links><li><a href=/zh-hans/ id=Home title=主页><em class="fas fa-home fa-lg"></em></a></li><li><a href=/zh-hans/about/ id=About title=关于><em class="fas fa-user fa-lg"></em></a></li><li><a href=/zh-hans/tags/ id=Tags title=标签><em class="fas fa-tag fa-lg"></em></a></li><li><a href=/zh-hans/categories/ id=Categories title=分类><em class="fas fa-list fa-lg"></em></a></li><li><a href=/zh-hans/archives/ id=Archives title=存档><em class="fas fa-archive fa-lg"></em></a></li><li><a href=/zh-hans/search/ id=Search title=搜索><em class="fas fa-search fa-lg"></em></a></li></ul></div></nav><div class=intro-header><div class=container><div class=tags-heading><h1>动态规划</h1></div></div></div></header><div class=container role=main><div class=posts-list><article class=post-preview><a href=https://blog.tgc-thallium.com/zh-hans/abc207e/><h2 class=post-title>AtCoder Beginner Contest(ABC) 207E - Mod i题解</h2></a><div class=post-entry><p></p><a href=https://blog.tgc-thallium.com/zh-hans/abc207e/ class=post-read-more>阅读全文</a></div><div class=postmeta><span class=meta-post><em class="fa fa-calendar-alt"></em>&nbsp;Jul 8, 2021
+<!doctype html><html lang=en>
+<head>
+<meta charset=utf-8>
+<title>动态规划</title>
+<meta http-equiv=x-ua-compatible content="IE=edge">
+<meta name=viewport content="width=device-width,initial-scale=1">
+<link rel=alternate type=application/rss+xml href=https://blog.tgc-thallium.com/index.xml title=Thallium的博客>
+<meta name=twitter:card content="summary">
+<meta name=twitter:title content="动态规划">
+<meta name=twitter:description content>
+<link rel=stylesheet href=https://blog.tgc-thallium.com/fontawesome/css/all.min.css>
+<link rel=stylesheet href=https://blog.tgc-thallium.com/css/main.css>
+<link id=dark-mode-theme rel=stylesheet href=https://blog.tgc-thallium.com/css/dark.css>
+<script>var darkTheme=document.getElementById('dark-mode-theme'),storedTheme=localStorage.getItem('dark-mode-storage');storedTheme==='dark'?darkTheme.disabled=!1:storedTheme==='light'&&(darkTheme.disabled=!0)</script>
+<script src=https://blog.tgc-thallium.com/js/main.bundle.js></script>
+<script src=https://blog.tgc-thallium.com/js/instantpage.min.js type=module defer></script>
+<script src=https://blog.tgc-thallium.com/js/collapse.js type=module defer></script>
+<meta name=generator content="Hugo 0.86.0">
+</head>
+<body>
+<header>
+<nav class=navbar>
+<div class=nav>
+<p class=lang>
+<i class="fas fa-globe"></i>
+<a href=https://blog.tgc-thallium.com/ title=无翻译>English</a>
+</p>
+<ul class=nav-links>
+<li>
+<a href=/zh-hans/ id=Home title=主页><em class="fas fa-home fa-lg"></em></a>
+</li>
+<li>
+<a href=/zh-hans/about/ id=About title=关于><em class="fas fa-user fa-lg"></em></a>
+</li>
+<li>
+<a href=/zh-hans/tags/ id=Tags title=标签><em class="fas fa-tag fa-lg"></em></a>
+</li>
+<li>
+<a href=/zh-hans/categories/ id=Categories title=分类><em class="fas fa-list fa-lg"></em></a>
+</li>
+<li>
+<a href=/zh-hans/archives/ id=Archives title=存档><em class="fas fa-archive fa-lg"></em></a>
+</li>
+<li>
+<a href=/zh-hans/search/ id=Search title=搜索><em class="fas fa-search fa-lg"></em></a>
+</li>
+</ul>
+</div>
+</nav>
+<div class=intro-header>
+<div class=container>
+<div class=tags-heading>
+<h1>
+动态规划
+</h1>
+</div>
+</div>
+</div>
+</header>
+<div class=container role=main>
+<div class=posts-list>
+<article class=post-preview>
+<a href=https://blog.tgc-thallium.com/zh-hans/abc207e/>
+<h2 class=post-title>AtCoder Beginner Contest(ABC) 207E - Mod i题解</h2>
+</a>
+<div class=post-entry>
+<p></p>
+<a href=https://blog.tgc-thallium.com/zh-hans/abc207e/ class=post-read-more>阅读全文</a>
+</div>
+<div class=postmeta>
+<span class=meta-post>
+<em class="fa fa-calendar-alt"></em>&nbsp;Jul 8, 2021
 &nbsp;&nbsp;&nbsp;<em class="fa fa-folder-open"></em>&nbsp;
-<a href=https://blog.tgc-thallium.com/zh-hans/categories/%E9%A2%98%E8%A7%A3/>题解</a>&nbsp;</span></div></article><article class=post-preview><a href=https://blog.tgc-thallium.com/zh-hans/gcj2021_r2_matrygons/><h2 class=post-title>Google Code Jam 2021 R2 Matrygons题解</h2></a><div class=post-entry><p><p>比赛的时候想错方向了😞</p></p><a href=https://blog.tgc-thallium.com/zh-hans/gcj2021_r2_matrygons/ class=post-read-more>阅读全文</a></div><div class=postmeta><span class=meta-post><em class="fa fa-calendar-alt"></em>&nbsp;May 15, 2021
+<a href=https://blog.tgc-thallium.com/zh-hans/categories/%E9%A2%98%E8%A7%A3/>题解</a>&nbsp;
+</span>
+</div>
+</article>
+<article class=post-preview>
+<a href=https://blog.tgc-thallium.com/zh-hans/gcj2021_r2_matrygons/>
+<h2 class=post-title>Google Code Jam 2021 R2 Matrygons题解</h2>
+</a>
+<div class=post-entry>
+<p><p>比赛的时候想错方向了😞</p></p>
+<a href=https://blog.tgc-thallium.com/zh-hans/gcj2021_r2_matrygons/ class=post-read-more>阅读全文</a>
+</div>
+<div class=postmeta>
+<span class=meta-post>
+<em class="fa fa-calendar-alt"></em>&nbsp;May 15, 2021
 &nbsp;&nbsp;&nbsp;<em class="fa fa-folder-open"></em>&nbsp;
-<a href=https://blog.tgc-thallium.com/zh-hans/categories/%E9%A2%98%E8%A7%A3/>题解</a>&nbsp;</span></div></article><article class=post-preview><a href=https://blog.tgc-thallium.com/zh-hans/2019_ecna_k/><h2 class=post-title>题解 2019 ICPC East Central North American(ECNA) Regional Contest K - Where Have You Bin</h2></a><div class=post-entry><p><p>感觉挺套路的，但当时太菜了不会做，是道不错的题</p></p><a href=https://blog.tgc-thallium.com/zh-hans/2019_ecna_k/ class=post-read-more>阅读全文</a></div><div class=postmeta><span class=meta-post><em class="fa fa-calendar-alt"></em>&nbsp;Jan 24, 2021
+<a href=https://blog.tgc-thallium.com/zh-hans/categories/%E9%A2%98%E8%A7%A3/>题解</a>&nbsp;
+</span>
+</div>
+</article>
+<article class=post-preview>
+<a href=https://blog.tgc-thallium.com/zh-hans/2019_ecna_k/>
+<h2 class=post-title>题解 2019 ICPC East Central North American(ECNA) Regional Contest K - Where Have You Bin</h2>
+</a>
+<div class=post-entry>
+<p><p>感觉挺套路的，但当时太菜了不会做，是道不错的题</p></p>
+<a href=https://blog.tgc-thallium.com/zh-hans/2019_ecna_k/ class=post-read-more>阅读全文</a>
+</div>
+<div class=postmeta>
+<span class=meta-post>
+<em class="fa fa-calendar-alt"></em>&nbsp;Jan 24, 2021
 &nbsp;&nbsp;&nbsp;<em class="fa fa-folder-open"></em>&nbsp;
-<a href=https://blog.tgc-thallium.com/zh-hans/categories/%E9%A2%98%E8%A7%A3/>题解</a>&nbsp;</span></div></article><article class=post-preview><a href=https://blog.tgc-thallium.com/zh-hans/abc_dp/><h2 class=post-title>部分题解 Atcoder Educational DP Contest</h2></a><div class=post-entry><p><p>非常好的学习dp的比赛。</p></p><a href=https://blog.tgc-thallium.com/zh-hans/abc_dp/ class=post-read-more>阅读全文</a></div><div class=postmeta><span class=meta-post><em class="fa fa-calendar-alt"></em>&nbsp;Jul 1, 2020
+<a href=https://blog.tgc-thallium.com/zh-hans/categories/%E9%A2%98%E8%A7%A3/>题解</a>&nbsp;
+</span>
+</div>
+</article>
+<article class=post-preview>
+<a href=https://blog.tgc-thallium.com/zh-hans/abc_dp/>
+<h2 class=post-title>部分题解 Atcoder Educational DP Contest</h2>
+</a>
+<div class=post-entry>
+<p><p>非常好的学习dp的比赛。</p></p>
+<a href=https://blog.tgc-thallium.com/zh-hans/abc_dp/ class=post-read-more>阅读全文</a>
+</div>
+<div class=postmeta>
+<span class=meta-post>
+<em class="fa fa-calendar-alt"></em>&nbsp;Jul 1, 2020
 &nbsp;&nbsp;&nbsp;<em class="fa fa-folder-open"></em>&nbsp;
-<a href=https://blog.tgc-thallium.com/zh-hans/categories/%E9%A2%98%E8%A7%A3/>题解</a>&nbsp;</span></div></article><article class=post-preview><a href=https://blog.tgc-thallium.com/zh-hans/cf762d/><h2 class=post-title>Codeforces 762D - Maximum Path 题解</h2></a><div class=post-entry><p></p><a href=https://blog.tgc-thallium.com/zh-hans/cf762d/ class=post-read-more>阅读全文</a></div><div class=postmeta><span class=meta-post><em class="fa fa-calendar-alt"></em>&nbsp;May 19, 2020
+<a href=https://blog.tgc-thallium.com/zh-hans/categories/%E9%A2%98%E8%A7%A3/>题解</a>&nbsp;
+</span>
+</div>
+</article>
+<article class=post-preview>
+<a href=https://blog.tgc-thallium.com/zh-hans/cf762d/>
+<h2 class=post-title>Codeforces 762D - Maximum Path 题解</h2>
+</a>
+<div class=post-entry>
+<p></p>
+<a href=https://blog.tgc-thallium.com/zh-hans/cf762d/ class=post-read-more>阅读全文</a>
+</div>
+<div class=postmeta>
+<span class=meta-post>
+<em class="fa fa-calendar-alt"></em>&nbsp;May 19, 2020
 &nbsp;&nbsp;&nbsp;<em class="fa fa-folder-open"></em>&nbsp;
-<a href=https://blog.tgc-thallium.com/zh-hans/categories/%E9%A2%98%E8%A7%A3/>题解</a>&nbsp;</span></div></article></div><ul class=pager><li class=next><a href=https://blog.tgc-thallium.com/zh-hans/tags/%E5%8A%A8%E6%80%81%E8%A7%84%E5%88%92/page/2/>后 &rarr;</a></li></ul></div><footer><div class=social-icons><a href=https://github.com/thallium name=GitHub><em class="fab fa-github"></em></a></div><div class=container><p class="credits copyright"><a href=https://blog.tgc-thallium.com/zh-hans/about>Gengchen</a>
+<a href=https://blog.tgc-thallium.com/zh-hans/categories/%E9%A2%98%E8%A7%A3/>题解</a>&nbsp;
+</span>
+</div>
+</article>
+</div>
+<ul class=pager>
+<li class=next>
+<a href=https://blog.tgc-thallium.com/zh-hans/tags/%E5%8A%A8%E6%80%81%E8%A7%84%E5%88%92/page/2/>后 &rarr;</a>
+</li>
+</ul>
+</div>
+<footer>
+<div class=social-icons>
+<a href=https://github.com/thallium name=GitHub>
+<em class="fab fa-github"></em>
+</a>
+</div>
+<div class=container>
+<p class="credits copyright">
+<a href=https://blog.tgc-thallium.com/zh-hans/about>Gengchen</a>
 &nbsp;&copy;
 2021
 &nbsp;/&nbsp;
 <a href=https://blog.tgc-thallium.com/zh-hans/>Thallium的博客</a>
 &nbsp;&ndash;&nbsp;
-<em class="fas fa-moon" id=dark-mode-toggle></em></p><p class="credits theme-by">Powered By <a href=https://gohugo.io>Hugo</a>&nbsp;
+<em class="fas fa-moon" id=dark-mode-toggle></em>
+</p>
+<p class="credits theme-by">
+Powered By <a href=https://gohugo.io>Hugo</a>&nbsp;
 主题
-<a href=https://github.com/matsuyoshi30/harbor>Harbor</a></p></div></footer></body></html>
+<a href=https://github.com/matsuyoshi30/harbor>Harbor</a>
+</p>
+</div>
+</footer>
+</body>
+</html>

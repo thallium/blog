@@ -1,0 +1,247 @@
+<!doctype html><html lang=en>
+<head>
+<meta charset=utf-8>
+<title>JOI '18 Open P1 - Bubble Sort 2 题解</title>
+<meta http-equiv=x-ua-compatible content="IE=edge">
+<meta name=viewport content="width=device-width,initial-scale=1">
+<link rel=alternate type=application/rss+xml href=https://blog.tgc-thallium.com/index.xml title=Thallium的博客>
+<meta name=twitter:card content="summary">
+<meta name=twitter:title content="JOI '18 Open P1 - Bubble Sort 2 题解">
+<meta name=twitter:description content>
+<link rel=stylesheet href=https://blog.tgc-thallium.com/fontawesome/css/all.min.css>
+<link rel=stylesheet href=https://blog.tgc-thallium.com/css/main.css>
+<link id=dark-mode-theme rel=stylesheet href=https://blog.tgc-thallium.com/css/dark.css>
+<script>var darkTheme=document.getElementById('dark-mode-theme'),storedTheme=localStorage.getItem('dark-mode-storage');storedTheme==='dark'?darkTheme.disabled=!1:storedTheme==='light'&&(darkTheme.disabled=!0)</script>
+<script src=https://blog.tgc-thallium.com/js/main.bundle.js></script>
+<script src=https://blog.tgc-thallium.com/js/instantpage.min.js type=module defer></script>
+<script src=https://blog.tgc-thallium.com/js/collapse.js type=module defer></script>
+<meta name=generator content="Hugo 0.86.0">
+</head>
+<body>
+<header>
+<nav class=navbar>
+<div class=nav>
+<p class=lang>
+<i class="fas fa-globe"></i>
+<a href=https://blog.tgc-thallium.com/ title=无翻译>English</a>
+</p>
+<ul class=nav-links>
+<li>
+<a href=/zh-hans/ id=Home title=主页><em class="fas fa-home fa-lg"></em></a>
+</li>
+<li>
+<a href=/zh-hans/about/ id=About title=关于><em class="fas fa-user fa-lg"></em></a>
+</li>
+<li>
+<a href=/zh-hans/tags/ id=Tags title=标签><em class="fas fa-tag fa-lg"></em></a>
+</li>
+<li>
+<a href=/zh-hans/categories/ id=Categories title=分类><em class="fas fa-list fa-lg"></em></a>
+</li>
+<li>
+<a href=/zh-hans/archives/ id=Archives title=存档><em class="fas fa-archive fa-lg"></em></a>
+</li>
+<li>
+<a href=/zh-hans/search/ id=Search title=搜索><em class="fas fa-search fa-lg"></em></a>
+</li>
+</ul>
+</div>
+</nav>
+<div class=intro-header>
+<div class=container>
+<div class=post-heading>
+<h1>
+JOI '18 Open P1 - Bubble Sort 2 题解
+</h1>
+<span class=meta-post>
+<em class="fa fa-calendar-alt"></em>&nbsp;Jul 24, 2021
+&nbsp;&nbsp;&nbsp;<em class="fa fa-folder-open"></em>&nbsp;
+<a href=https://blog.tgc-thallium.com/zh-hans/categories/%E9%A2%98%E8%A7%A3/>题解</a>&nbsp;
+</span>
+</div>
+</div>
+</div>
+</header>
+<div class=container role=main>
+<article class=article class=blog-post>
+<link rel=stylesheet href=https://cdn.jsdelivr.net/npm/katex@0.13.5/dist/katex.min.css integrity=sha384-L+Gq2Cso/Y2x8fX4wausgiZT8z0QPZz7OqPuz4YqAycQJyrJT9NRLpjFBD6zlOia crossorigin=anonymous>
+<script defer src=https://cdn.jsdelivr.net/npm/katex@0.13.5/dist/katex.min.js integrity=sha384-z64WtjpyrKFsxox9eI4SI8eM9toXdoYeWb5Qh+8PO+eG54Bv9BZqf9xNhlcLf/sA crossorigin=anonymous></script>
+<script defer src=https://cdn.jsdelivr.net/npm/katex@0.13.5/dist/contrib/auto-render.min.js integrity=sha384-vZTG03m+2yp6N6BNi5iM4rW4oIwk5DfcNdFfxkk9ZWpDriOkXX8voJBFrAO7MpVl crossorigin=anonymous></script>
+<script>document.addEventListener("DOMContentLoaded",function(){renderMathInElement(document.body,{delimiters:[{left:'$$',right:'$$',display:!0},{left:'$',right:'$',display:!1},{left:'\\(',right:'\\)',display:!1},{left:'\\[',right:'\\]',display:!0}],throwOnError:!1})})</script>
+<aside>
+<nav id=TableOfContents>
+<ul>
+<li><a href=#代码>代码</a></li>
+</ul>
+</nav>
+</aside>
+<p><a href=https://dmoj.ca/problem/joi18op1>题目链接</a></p>
+<p>首先我们要知道对于固定的数组如何求遍历轮数： 创建一个复制数组b，其中<code>b[i]={a[i], i}</code>，然后排序b，排序后<code>b[i].second-i</code>的最大值就是答案，<code>b[i].second-i</code>本质上就是一个数向前移动的距离，不难想出每个会向前移动的数从第一轮遍历就会开始向前移动，直到到达排序后的位置，所以最大的向前移动距离就是遍历的轮数。</p>
+<p>现在考虑修改原数组后，数组<code>b</code>以及<code>b[i].second-i</code>的值会有什么改变，不难发现其实就是删掉了<code>{a[x], x}</code>，然后再插入<code>{v, x}</code>（x与v的含义与题目相同），b数组中在老位置与新位置中间的元素会移动一位，所以他们的<code>b[i].second-i</code>会+1或者-1（由新老位置的关系而定），所以我们需要一个可以插入删除又能区间加的数据结构，并且支持查询全局最大值，那只能是平衡树了。</p>
+<h2 id=代码>代码</h2>
+<div class=highlight><pre tabindex=0 style=color:#272822;background-color:#fafafa;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-cpp data-lang=cpp><span style=color:#75715e>#include</span> <span style=color:#75715e>&lt;bits/stdc++.h&gt;</span><span style=color:#75715e>
+</span><span style=color:#75715e></span><span style=color:#00a8c8>using</span> <span style=color:#00a8c8>namespace</span> <span style=color:#111>std</span><span style=color:#111>;</span>
+
+<span style=color:#00a8c8>auto</span> <span style=color:#111>seed</span><span style=color:#f92672>=</span><span style=color:#111>chrono</span><span style=color:#f92672>::</span><span style=color:#111>high_resolution_clock</span><span style=color:#f92672>::</span><span style=color:#111>now</span><span style=color:#111>().</span><span style=color:#111>time_since_epoch</span><span style=color:#111>().</span><span style=color:#111>count</span><span style=color:#111>();</span>
+<span style=color:#111>mt19937</span> <span style=color:#75af00>gen</span><span style=color:#111>(</span><span style=color:#111>seed</span><span style=color:#111>);</span>
+<span style=color:#00a8c8>template</span> <span style=color:#f92672>&lt;</span><span style=color:#00a8c8>typename</span> <span style=color:#111>T</span><span style=color:#f92672>&gt;</span> <span style=color:#00a8c8>struct</span> <span style=color:#75af00>Treap</span> <span style=color:#111>{</span>
+    <span style=color:#00a8c8>struct</span> <span style=color:#75af00>node</span> <span style=color:#111>{</span>
+        <span style=color:#00a8c8>int</span> <span style=color:#111>ch</span><span style=color:#111>[</span><span style=color:#ae81ff>2</span><span style=color:#111>],</span> <span style=color:#111>sz</span><span style=color:#111>;</span>
+        <span style=color:#00a8c8>unsigned</span> <span style=color:#111>k</span><span style=color:#111>;</span>
+        <span style=color:#111>pair</span><span style=color:#f92672>&lt;</span><span style=color:#00a8c8>int</span><span style=color:#111>,</span> <span style=color:#00a8c8>int</span><span style=color:#f92672>&gt;</span> <span style=color:#111>d</span><span style=color:#111>;</span>
+        <span style=color:#111>T</span> <span style=color:#111>mx</span><span style=color:#111>,</span> <span style=color:#111>lazy</span><span style=color:#111>,</span> <span style=color:#111>dif</span><span style=color:#111>;</span>
+        <span style=color:#111>node</span><span style=color:#111>(</span><span style=color:#111>pair</span><span style=color:#f92672>&lt;</span><span style=color:#00a8c8>int</span><span style=color:#111>,</span> <span style=color:#00a8c8>int</span><span style=color:#f92672>&gt;</span> <span style=color:#111>d_</span><span style=color:#111>,</span> <span style=color:#00a8c8>int</span> <span style=color:#111>dd</span><span style=color:#111>,</span> <span style=color:#00a8c8>int</span> <span style=color:#111>z</span> <span style=color:#f92672>=</span> <span style=color:#ae81ff>1</span><span style=color:#111>)</span> <span style=color:#f92672>:</span> <span style=color:#111>sz</span><span style=color:#111>(</span><span style=color:#111>z</span><span style=color:#111>),</span> <span style=color:#111>k</span><span style=color:#111>((</span><span style=color:#00a8c8>unsigned</span><span style=color:#111>)</span><span style=color:#111>gen</span><span style=color:#111>()),</span> <span style=color:#111>d</span><span style=color:#111>(</span><span style=color:#111>d_</span><span style=color:#111>),</span> <span style=color:#111>mx</span><span style=color:#111>(</span><span style=color:#111>dd</span><span style=color:#111>),</span> <span style=color:#111>lazy</span><span style=color:#111>(),</span> <span style=color:#111>dif</span><span style=color:#111>(</span><span style=color:#111>dd</span><span style=color:#111>)</span> <span style=color:#111>{</span>
+            <span style=color:#111>ch</span><span style=color:#111>[</span><span style=color:#ae81ff>0</span><span style=color:#111>]</span> <span style=color:#f92672>=</span> <span style=color:#111>ch</span><span style=color:#111>[</span><span style=color:#ae81ff>1</span><span style=color:#111>]</span> <span style=color:#f92672>=</span> <span style=color:#ae81ff>0</span><span style=color:#111>;</span>
+        <span style=color:#111>}</span>
+    <span style=color:#111>};</span>
+    <span style=color:#111>vector</span><span style=color:#f92672>&lt;</span><span style=color:#111>node</span><span style=color:#f92672>&gt;</span> <span style=color:#111>nodes</span><span style=color:#111>;</span>
+    <span style=color:#00a8c8>int</span> <span style=color:#111>root</span><span style=color:#f92672>=</span><span style=color:#ae81ff>0</span><span style=color:#111>,</span> <span style=color:#111>recyc</span><span style=color:#f92672>=</span><span style=color:#ae81ff>0</span><span style=color:#111>;</span>
+    <span style=color:#111>Treap</span><span style=color:#111>(</span><span style=color:#00a8c8>int</span> <span style=color:#111>size</span> <span style=color:#f92672>=</span> <span style=color:#ae81ff>2e5</span><span style=color:#111>)</span> <span style=color:#111>{</span>
+        <span style=color:#111>nodes</span><span style=color:#111>.</span><span style=color:#111>reserve</span><span style=color:#111>(</span><span style=color:#111>size</span><span style=color:#111>);</span>
+        <span style=color:#111>nodes</span><span style=color:#111>.</span><span style=color:#111>emplace_back</span><span style=color:#111>(</span><span style=color:#111>pair</span><span style=color:#111>{</span><span style=color:#ae81ff>0</span><span style=color:#111>,</span> <span style=color:#ae81ff>0</span><span style=color:#111>},</span> <span style=color:#f92672>-</span><span style=color:#ae81ff>1e9</span><span style=color:#111>,</span> <span style=color:#ae81ff>0</span><span style=color:#111>);</span>
+    <span style=color:#111>}</span>
+    <span style=color:#00a8c8>inline</span> <span style=color:#00a8c8>int</span> <span style=color:#f92672>&amp;</span><span style=color:#111>ch</span><span style=color:#111>(</span><span style=color:#00a8c8>int</span> <span style=color:#111>rt</span><span style=color:#111>,</span> <span style=color:#00a8c8>int</span> <span style=color:#111>r</span><span style=color:#111>)</span> <span style=color:#111>{</span> <span style=color:#00a8c8>return</span> <span style=color:#111>nodes</span><span style=color:#111>[</span><span style=color:#111>rt</span><span style=color:#111>].</span><span style=color:#111>ch</span><span style=color:#111>[</span><span style=color:#111>r</span><span style=color:#111>];</span> <span style=color:#111>}</span>
+    <span style=color:#00a8c8>int</span> <span style=color:#75af00>new_node</span><span style=color:#111>(</span><span style=color:#00a8c8>const</span> <span style=color:#111>pair</span><span style=color:#f92672>&lt;</span><span style=color:#00a8c8>int</span><span style=color:#111>,</span> <span style=color:#00a8c8>int</span><span style=color:#f92672>&gt;</span> <span style=color:#f92672>&amp;</span><span style=color:#111>d</span><span style=color:#111>,</span> <span style=color:#00a8c8>int</span> <span style=color:#111>dd</span><span style=color:#111>)</span> <span style=color:#111>{</span>
+        <span style=color:#111>nodes</span><span style=color:#111>.</span><span style=color:#111>emplace_back</span><span style=color:#111>(</span><span style=color:#111>d</span><span style=color:#111>,</span> <span style=color:#111>dd</span><span style=color:#111>);</span>
+        <span style=color:#00a8c8>return</span> <span style=color:#111>nodes</span><span style=color:#111>.</span><span style=color:#111>size</span><span style=color:#111>()</span><span style=color:#f92672>-</span><span style=color:#ae81ff>1</span><span style=color:#111>;</span>
+    <span style=color:#111>}</span>
+    <span style=color:#00a8c8>int</span> <span style=color:#75af00>pull</span><span style=color:#111>(</span><span style=color:#00a8c8>int</span> <span style=color:#111>rt</span><span style=color:#111>)</span> <span style=color:#111>{</span>
+        <span style=color:#111>node</span> <span style=color:#f92672>&amp;</span><span style=color:#111>n</span> <span style=color:#f92672>=</span> <span style=color:#111>nodes</span><span style=color:#111>[</span><span style=color:#111>rt</span><span style=color:#111>];</span>
+        <span style=color:#111>n</span><span style=color:#111>.</span><span style=color:#111>sz</span> <span style=color:#f92672>=</span> <span style=color:#ae81ff>1</span> <span style=color:#f92672>+</span> <span style=color:#111>nodes</span><span style=color:#111>[</span><span style=color:#111>n</span><span style=color:#111>.</span><span style=color:#111>ch</span><span style=color:#111>[</span><span style=color:#ae81ff>0</span><span style=color:#111>]].</span><span style=color:#111>sz</span> <span style=color:#f92672>+</span> <span style=color:#111>nodes</span><span style=color:#111>[</span><span style=color:#111>n</span><span style=color:#111>.</span><span style=color:#111>ch</span><span style=color:#111>[</span><span style=color:#ae81ff>1</span><span style=color:#111>]].</span><span style=color:#111>sz</span><span style=color:#111>;</span>
+        <span style=color:#111>n</span><span style=color:#111>.</span><span style=color:#111>mx</span> <span style=color:#f92672>=</span> <span style=color:#111>max</span><span style=color:#111>({</span><span style=color:#111>n</span><span style=color:#111>.</span><span style=color:#111>dif</span><span style=color:#111>,</span> <span style=color:#111>nodes</span><span style=color:#111>[</span><span style=color:#111>n</span><span style=color:#111>.</span><span style=color:#111>ch</span><span style=color:#111>[</span><span style=color:#ae81ff>0</span><span style=color:#111>]].</span><span style=color:#111>mx</span><span style=color:#111>,</span> <span style=color:#111>nodes</span><span style=color:#111>[</span><span style=color:#111>n</span><span style=color:#111>.</span><span style=color:#111>ch</span><span style=color:#111>[</span><span style=color:#ae81ff>1</span><span style=color:#111>]].</span><span style=color:#111>mx</span><span style=color:#111>});</span>
+        <span style=color:#00a8c8>return</span> <span style=color:#111>rt</span><span style=color:#111>;</span>
+    <span style=color:#111>}</span>
+    <span style=color:#00a8c8>void</span> <span style=color:#75af00>add</span><span style=color:#111>(</span><span style=color:#00a8c8>int</span> <span style=color:#111>rt</span><span style=color:#111>,</span> <span style=color:#00a8c8>const</span> <span style=color:#111>T</span> <span style=color:#f92672>&amp;</span><span style=color:#111>d</span><span style=color:#111>)</span> <span style=color:#111>{</span>
+        <span style=color:#111>node</span> <span style=color:#f92672>&amp;</span><span style=color:#111>n</span> <span style=color:#f92672>=</span> <span style=color:#111>nodes</span><span style=color:#111>[</span><span style=color:#111>rt</span><span style=color:#111>];</span>
+        <span style=color:#111>n</span><span style=color:#111>.</span><span style=color:#111>lazy</span> <span style=color:#f92672>+=</span> <span style=color:#111>d</span><span style=color:#111>;</span>
+        <span style=color:#111>n</span><span style=color:#111>.</span><span style=color:#111>mx</span> <span style=color:#f92672>+=</span> <span style=color:#111>d</span><span style=color:#111>;</span>
+        <span style=color:#111>n</span><span style=color:#111>.</span><span style=color:#111>dif</span><span style=color:#f92672>+=</span><span style=color:#111>d</span><span style=color:#111>;</span>
+    <span style=color:#111>}</span>
+    <span style=color:#00a8c8>void</span> <span style=color:#75af00>pushdown</span><span style=color:#111>(</span><span style=color:#00a8c8>int</span> <span style=color:#111>rt</span><span style=color:#111>)</span> <span style=color:#111>{</span>
+        <span style=color:#111>node</span> <span style=color:#f92672>&amp;</span><span style=color:#111>n</span> <span style=color:#f92672>=</span> <span style=color:#111>nodes</span><span style=color:#111>[</span><span style=color:#111>rt</span><span style=color:#111>];</span>
+        <span style=color:#00a8c8>if</span> <span style=color:#111>(</span><span style=color:#111>n</span><span style=color:#111>.</span><span style=color:#111>lazy</span><span style=color:#111>)</span> <span style=color:#111>{</span>
+            <span style=color:#111>add</span><span style=color:#111>(</span><span style=color:#111>n</span><span style=color:#111>.</span><span style=color:#111>ch</span><span style=color:#111>[</span><span style=color:#ae81ff>0</span><span style=color:#111>],</span> <span style=color:#111>n</span><span style=color:#111>.</span><span style=color:#111>lazy</span><span style=color:#111>);</span>
+            <span style=color:#111>add</span><span style=color:#111>(</span><span style=color:#111>n</span><span style=color:#111>.</span><span style=color:#111>ch</span><span style=color:#111>[</span><span style=color:#ae81ff>1</span><span style=color:#111>],</span> <span style=color:#111>n</span><span style=color:#111>.</span><span style=color:#111>lazy</span><span style=color:#111>);</span>
+            <span style=color:#111>n</span><span style=color:#111>.</span><span style=color:#111>lazy</span> <span style=color:#f92672>=</span> <span style=color:#111>T</span><span style=color:#111>();</span>
+        <span style=color:#111>}</span>
+    <span style=color:#111>}</span>
+    <span style=color:#00a8c8>int</span> <span style=color:#75af00>merge</span><span style=color:#111>(</span><span style=color:#00a8c8>int</span> <span style=color:#111>tl</span><span style=color:#111>,</span> <span style=color:#00a8c8>int</span> <span style=color:#111>tr</span><span style=color:#111>)</span> <span style=color:#111>{</span>
+        <span style=color:#00a8c8>if</span> <span style=color:#111>(</span><span style=color:#f92672>!</span><span style=color:#111>tl</span><span style=color:#111>)</span> <span style=color:#00a8c8>return</span> <span style=color:#111>tr</span><span style=color:#111>;</span>
+        <span style=color:#00a8c8>if</span> <span style=color:#111>(</span><span style=color:#f92672>!</span><span style=color:#111>tr</span><span style=color:#111>)</span> <span style=color:#00a8c8>return</span> <span style=color:#111>tl</span><span style=color:#111>;</span>
+        <span style=color:#00a8c8>if</span> <span style=color:#111>(</span><span style=color:#111>nodes</span><span style=color:#111>[</span><span style=color:#111>tl</span><span style=color:#111>].</span><span style=color:#111>k</span> <span style=color:#f92672>&lt;</span> <span style=color:#111>nodes</span><span style=color:#111>[</span><span style=color:#111>tr</span><span style=color:#111>].</span><span style=color:#111>k</span><span style=color:#111>)</span> <span style=color:#111>{</span>
+            <span style=color:#111>pushdown</span><span style=color:#111>(</span><span style=color:#111>tl</span><span style=color:#111>);</span>
+            <span style=color:#111>ch</span><span style=color:#111>(</span><span style=color:#111>tl</span><span style=color:#111>,</span> <span style=color:#ae81ff>1</span><span style=color:#111>)</span> <span style=color:#f92672>=</span> <span style=color:#111>merge</span><span style=color:#111>(</span><span style=color:#111>ch</span><span style=color:#111>(</span><span style=color:#111>tl</span><span style=color:#111>,</span> <span style=color:#ae81ff>1</span><span style=color:#111>),</span> <span style=color:#111>tr</span><span style=color:#111>);</span>
+            <span style=color:#00a8c8>return</span> <span style=color:#111>pull</span><span style=color:#111>(</span><span style=color:#111>tl</span><span style=color:#111>);</span>
+        <span style=color:#111>}</span> <span style=color:#00a8c8>else</span> <span style=color:#111>{</span>
+            <span style=color:#111>pushdown</span><span style=color:#111>(</span><span style=color:#111>tr</span><span style=color:#111>);</span>
+            <span style=color:#111>ch</span><span style=color:#111>(</span><span style=color:#111>tr</span><span style=color:#111>,</span> <span style=color:#ae81ff>0</span><span style=color:#111>)</span> <span style=color:#f92672>=</span> <span style=color:#111>merge</span><span style=color:#111>(</span><span style=color:#111>tl</span><span style=color:#111>,</span> <span style=color:#111>ch</span><span style=color:#111>(</span><span style=color:#111>tr</span><span style=color:#111>,</span> <span style=color:#ae81ff>0</span><span style=color:#111>));</span>
+            <span style=color:#00a8c8>return</span> <span style=color:#111>pull</span><span style=color:#111>(</span><span style=color:#111>tr</span><span style=color:#111>);</span>
+        <span style=color:#111>}</span>
+    <span style=color:#111>}</span>
+    <span style=color:#00a8c8>void</span> <span style=color:#75af00>split</span><span style=color:#111>(</span><span style=color:#00a8c8>int</span> <span style=color:#111>rt</span><span style=color:#111>,</span> <span style=color:#111>pair</span><span style=color:#f92672>&lt;</span><span style=color:#00a8c8>int</span><span style=color:#111>,</span> <span style=color:#00a8c8>int</span><span style=color:#f92672>&gt;</span> <span style=color:#111>k</span><span style=color:#111>,</span> <span style=color:#00a8c8>int</span> <span style=color:#f92672>&amp;</span><span style=color:#111>x</span><span style=color:#111>,</span> <span style=color:#00a8c8>int</span> <span style=color:#f92672>&amp;</span><span style=color:#111>y</span><span style=color:#111>)</span> <span style=color:#111>{</span> <span style=color:#75715e>// split out element less than or equal to k
+</span><span style=color:#75715e></span>        <span style=color:#00a8c8>if</span> <span style=color:#111>(</span><span style=color:#f92672>!</span><span style=color:#111>rt</span><span style=color:#111>)</span> <span style=color:#111>{</span>
+            <span style=color:#111>x</span> <span style=color:#f92672>=</span> <span style=color:#111>y</span> <span style=color:#f92672>=</span> <span style=color:#ae81ff>0</span><span style=color:#111>;</span>
+            <span style=color:#00a8c8>return</span><span style=color:#111>;</span>
+        <span style=color:#111>}</span>
+        <span style=color:#111>pushdown</span><span style=color:#111>(</span><span style=color:#111>rt</span><span style=color:#111>);</span>
+        <span style=color:#00a8c8>if</span> <span style=color:#111>(</span><span style=color:#111>k</span> <span style=color:#f92672>&lt;</span> <span style=color:#111>nodes</span><span style=color:#111>[</span><span style=color:#111>rt</span><span style=color:#111>].</span><span style=color:#111>d</span><span style=color:#111>)</span> <span style=color:#111>{</span>
+            <span style=color:#111>y</span> <span style=color:#f92672>=</span> <span style=color:#111>rt</span><span style=color:#111>;</span>
+            <span style=color:#111>split</span><span style=color:#111>(</span><span style=color:#111>ch</span><span style=color:#111>(</span><span style=color:#111>rt</span><span style=color:#111>,</span> <span style=color:#ae81ff>0</span><span style=color:#111>),</span> <span style=color:#111>k</span><span style=color:#111>,</span> <span style=color:#111>x</span><span style=color:#111>,</span> <span style=color:#111>ch</span><span style=color:#111>(</span><span style=color:#111>rt</span><span style=color:#111>,</span> <span style=color:#ae81ff>0</span><span style=color:#111>));</span>
+        <span style=color:#111>}</span> <span style=color:#00a8c8>else</span> <span style=color:#111>{</span>
+            <span style=color:#111>x</span> <span style=color:#f92672>=</span> <span style=color:#111>rt</span><span style=color:#111>;</span>
+            <span style=color:#111>split</span><span style=color:#111>(</span><span style=color:#111>ch</span><span style=color:#111>(</span><span style=color:#111>rt</span><span style=color:#111>,</span> <span style=color:#ae81ff>1</span><span style=color:#111>),</span> <span style=color:#111>k</span><span style=color:#111>,</span> <span style=color:#111>ch</span><span style=color:#111>(</span><span style=color:#111>rt</span><span style=color:#111>,</span> <span style=color:#ae81ff>1</span><span style=color:#111>),</span> <span style=color:#111>y</span><span style=color:#111>);</span>
+        <span style=color:#111>}</span>
+        <span style=color:#111>pull</span><span style=color:#111>(</span><span style=color:#111>rt</span><span style=color:#111>);</span>
+    <span style=color:#111>}</span>
+    <span style=color:#75715e>// interface
+</span><span style=color:#75715e></span>    <span style=color:#00a8c8>void</span> <span style=color:#75af00>insert</span><span style=color:#111>(</span><span style=color:#111>pair</span><span style=color:#f92672>&lt;</span><span style=color:#00a8c8>int</span><span style=color:#111>,</span> <span style=color:#00a8c8>int</span><span style=color:#f92672>&gt;</span> <span style=color:#111>v</span><span style=color:#111>,</span> <span style=color:#00a8c8>int</span> <span style=color:#111>d</span><span style=color:#111>)</span> <span style=color:#111>{</span>
+        <span style=color:#00a8c8>int</span> <span style=color:#111>rt</span> <span style=color:#f92672>=</span> <span style=color:#111>new_node</span><span style=color:#111>(</span><span style=color:#111>v</span><span style=color:#111>,</span> <span style=color:#111>d</span><span style=color:#111>);</span>
+        <span style=color:#111>root</span> <span style=color:#f92672>=</span> <span style=color:#111>merge</span><span style=color:#111>(</span><span style=color:#111>root</span><span style=color:#111>,</span> <span style=color:#111>rt</span><span style=color:#111>);</span>
+    <span style=color:#111>}</span>
+    <span style=color:#00a8c8>void</span> <span style=color:#75af00>move_right</span><span style=color:#111>(</span><span style=color:#00a8c8>int</span> <span style=color:#111>old</span><span style=color:#111>,</span> <span style=color:#00a8c8>int</span> <span style=color:#111>ne</span><span style=color:#111>,</span> <span style=color:#00a8c8>int</span> <span style=color:#111>idx</span><span style=color:#111>)</span> <span style=color:#111>{</span>
+        <span style=color:#00a8c8>int</span> <span style=color:#111>a</span><span style=color:#111>,</span> <span style=color:#111>b</span><span style=color:#111>,</span> <span style=color:#111>c</span><span style=color:#111>,</span> <span style=color:#111>d</span><span style=color:#111>;</span>
+        <span style=color:#111>split</span><span style=color:#111>(</span><span style=color:#111>root</span><span style=color:#111>,</span> <span style=color:#111>{</span><span style=color:#111>ne</span><span style=color:#111>,</span> <span style=color:#111>idx</span><span style=color:#111>},</span> <span style=color:#111>c</span><span style=color:#111>,</span> <span style=color:#111>d</span><span style=color:#111>);</span>
+        <span style=color:#111>split</span><span style=color:#111>(</span><span style=color:#111>c</span><span style=color:#111>,</span> <span style=color:#111>{</span><span style=color:#111>old</span><span style=color:#111>,</span> <span style=color:#111>idx</span><span style=color:#111>},</span> <span style=color:#111>b</span><span style=color:#111>,</span> <span style=color:#111>c</span><span style=color:#111>);</span>
+        <span style=color:#111>split</span><span style=color:#111>(</span><span style=color:#111>b</span><span style=color:#111>,</span> <span style=color:#111>{</span><span style=color:#111>old</span><span style=color:#111>,</span> <span style=color:#111>idx</span><span style=color:#f92672>-</span><span style=color:#ae81ff>1</span><span style=color:#111>},</span> <span style=color:#111>a</span><span style=color:#111>,</span> <span style=color:#111>b</span><span style=color:#111>);</span>
+        <span style=color:#00a8c8>if</span> <span style=color:#111>(</span><span style=color:#111>c</span><span style=color:#111>)</span> <span style=color:#111>add</span><span style=color:#111>(</span><span style=color:#111>c</span><span style=color:#111>,</span> <span style=color:#ae81ff>1</span><span style=color:#111>);</span>
+        <span style=color:#111>nodes</span><span style=color:#111>[</span><span style=color:#111>b</span><span style=color:#111>]</span><span style=color:#f92672>=</span><span style=color:#111>node</span><span style=color:#111>({</span><span style=color:#111>ne</span><span style=color:#111>,</span> <span style=color:#111>idx</span><span style=color:#111>},</span> <span style=color:#111>idx</span><span style=color:#f92672>-</span><span style=color:#111>(</span><span style=color:#111>nodes</span><span style=color:#111>[</span><span style=color:#111>a</span><span style=color:#111>].</span><span style=color:#111>sz</span><span style=color:#f92672>+</span><span style=color:#111>nodes</span><span style=color:#111>[</span><span style=color:#111>c</span><span style=color:#111>].</span><span style=color:#111>sz</span><span style=color:#111>));</span>
+        <span style=color:#111>root</span> <span style=color:#f92672>=</span> <span style=color:#111>merge</span><span style=color:#111>(</span><span style=color:#111>merge</span><span style=color:#111>(</span><span style=color:#111>merge</span><span style=color:#111>(</span><span style=color:#111>a</span><span style=color:#111>,</span> <span style=color:#111>c</span><span style=color:#111>),</span> <span style=color:#111>b</span><span style=color:#111>),</span> <span style=color:#111>d</span><span style=color:#111>);</span>
+    <span style=color:#111>}</span>
+    <span style=color:#00a8c8>void</span> <span style=color:#75af00>move_left</span><span style=color:#111>(</span><span style=color:#00a8c8>int</span> <span style=color:#111>old</span><span style=color:#111>,</span> <span style=color:#00a8c8>int</span> <span style=color:#111>ne</span><span style=color:#111>,</span> <span style=color:#00a8c8>int</span> <span style=color:#111>idx</span><span style=color:#111>)</span> <span style=color:#111>{</span>
+        <span style=color:#00a8c8>int</span> <span style=color:#111>a</span><span style=color:#111>,</span> <span style=color:#111>b</span><span style=color:#111>,</span> <span style=color:#111>c</span><span style=color:#111>,</span> <span style=color:#111>d</span><span style=color:#111>;</span>
+        <span style=color:#111>split</span><span style=color:#111>(</span><span style=color:#111>root</span><span style=color:#111>,</span> <span style=color:#111>{</span><span style=color:#111>old</span><span style=color:#111>,</span> <span style=color:#111>idx</span><span style=color:#111>},</span> <span style=color:#111>c</span><span style=color:#111>,</span> <span style=color:#111>d</span><span style=color:#111>);</span>
+        <span style=color:#111>split</span><span style=color:#111>(</span><span style=color:#111>c</span><span style=color:#111>,</span> <span style=color:#111>{</span><span style=color:#111>old</span><span style=color:#111>,</span> <span style=color:#111>idx</span><span style=color:#f92672>-</span><span style=color:#ae81ff>1</span><span style=color:#111>},</span> <span style=color:#111>b</span><span style=color:#111>,</span> <span style=color:#111>c</span><span style=color:#111>);</span>
+        <span style=color:#111>split</span><span style=color:#111>(</span><span style=color:#111>b</span><span style=color:#111>,</span> <span style=color:#111>{</span><span style=color:#111>ne</span><span style=color:#111>,</span> <span style=color:#111>idx</span><span style=color:#111>},</span> <span style=color:#111>a</span><span style=color:#111>,</span> <span style=color:#111>b</span><span style=color:#111>);</span>
+        <span style=color:#00a8c8>if</span> <span style=color:#111>(</span><span style=color:#111>b</span><span style=color:#111>)</span> <span style=color:#111>add</span><span style=color:#111>(</span><span style=color:#111>b</span><span style=color:#111>,</span> <span style=color:#f92672>-</span><span style=color:#ae81ff>1</span><span style=color:#111>);</span>
+        <span style=color:#111>nodes</span><span style=color:#111>[</span><span style=color:#111>c</span><span style=color:#111>]</span><span style=color:#f92672>=</span><span style=color:#111>node</span><span style=color:#111>({</span><span style=color:#111>ne</span><span style=color:#111>,</span> <span style=color:#111>idx</span><span style=color:#111>},</span> <span style=color:#111>idx</span><span style=color:#f92672>-</span><span style=color:#111>(</span><span style=color:#111>nodes</span><span style=color:#111>[</span><span style=color:#111>a</span><span style=color:#111>].</span><span style=color:#111>sz</span><span style=color:#111>));</span>
+        <span style=color:#111>root</span><span style=color:#f92672>=</span><span style=color:#111>merge</span><span style=color:#111>(</span><span style=color:#111>merge</span><span style=color:#111>(</span><span style=color:#111>merge</span><span style=color:#111>(</span><span style=color:#111>a</span><span style=color:#111>,</span> <span style=color:#111>c</span><span style=color:#111>),</span> <span style=color:#111>b</span><span style=color:#111>),</span> <span style=color:#111>d</span><span style=color:#111>);</span>
+    <span style=color:#111>}</span>
+    <span style=color:#00a8c8>int</span> <span style=color:#75af00>query</span><span style=color:#111>()</span> <span style=color:#111>{</span>
+        <span style=color:#00a8c8>return</span> <span style=color:#111>nodes</span><span style=color:#111>[</span><span style=color:#111>root</span><span style=color:#111>].</span><span style=color:#111>mx</span><span style=color:#111>;</span>
+    <span style=color:#111>}</span>
+<span style=color:#111>};</span>
+<span style=color:#00a8c8>int</span> <span style=color:#75af00>main</span><span style=color:#111>()</span> <span style=color:#111>{</span>
+    <span style=color:#111>ios</span><span style=color:#f92672>::</span><span style=color:#111>sync_with_stdio</span><span style=color:#111>(</span><span style=color:#111>false</span><span style=color:#111>);</span>
+    <span style=color:#111>cin</span><span style=color:#111>.</span><span style=color:#111>tie</span><span style=color:#111>(</span><span style=color:#00a8c8>nullptr</span><span style=color:#111>);</span>
+    <span style=color:#00a8c8>int</span> <span style=color:#111>n</span><span style=color:#111>,</span> <span style=color:#111>q</span><span style=color:#111>;</span>
+    <span style=color:#111>cin</span><span style=color:#f92672>&gt;&gt;</span><span style=color:#111>n</span><span style=color:#f92672>&gt;&gt;</span><span style=color:#111>q</span><span style=color:#111>;</span>
+    <span style=color:#111>vector</span><span style=color:#f92672>&lt;</span><span style=color:#00a8c8>int</span><span style=color:#f92672>&gt;</span> <span style=color:#111>a</span><span style=color:#111>(</span><span style=color:#111>n</span><span style=color:#111>);</span>
+    <span style=color:#00a8c8>for</span> <span style=color:#111>(</span><span style=color:#00a8c8>auto</span><span style=color:#f92672>&amp;</span> <span style=color:#111>x</span>  <span style=color:#111>:</span> <span style=color:#111>a</span><span style=color:#111>)</span> <span style=color:#111>cin</span><span style=color:#f92672>&gt;&gt;</span><span style=color:#111>x</span><span style=color:#111>;</span>
+    <span style=color:#111>vector</span><span style=color:#f92672>&lt;</span><span style=color:#111>pair</span><span style=color:#f92672>&lt;</span><span style=color:#00a8c8>int</span><span style=color:#111>,</span> <span style=color:#00a8c8>int</span><span style=color:#f92672>&gt;&gt;</span> <span style=color:#111>b</span><span style=color:#111>(</span><span style=color:#111>n</span><span style=color:#111>);</span>
+    <span style=color:#00a8c8>for</span> <span style=color:#111>(</span><span style=color:#00a8c8>int</span> <span style=color:#111>i</span><span style=color:#f92672>=</span><span style=color:#ae81ff>0</span><span style=color:#111>;</span> <span style=color:#111>i</span><span style=color:#f92672>&lt;</span><span style=color:#111>n</span><span style=color:#111>;</span> <span style=color:#111>i</span><span style=color:#f92672>++</span><span style=color:#111>)</span> <span style=color:#111>{</span>
+        <span style=color:#111>b</span><span style=color:#111>[</span><span style=color:#111>i</span><span style=color:#111>]</span><span style=color:#f92672>=</span><span style=color:#111>{</span><span style=color:#111>a</span><span style=color:#111>[</span><span style=color:#111>i</span><span style=color:#111>],</span> <span style=color:#111>i</span><span style=color:#111>};</span>
+    <span style=color:#111>}</span>
+    <span style=color:#111>sort</span><span style=color:#111>(</span><span style=color:#111>b</span><span style=color:#111>.</span><span style=color:#111>begin</span><span style=color:#111>(),</span> <span style=color:#111>b</span><span style=color:#111>.</span><span style=color:#111>end</span><span style=color:#111>());</span>
+    <span style=color:#111>Treap</span><span style=color:#f92672>&lt;</span><span style=color:#00a8c8>int</span><span style=color:#f92672>&gt;</span> <span style=color:#111>tr</span><span style=color:#111>;</span>
+    <span style=color:#00a8c8>for</span> <span style=color:#111>(</span><span style=color:#00a8c8>int</span> <span style=color:#111>i</span><span style=color:#f92672>=</span><span style=color:#ae81ff>0</span><span style=color:#111>;</span> <span style=color:#111>i</span><span style=color:#f92672>&lt;</span><span style=color:#111>n</span><span style=color:#111>;</span> <span style=color:#111>i</span><span style=color:#f92672>++</span><span style=color:#111>)</span> <span style=color:#111>{</span>
+        <span style=color:#111>tr</span><span style=color:#111>.</span><span style=color:#111>insert</span><span style=color:#111>(</span><span style=color:#111>b</span><span style=color:#111>[</span><span style=color:#111>i</span><span style=color:#111>],</span> <span style=color:#111>b</span><span style=color:#111>[</span><span style=color:#111>i</span><span style=color:#111>].</span><span style=color:#111>second</span><span style=color:#f92672>-</span><span style=color:#111>i</span><span style=color:#111>);</span>
+    <span style=color:#111>}</span>
+    <span style=color:#00a8c8>while</span> <span style=color:#111>(</span><span style=color:#111>q</span><span style=color:#f92672>--</span><span style=color:#111>)</span> <span style=color:#111>{</span>
+        <span style=color:#00a8c8>int</span> <span style=color:#111>x</span><span style=color:#111>,</span> <span style=color:#111>v</span><span style=color:#111>;</span>
+        <span style=color:#111>cin</span><span style=color:#f92672>&gt;&gt;</span><span style=color:#111>x</span><span style=color:#f92672>&gt;&gt;</span><span style=color:#111>v</span><span style=color:#111>;</span>
+        <span style=color:#00a8c8>if</span> <span style=color:#111>(</span><span style=color:#111>a</span><span style=color:#111>[</span><span style=color:#111>x</span><span style=color:#111>]</span><span style=color:#f92672>&lt;</span><span style=color:#111>v</span><span style=color:#111>)</span> <span style=color:#111>{</span>  <span style=color:#75715e>// move right
+</span><span style=color:#75715e></span>            <span style=color:#111>tr</span><span style=color:#111>.</span><span style=color:#111>move_right</span><span style=color:#111>(</span><span style=color:#111>a</span><span style=color:#111>[</span><span style=color:#111>x</span><span style=color:#111>],</span> <span style=color:#111>v</span><span style=color:#111>,</span> <span style=color:#111>x</span><span style=color:#111>);</span>
+        <span style=color:#111>}</span> <span style=color:#00a8c8>else</span> <span style=color:#111>{</span> <span style=color:#75715e>// move left
+</span><span style=color:#75715e></span>            <span style=color:#111>tr</span><span style=color:#111>.</span><span style=color:#111>move_left</span><span style=color:#111>(</span><span style=color:#111>a</span><span style=color:#111>[</span><span style=color:#111>x</span><span style=color:#111>],</span> <span style=color:#111>v</span><span style=color:#111>,</span> <span style=color:#111>x</span><span style=color:#111>);</span>
+        <span style=color:#111>}</span>
+        <span style=color:#111>a</span><span style=color:#111>[</span><span style=color:#111>x</span><span style=color:#111>]</span><span style=color:#f92672>=</span><span style=color:#111>v</span><span style=color:#111>;</span>
+        <span style=color:#111>cout</span><span style=color:#f92672>&lt;&lt;</span><span style=color:#111>tr</span><span style=color:#111>.</span><span style=color:#111>query</span><span style=color:#111>()</span><span style=color:#f92672>&lt;&lt;</span><span style=color:#d88200>&#39;\n&#39;</span><span style=color:#111>;</span>
+    <span style=color:#111>}</span>
+<span style=color:#111>}</span>
+</code></pre></div>
+<div class=blog-tags>
+<a href=https://blog.tgc-thallium.com/zh-hans/tags/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84/>数据结构</a>&nbsp;
+<a href=https://blog.tgc-thallium.com/zh-hans/tags/%E5%B9%B3%E8%A1%A1%E6%A0%91/>平衡树</a>&nbsp;
+<a href=https://blog.tgc-thallium.com/zh-hans/tags/treap/>treap</a>&nbsp;
+</div>
+</article>
+<link rel=stylesheet href=https://cdn.jsdelivr.net/npm/gitalk@1/dist/gitalk.css>
+<script src=https://cdn.jsdelivr.net/npm/gitalk@1/dist/gitalk.min.js></script>
+<div id=gitalk-container></div>
+<script>!function(o){"use strict";function e(a,b){var c=(65535&a)+(65535&b);return(a>>16)+(b>>16)+(c>>16)<<16|65535&c}function f(h,i,c,d,f,g){return e((a=e(e(i,h),e(d,g)))<<(b=f)|a>>>32-b,c);var a,b}function b(b,a,c,d,e,g,h){return f(a&c|~a&d,b,a,e,g,h)}function c(c,a,d,b,e,g,h){return f(a&b|d&~b,c,a,e,g,h)}function d(b,a,c,d,e,g,h){return f(a^c^d,b,a,e,g,h)}function a(b,a,c,d,e,g,h){return f(c^(a|~d),b,a,e,g,h)}function g(j,l){var n,o,p,m,f,i,g,h,k;j[l>>5]|=128<<l%32,j[14+(l+64>>>9<<4)]=l;for(f=1732584193,i=-271733879,g=-1732584194,h=271733878,k=0;k<j.length;k+=16)f=b(n=f,o=i,p=g,m=h,j[k],7,-680876936),h=b(h,f,i,g,j[k+1],12,-389564586),g=b(g,h,f,i,j[k+2],17,606105819),i=b(i,g,h,f,j[k+3],22,-1044525330),f=b(f,i,g,h,j[k+4],7,-176418897),h=b(h,f,i,g,j[k+5],12,1200080426),g=b(g,h,f,i,j[k+6],17,-1473231341),i=b(i,g,h,f,j[k+7],22,-45705983),f=b(f,i,g,h,j[k+8],7,1770035416),h=b(h,f,i,g,j[k+9],12,-1958414417),g=b(g,h,f,i,j[k+10],17,-42063),i=b(i,g,h,f,j[k+11],22,-1990404162),f=b(f,i,g,h,j[k+12],7,1804603682),h=b(h,f,i,g,j[k+13],12,-40341101),g=b(g,h,f,i,j[k+14],17,-1502002290),f=c(f,i=b(i,g,h,f,j[k+15],22,1236535329),g,h,j[k+1],5,-165796510),h=c(h,f,i,g,j[k+6],9,-1069501632),g=c(g,h,f,i,j[k+11],14,643717713),i=c(i,g,h,f,j[k],20,-373897302),f=c(f,i,g,h,j[k+5],5,-701558691),h=c(h,f,i,g,j[k+10],9,38016083),g=c(g,h,f,i,j[k+15],14,-660478335),i=c(i,g,h,f,j[k+4],20,-405537848),f=c(f,i,g,h,j[k+9],5,568446438),h=c(h,f,i,g,j[k+14],9,-1019803690),g=c(g,h,f,i,j[k+3],14,-187363961),i=c(i,g,h,f,j[k+8],20,1163531501),f=c(f,i,g,h,j[k+13],5,-1444681467),h=c(h,f,i,g,j[k+2],9,-51403784),g=c(g,h,f,i,j[k+7],14,1735328473),f=d(f,i=c(i,g,h,f,j[k+12],20,-1926607734),g,h,j[k+5],4,-378558),h=d(h,f,i,g,j[k+8],11,-2022574463),g=d(g,h,f,i,j[k+11],16,1839030562),i=d(i,g,h,f,j[k+14],23,-35309556),f=d(f,i,g,h,j[k+1],4,-1530992060),h=d(h,f,i,g,j[k+4],11,1272893353),g=d(g,h,f,i,j[k+7],16,-155497632),i=d(i,g,h,f,j[k+10],23,-1094730640),f=d(f,i,g,h,j[k+13],4,681279174),h=d(h,f,i,g,j[k],11,-358537222),g=d(g,h,f,i,j[k+3],16,-722521979),i=d(i,g,h,f,j[k+6],23,76029189),f=d(f,i,g,h,j[k+9],4,-640364487),h=d(h,f,i,g,j[k+12],11,-421815835),g=d(g,h,f,i,j[k+15],16,530742520),f=a(f,i=d(i,g,h,f,j[k+2],23,-995338651),g,h,j[k],6,-198630844),h=a(h,f,i,g,j[k+7],10,1126891415),g=a(g,h,f,i,j[k+14],15,-1416354905),i=a(i,g,h,f,j[k+5],21,-57434055),f=a(f,i,g,h,j[k+12],6,1700485571),h=a(h,f,i,g,j[k+3],10,-1894986606),g=a(g,h,f,i,j[k+10],15,-1051523),i=a(i,g,h,f,j[k+1],21,-2054922799),f=a(f,i,g,h,j[k+8],6,1873313359),h=a(h,f,i,g,j[k+15],10,-30611744),g=a(g,h,f,i,j[k+6],15,-1560198380),i=a(i,g,h,f,j[k+13],21,1309151649),f=a(f,i,g,h,j[k+4],6,-145523070),h=a(h,f,i,g,j[k+11],10,-1120210379),g=a(g,h,f,i,j[k+2],15,718787259),i=a(i,g,h,f,j[k+9],21,-343485551),f=e(f,n),i=e(i,o),g=e(g,p),h=e(h,m);return[f,i,g,h]}function l(b){for(var c="",d=32*b.length,a=0;a<d;a+=8)c+=String.fromCharCode(b[a>>5]>>>a%32&255);return c}function h(c){var b=[],d,a;for(b[(c.length>>2)-1]=void 0,a=0;a<b.length;a+=1)b[a]=0;for(d=8*c.length,a=0;a<d;a+=8)b[a>>5]|=(255&c.charCodeAt(a/8))<<a%32;return b}function k(c){for(var a,d="0123456789abcdef",e="",b=0;b<c.length;b+=1)a=c.charCodeAt(b),e+=d.charAt(a>>>4&15)+d.charAt(15&a);return e}function i(a){return unescape(encodeURIComponent(a))}function m(b){return l(g(h(a=i(b)),8*a.length));var a}function n(a,b){return function(i,e){var a,f,b=h(i),d=[],c=[];for(d[15]=c[15]=void 0,16<b.length&&(b=g(b,8*i.length)),a=0;a<16;a+=1)d[a]=909522486^b[a],c[a]=1549556828^b[a];return f=g(d.concat(h(e)),512+8*e.length),l(g(c.concat(f),640))}(i(a),i(b))}function j(a,b,c){return b?c?n(b,a):k(n(b,a)):c?m(a):k(m(a))}"function"==typeof define&&define.amd?define(function(){return j}):"object"==typeof module&&module.exports?module.exports=j:o.md5=j}(this);var gitalk=new Gitalk({clientID:'804f53fd87621403bf11',clientSecret:'5cfea89eac0c032eb02b333a1030d73e7b6e2176',repo:'blog',owner:'thallium',admin:['thallium'],id:md5(location.pathname),distractionFreeMode:!1});gitalk.render('gitalk-container')</script>
+</div>
+<footer>
+<div class=social-icons>
+<a href=https://github.com/thallium name=GitHub>
+<em class="fab fa-github"></em>
+</a>
+</div>
+<div class=container>
+<p class="credits copyright">
+<a href=https://blog.tgc-thallium.com/zh-hans/about>Gengchen</a>
+&nbsp;&copy;
+2021
+&nbsp;/&nbsp;
+<a href=https://blog.tgc-thallium.com/zh-hans/>Thallium的博客</a>
+&nbsp;&ndash;&nbsp;
+<em class="fas fa-moon" id=dark-mode-toggle></em>
+</p>
+<p class="credits theme-by">
+Powered By <a href=https://gohugo.io>Hugo</a>&nbsp;
+主题
+<a href=https://github.com/matsuyoshi30/harbor>Harbor</a>
+</p>
+</div>
+</footer>
+</body>
+</html>

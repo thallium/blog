@@ -1,8 +1,90 @@
-<!doctype html><html lang=en><head><meta charset=utf-8><title>York University programming contest 2 题解</title><meta http-equiv=x-ua-compatible content="IE=edge"><meta name=viewport content="width=device-width,initial-scale=1"><link rel=alternate type=application/rss+xml href=https://blog.tgc-thallium.com/index.xml title=Thallium的博客><meta name=twitter:card content="summary"><meta name=twitter:title content="York University programming contest 2 题解"><meta name=twitter:description content="还算顺利的一场"><link rel=stylesheet href=https://blog.tgc-thallium.com/fontawesome/css/all.min.css><link rel=stylesheet href=https://blog.tgc-thallium.com/css/main.css><link id=dark-mode-theme rel=stylesheet href=https://blog.tgc-thallium.com/css/dark.css><script>var darkTheme=document.getElementById('dark-mode-theme'),storedTheme=localStorage.getItem('dark-mode-storage');storedTheme==='dark'?darkTheme.disabled=!1:storedTheme==='light'&&(darkTheme.disabled=!0)</script><script src=https://blog.tgc-thallium.com/js/main.bundle.js></script><script src=https://blog.tgc-thallium.com/js/instantpage.min.js type=module defer></script><script src=https://blog.tgc-thallium.com/js/collapse.js type=module defer></script><meta name=generator content="Hugo 0.85.0"></head><body><header><nav class=navbar><div class=nav><p class=lang><i class="fas fa-globe"></i>
-<a href=https://blog.tgc-thallium.com/ title=无翻译>English</a></p><ul class=nav-links><li><a href=/zh-hans/ id=Home title=主页><em class="fas fa-home fa-lg"></em></a></li><li><a href=/zh-hans/about/ id=About title=关于><em class="fas fa-user fa-lg"></em></a></li><li><a href=/zh-hans/tags/ id=Tags title=标签><em class="fas fa-tag fa-lg"></em></a></li><li><a href=/zh-hans/categories/ id=Categories title=分类><em class="fas fa-list fa-lg"></em></a></li><li><a href=/zh-hans/archives/ id=Archives title=存档><em class="fas fa-archive fa-lg"></em></a></li><li><a href=/zh-hans/search/ id=Search title=搜索><em class="fas fa-search fa-lg"></em></a></li></ul></div></nav><div class=intro-header><div class=container><div class=post-heading><h1>York University programming contest 2 题解</h1><span class=meta-post><em class="fa fa-calendar-alt"></em>&nbsp;Sep 26, 2019
+<!doctype html><html lang=en>
+<head>
+<meta charset=utf-8>
+<title>York University programming contest 2 题解</title>
+<meta http-equiv=x-ua-compatible content="IE=edge">
+<meta name=viewport content="width=device-width,initial-scale=1">
+<link rel=alternate type=application/rss+xml href=https://blog.tgc-thallium.com/index.xml title=Thallium的博客>
+<meta name=twitter:card content="summary">
+<meta name=twitter:title content="York University programming contest 2 题解">
+<meta name=twitter:description content="还算顺利的一场">
+<link rel=stylesheet href=https://blog.tgc-thallium.com/fontawesome/css/all.min.css>
+<link rel=stylesheet href=https://blog.tgc-thallium.com/css/main.css>
+<link id=dark-mode-theme rel=stylesheet href=https://blog.tgc-thallium.com/css/dark.css>
+<script>var darkTheme=document.getElementById('dark-mode-theme'),storedTheme=localStorage.getItem('dark-mode-storage');storedTheme==='dark'?darkTheme.disabled=!1:storedTheme==='light'&&(darkTheme.disabled=!0)</script>
+<script src=https://blog.tgc-thallium.com/js/main.bundle.js></script>
+<script src=https://blog.tgc-thallium.com/js/instantpage.min.js type=module defer></script>
+<script src=https://blog.tgc-thallium.com/js/collapse.js type=module defer></script>
+<meta name=generator content="Hugo 0.86.0">
+</head>
+<body>
+<header>
+<nav class=navbar>
+<div class=nav>
+<p class=lang>
+<i class="fas fa-globe"></i>
+<a href=https://blog.tgc-thallium.com/ title=无翻译>English</a>
+</p>
+<ul class=nav-links>
+<li>
+<a href=/zh-hans/ id=Home title=主页><em class="fas fa-home fa-lg"></em></a>
+</li>
+<li>
+<a href=/zh-hans/about/ id=About title=关于><em class="fas fa-user fa-lg"></em></a>
+</li>
+<li>
+<a href=/zh-hans/tags/ id=Tags title=标签><em class="fas fa-tag fa-lg"></em></a>
+</li>
+<li>
+<a href=/zh-hans/categories/ id=Categories title=分类><em class="fas fa-list fa-lg"></em></a>
+</li>
+<li>
+<a href=/zh-hans/archives/ id=Archives title=存档><em class="fas fa-archive fa-lg"></em></a>
+</li>
+<li>
+<a href=/zh-hans/search/ id=Search title=搜索><em class="fas fa-search fa-lg"></em></a>
+</li>
+</ul>
+</div>
+</nav>
+<div class=intro-header>
+<div class=container>
+<div class=post-heading>
+<h1>
+York University programming contest 2 题解
+</h1>
+<span class=meta-post>
+<em class="fa fa-calendar-alt"></em>&nbsp;Sep 26, 2019
 &nbsp;&nbsp;&nbsp;<em class="fa fa-folder-open"></em>&nbsp;
 <a href=https://blog.tgc-thallium.com/zh-hans/categories/%E6%AF%94%E8%B5%9B%E9%A2%98%E8%A7%A3/>比赛题解</a>&nbsp;
-<a href=https://blog.tgc-thallium.com/zh-hans/categories/%E9%A2%98%E8%A7%A3/>题解</a>&nbsp;</span></div></div></div></header><div class=container role=main><article class=article class=blog-post><link rel=stylesheet href=https://cdn.jsdelivr.net/npm/katex@0.13.5/dist/katex.min.css integrity=sha384-L+Gq2Cso/Y2x8fX4wausgiZT8z0QPZz7OqPuz4YqAycQJyrJT9NRLpjFBD6zlOia crossorigin=anonymous><script defer src=https://cdn.jsdelivr.net/npm/katex@0.13.5/dist/katex.min.js integrity=sha384-z64WtjpyrKFsxox9eI4SI8eM9toXdoYeWb5Qh+8PO+eG54Bv9BZqf9xNhlcLf/sA crossorigin=anonymous></script><script defer src=https://cdn.jsdelivr.net/npm/katex@0.13.5/dist/contrib/auto-render.min.js integrity=sha384-vZTG03m+2yp6N6BNi5iM4rW4oIwk5DfcNdFfxkk9ZWpDriOkXX8voJBFrAO7MpVl crossorigin=anonymous></script><script>document.addEventListener("DOMContentLoaded",function(){renderMathInElement(document.body,{delimiters:[{left:'$$',right:'$$',display:!0},{left:'$',right:'$',display:!1},{left:'\\(',right:'\\)',display:!1},{left:'\\[',right:'\\]',display:!0}],throwOnError:!1})})</script><p>还算顺利的一场</p><p><a href=https://open.kattis.com/contests/s4m8pb/problems>题目链接</a></p><h1 id=a---3d-printed-statues>A - 3D Printed Statues</h1><p><strong>题意：</strong> 你有1个3D打印机，打印机每天可以打印出1个打印机或者1个雕塑，你需要打印出n个雕塑，问最少需要几天。</p><p><strong>思路：</strong> 不难想出，只用一天打印雕塑就够了，因为如果要需要更多的天数，不如先打印打印机然后再打印雕塑，所以思路就是一开始疯狂打印打印机直到打印个数大于等于n，然后天数加一。</p><h1 id=b---digital-display>B - Digital display</h1><p><strong>题意：</strong> 给出一个时间，用7段显示的方式输出（格式看题目就行）</p><p><strong>思路：</strong> 当时写麻烦了，其实可以把端点和中间的线合起来写成一个函数的，这样就只用写画横着和竖着的线的函数，用二维数组存整个图案，根据数字和第几位数确定横线和竖线的起点坐标，调用对应的画线函数就行了。最坑的是这个oj没有格式错误，当时少了一个空行却以为是别的错，wa了好几发……这个题耽误了贼长时间。</p><h1 id=c---eight-queens>C - Eight Queens</h1><p><strong>题意：</strong> 给出一个棋盘，判断是不是合法的八皇后放法。</p><p><strong>思路：</strong> 遍历棋盘，碰到皇后就进行判断其4个方向上有没有别的皇后。但是题目里有一点没说就是皇后的数量可能不为8，还好wa了一次就想到这个了，不然可能要自闭……</p><h1 id=d---eko>D - Eko</h1><p><strong>题意：</strong> 给出$N$棵树的高度，你可以选择某一个高度，然后把所有在此高度之上的木头都砍掉，对于给出的$M$单位的树木，找出至少能获得这些数量的最高高度。</p><p><strong>思路：</strong> 因为随着高度从低到高，砍掉的树木的数量单调递增，所以可以用二分搜索。推荐一种<a href=https://www.cnblogs.com/luoxn28/p/5767571.html>二分的写法</a>，很好记，可以对付各种类型的二分。</p><p>代码</p><div class=highlight><pre style=color:#272822;background-color:#fafafa;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-cpp data-lang=cpp><span style=color:#75715e>#include</span><span style=color:#75715e>&lt;bits/stdc++.h&gt;</span><span style=color:#75715e>
+<a href=https://blog.tgc-thallium.com/zh-hans/categories/%E9%A2%98%E8%A7%A3/>题解</a>&nbsp;
+</span>
+</div>
+</div>
+</div>
+</header>
+<div class=container role=main>
+<article class=article class=blog-post>
+<link rel=stylesheet href=https://cdn.jsdelivr.net/npm/katex@0.13.5/dist/katex.min.css integrity=sha384-L+Gq2Cso/Y2x8fX4wausgiZT8z0QPZz7OqPuz4YqAycQJyrJT9NRLpjFBD6zlOia crossorigin=anonymous>
+<script defer src=https://cdn.jsdelivr.net/npm/katex@0.13.5/dist/katex.min.js integrity=sha384-z64WtjpyrKFsxox9eI4SI8eM9toXdoYeWb5Qh+8PO+eG54Bv9BZqf9xNhlcLf/sA crossorigin=anonymous></script>
+<script defer src=https://cdn.jsdelivr.net/npm/katex@0.13.5/dist/contrib/auto-render.min.js integrity=sha384-vZTG03m+2yp6N6BNi5iM4rW4oIwk5DfcNdFfxkk9ZWpDriOkXX8voJBFrAO7MpVl crossorigin=anonymous></script>
+<script>document.addEventListener("DOMContentLoaded",function(){renderMathInElement(document.body,{delimiters:[{left:'$$',right:'$$',display:!0},{left:'$',right:'$',display:!1},{left:'\\(',right:'\\)',display:!1},{left:'\\[',right:'\\]',display:!0}],throwOnError:!1})})</script>
+<p>还算顺利的一场</p>
+<p><a href=https://open.kattis.com/contests/s4m8pb/problems>题目链接</a></p>
+<h1 id=a---3d-printed-statues>A - 3D Printed Statues</h1>
+<p><strong>题意：</strong> 你有1个3D打印机，打印机每天可以打印出1个打印机或者1个雕塑，你需要打印出n个雕塑，问最少需要几天。</p>
+<p><strong>思路：</strong> 不难想出，只用一天打印雕塑就够了，因为如果要需要更多的天数，不如先打印打印机然后再打印雕塑，所以思路就是一开始疯狂打印打印机直到打印个数大于等于n，然后天数加一。</p>
+<h1 id=b---digital-display>B - Digital display</h1>
+<p><strong>题意：</strong> 给出一个时间，用7段显示的方式输出（格式看题目就行）</p>
+<p><strong>思路：</strong> 当时写麻烦了，其实可以把端点和中间的线合起来写成一个函数的，这样就只用写画横着和竖着的线的函数，用二维数组存整个图案，根据数字和第几位数确定横线和竖线的起点坐标，调用对应的画线函数就行了。最坑的是这个oj没有格式错误，当时少了一个空行却以为是别的错，wa了好几发……这个题耽误了贼长时间。</p>
+<h1 id=c---eight-queens>C - Eight Queens</h1>
+<p><strong>题意：</strong> 给出一个棋盘，判断是不是合法的八皇后放法。</p>
+<p><strong>思路：</strong> 遍历棋盘，碰到皇后就进行判断其4个方向上有没有别的皇后。但是题目里有一点没说就是皇后的数量可能不为8，还好wa了一次就想到这个了，不然可能要自闭……</p>
+<h1 id=d---eko>D - Eko</h1>
+<p><strong>题意：</strong> 给出$N$棵树的高度，你可以选择某一个高度，然后把所有在此高度之上的木头都砍掉，对于给出的$M$单位的树木，找出至少能获得这些数量的最高高度。</p>
+<p><strong>思路：</strong> 因为随着高度从低到高，砍掉的树木的数量单调递增，所以可以用二分搜索。推荐一种<a href=https://www.cnblogs.com/luoxn28/p/5767571.html>二分的写法</a>，很好记，可以对付各种类型的二分。</p>
+<p>代码</p>
+<div class=highlight><pre tabindex=0 style=color:#272822;background-color:#fafafa;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-cpp data-lang=cpp><span style=color:#75715e>#include</span><span style=color:#75715e>&lt;bits/stdc++.h&gt;</span><span style=color:#75715e>
 </span><span style=color:#75715e>#define forn(i,n) for(int i=0;i&lt;int(n);++i)
 </span><span style=color:#75715e>#define for1(i,n) for(int i=1;i&lt;=int(n);++i)
 </span><span style=color:#75715e>#define fore(i,a,b) for(int i=int(a);i&lt;=b;++i)
@@ -34,7 +116,11 @@
     <span style=color:#111>cout</span><span style=color:#f92672>&lt;&lt;</span><span style=color:#111>r</span><span style=color:#111>;</span>
     <span style=color:#00a8c8>return</span> <span style=color:#ae81ff>0</span><span style=color:#111>;</span>
 <span style=color:#111>}</span>
-</code></pre></div><h1 id=e---election>E - Election</h1><p><strong>题意：</strong> 有$N$个人投票，已经知道第一个人有$V_1$票，第二个人有$V_2$票，已知每个人投票都是随机的，判断是以下哪三种情况：1、第一个人的胜出的概率超过$W%$, 2、第一个人必输，3、剩下的情况。</p><p><strong>思路：</strong> 排列组合的问题，一直被卡到结束，到第二天才发现是算组合数的时候爆了因为用了最为弱智的算法。算$C_m^n$时应乘一个除一个，分子的部分应从$m-n+1$开始乘，分母的部分应从$1$开始除，如果最终结果在long long之内的话这样算就不会爆。还好最多只有50个人投票，最多只有$2^{50}$种情况。</p><p>代码</p><div class=highlight><pre style=color:#272822;background-color:#fafafa;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-cpp data-lang=cpp><span style=color:#75715e>#include</span> <span style=color:#75715e>&lt;iostream&gt;</span><span style=color:#75715e>
+</code></pre></div><h1 id=e---election>E - Election</h1>
+<p><strong>题意：</strong> 有$N$个人投票，已经知道第一个人有$V_1$票，第二个人有$V_2$票，已知每个人投票都是随机的，判断是以下哪三种情况：1、第一个人的胜出的概率超过$W%$, 2、第一个人必输，3、剩下的情况。</p>
+<p><strong>思路：</strong> 排列组合的问题，一直被卡到结束，到第二天才发现是算组合数的时候爆了因为用了最为弱智的算法。算$C_m^n$时应乘一个除一个，分子的部分应从$m-n+1$开始乘，分母的部分应从$1$开始除，如果最终结果在long long之内的话这样算就不会爆。还好最多只有50个人投票，最多只有$2^{50}$种情况。</p>
+<p>代码</p>
+<div class=highlight><pre tabindex=0 style=color:#272822;background-color:#fafafa;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-cpp data-lang=cpp><span style=color:#75715e>#include</span> <span style=color:#75715e>&lt;iostream&gt;</span><span style=color:#75715e>
 </span><span style=color:#75715e></span><span style=color:#00a8c8>typedef</span> <span style=color:#00a8c8>long</span> <span style=color:#00a8c8>long</span> <span style=color:#111>ll</span><span style=color:#111>;</span>
 
 <span style=color:#111>ll</span> <span style=color:#75af00>calc</span><span style=color:#111>(</span><span style=color:#00a8c8>int</span> <span style=color:#111>a</span><span style=color:#111>,</span> <span style=color:#00a8c8>int</span> <span style=color:#111>b</span><span style=color:#111>)</span> <span style=color:#111>{</span>
@@ -71,12 +157,35 @@
     <span style=color:#111>}</span>
   <span style=color:#111>}</span>
   <span style=color:#00a8c8>return</span> <span style=color:#ae81ff>0</span><span style=color:#111>;</span>
-</code></pre></div></article><link rel=stylesheet href=https://cdn.jsdelivr.net/npm/gitalk@1/dist/gitalk.css><script src=https://cdn.jsdelivr.net/npm/gitalk@1/dist/gitalk.min.js></script><div id=gitalk-container></div><script>!function(o){"use strict";function e(a,b){var c=(65535&a)+(65535&b);return(a>>16)+(b>>16)+(c>>16)<<16|65535&c}function f(h,i,c,d,f,g){return e((a=e(e(i,h),e(d,g)))<<(b=f)|a>>>32-b,c);var a,b}function b(b,a,c,d,e,g,h){return f(a&c|~a&d,b,a,e,g,h)}function c(c,a,d,b,e,g,h){return f(a&b|d&~b,c,a,e,g,h)}function d(b,a,c,d,e,g,h){return f(a^c^d,b,a,e,g,h)}function a(b,a,c,d,e,g,h){return f(c^(a|~d),b,a,e,g,h)}function g(j,l){var n,o,p,m,f,i,g,h,k;j[l>>5]|=128<<l%32,j[14+(l+64>>>9<<4)]=l;for(f=1732584193,i=-271733879,g=-1732584194,h=271733878,k=0;k<j.length;k+=16)f=b(n=f,o=i,p=g,m=h,j[k],7,-680876936),h=b(h,f,i,g,j[k+1],12,-389564586),g=b(g,h,f,i,j[k+2],17,606105819),i=b(i,g,h,f,j[k+3],22,-1044525330),f=b(f,i,g,h,j[k+4],7,-176418897),h=b(h,f,i,g,j[k+5],12,1200080426),g=b(g,h,f,i,j[k+6],17,-1473231341),i=b(i,g,h,f,j[k+7],22,-45705983),f=b(f,i,g,h,j[k+8],7,1770035416),h=b(h,f,i,g,j[k+9],12,-1958414417),g=b(g,h,f,i,j[k+10],17,-42063),i=b(i,g,h,f,j[k+11],22,-1990404162),f=b(f,i,g,h,j[k+12],7,1804603682),h=b(h,f,i,g,j[k+13],12,-40341101),g=b(g,h,f,i,j[k+14],17,-1502002290),f=c(f,i=b(i,g,h,f,j[k+15],22,1236535329),g,h,j[k+1],5,-165796510),h=c(h,f,i,g,j[k+6],9,-1069501632),g=c(g,h,f,i,j[k+11],14,643717713),i=c(i,g,h,f,j[k],20,-373897302),f=c(f,i,g,h,j[k+5],5,-701558691),h=c(h,f,i,g,j[k+10],9,38016083),g=c(g,h,f,i,j[k+15],14,-660478335),i=c(i,g,h,f,j[k+4],20,-405537848),f=c(f,i,g,h,j[k+9],5,568446438),h=c(h,f,i,g,j[k+14],9,-1019803690),g=c(g,h,f,i,j[k+3],14,-187363961),i=c(i,g,h,f,j[k+8],20,1163531501),f=c(f,i,g,h,j[k+13],5,-1444681467),h=c(h,f,i,g,j[k+2],9,-51403784),g=c(g,h,f,i,j[k+7],14,1735328473),f=d(f,i=c(i,g,h,f,j[k+12],20,-1926607734),g,h,j[k+5],4,-378558),h=d(h,f,i,g,j[k+8],11,-2022574463),g=d(g,h,f,i,j[k+11],16,1839030562),i=d(i,g,h,f,j[k+14],23,-35309556),f=d(f,i,g,h,j[k+1],4,-1530992060),h=d(h,f,i,g,j[k+4],11,1272893353),g=d(g,h,f,i,j[k+7],16,-155497632),i=d(i,g,h,f,j[k+10],23,-1094730640),f=d(f,i,g,h,j[k+13],4,681279174),h=d(h,f,i,g,j[k],11,-358537222),g=d(g,h,f,i,j[k+3],16,-722521979),i=d(i,g,h,f,j[k+6],23,76029189),f=d(f,i,g,h,j[k+9],4,-640364487),h=d(h,f,i,g,j[k+12],11,-421815835),g=d(g,h,f,i,j[k+15],16,530742520),f=a(f,i=d(i,g,h,f,j[k+2],23,-995338651),g,h,j[k],6,-198630844),h=a(h,f,i,g,j[k+7],10,1126891415),g=a(g,h,f,i,j[k+14],15,-1416354905),i=a(i,g,h,f,j[k+5],21,-57434055),f=a(f,i,g,h,j[k+12],6,1700485571),h=a(h,f,i,g,j[k+3],10,-1894986606),g=a(g,h,f,i,j[k+10],15,-1051523),i=a(i,g,h,f,j[k+1],21,-2054922799),f=a(f,i,g,h,j[k+8],6,1873313359),h=a(h,f,i,g,j[k+15],10,-30611744),g=a(g,h,f,i,j[k+6],15,-1560198380),i=a(i,g,h,f,j[k+13],21,1309151649),f=a(f,i,g,h,j[k+4],6,-145523070),h=a(h,f,i,g,j[k+11],10,-1120210379),g=a(g,h,f,i,j[k+2],15,718787259),i=a(i,g,h,f,j[k+9],21,-343485551),f=e(f,n),i=e(i,o),g=e(g,p),h=e(h,m);return[f,i,g,h]}function l(b){for(var c="",d=32*b.length,a=0;a<d;a+=8)c+=String.fromCharCode(b[a>>5]>>>a%32&255);return c}function h(c){var b=[],d,a;for(b[(c.length>>2)-1]=void 0,a=0;a<b.length;a+=1)b[a]=0;for(d=8*c.length,a=0;a<d;a+=8)b[a>>5]|=(255&c.charCodeAt(a/8))<<a%32;return b}function k(c){for(var a,d="0123456789abcdef",e="",b=0;b<c.length;b+=1)a=c.charCodeAt(b),e+=d.charAt(a>>>4&15)+d.charAt(15&a);return e}function i(a){return unescape(encodeURIComponent(a))}function m(b){return l(g(h(a=i(b)),8*a.length));var a}function n(a,b){return function(i,e){var a,f,b=h(i),d=[],c=[];for(d[15]=c[15]=void 0,16<b.length&&(b=g(b,8*i.length)),a=0;a<16;a+=1)d[a]=909522486^b[a],c[a]=1549556828^b[a];return f=g(d.concat(h(e)),512+8*e.length),l(g(c.concat(f),640))}(i(a),i(b))}function j(a,b,c){return b?c?n(b,a):k(n(b,a)):c?m(a):k(m(a))}"function"==typeof define&&define.amd?define(function(){return j}):"object"==typeof module&&module.exports?module.exports=j:o.md5=j}(this);var gitalk=new Gitalk({clientID:'804f53fd87621403bf11',clientSecret:'5cfea89eac0c032eb02b333a1030d73e7b6e2176',repo:'blog',owner:'thallium',admin:['thallium'],id:md5(location.pathname),distractionFreeMode:!1});gitalk.render('gitalk-container')</script></div><footer><div class=social-icons><a href=https://github.com/thallium name=GitHub><em class="fab fa-github"></em></a></div><div class=container><p class="credits copyright"><a href=https://blog.tgc-thallium.com/zh-hans/about>Gengchen</a>
+</code></pre></div>
+</article>
+<link rel=stylesheet href=https://cdn.jsdelivr.net/npm/gitalk@1/dist/gitalk.css>
+<script src=https://cdn.jsdelivr.net/npm/gitalk@1/dist/gitalk.min.js></script>
+<div id=gitalk-container></div>
+<script>!function(o){"use strict";function e(a,b){var c=(65535&a)+(65535&b);return(a>>16)+(b>>16)+(c>>16)<<16|65535&c}function f(h,i,c,d,f,g){return e((a=e(e(i,h),e(d,g)))<<(b=f)|a>>>32-b,c);var a,b}function b(b,a,c,d,e,g,h){return f(a&c|~a&d,b,a,e,g,h)}function c(c,a,d,b,e,g,h){return f(a&b|d&~b,c,a,e,g,h)}function d(b,a,c,d,e,g,h){return f(a^c^d,b,a,e,g,h)}function a(b,a,c,d,e,g,h){return f(c^(a|~d),b,a,e,g,h)}function g(j,l){var n,o,p,m,f,i,g,h,k;j[l>>5]|=128<<l%32,j[14+(l+64>>>9<<4)]=l;for(f=1732584193,i=-271733879,g=-1732584194,h=271733878,k=0;k<j.length;k+=16)f=b(n=f,o=i,p=g,m=h,j[k],7,-680876936),h=b(h,f,i,g,j[k+1],12,-389564586),g=b(g,h,f,i,j[k+2],17,606105819),i=b(i,g,h,f,j[k+3],22,-1044525330),f=b(f,i,g,h,j[k+4],7,-176418897),h=b(h,f,i,g,j[k+5],12,1200080426),g=b(g,h,f,i,j[k+6],17,-1473231341),i=b(i,g,h,f,j[k+7],22,-45705983),f=b(f,i,g,h,j[k+8],7,1770035416),h=b(h,f,i,g,j[k+9],12,-1958414417),g=b(g,h,f,i,j[k+10],17,-42063),i=b(i,g,h,f,j[k+11],22,-1990404162),f=b(f,i,g,h,j[k+12],7,1804603682),h=b(h,f,i,g,j[k+13],12,-40341101),g=b(g,h,f,i,j[k+14],17,-1502002290),f=c(f,i=b(i,g,h,f,j[k+15],22,1236535329),g,h,j[k+1],5,-165796510),h=c(h,f,i,g,j[k+6],9,-1069501632),g=c(g,h,f,i,j[k+11],14,643717713),i=c(i,g,h,f,j[k],20,-373897302),f=c(f,i,g,h,j[k+5],5,-701558691),h=c(h,f,i,g,j[k+10],9,38016083),g=c(g,h,f,i,j[k+15],14,-660478335),i=c(i,g,h,f,j[k+4],20,-405537848),f=c(f,i,g,h,j[k+9],5,568446438),h=c(h,f,i,g,j[k+14],9,-1019803690),g=c(g,h,f,i,j[k+3],14,-187363961),i=c(i,g,h,f,j[k+8],20,1163531501),f=c(f,i,g,h,j[k+13],5,-1444681467),h=c(h,f,i,g,j[k+2],9,-51403784),g=c(g,h,f,i,j[k+7],14,1735328473),f=d(f,i=c(i,g,h,f,j[k+12],20,-1926607734),g,h,j[k+5],4,-378558),h=d(h,f,i,g,j[k+8],11,-2022574463),g=d(g,h,f,i,j[k+11],16,1839030562),i=d(i,g,h,f,j[k+14],23,-35309556),f=d(f,i,g,h,j[k+1],4,-1530992060),h=d(h,f,i,g,j[k+4],11,1272893353),g=d(g,h,f,i,j[k+7],16,-155497632),i=d(i,g,h,f,j[k+10],23,-1094730640),f=d(f,i,g,h,j[k+13],4,681279174),h=d(h,f,i,g,j[k],11,-358537222),g=d(g,h,f,i,j[k+3],16,-722521979),i=d(i,g,h,f,j[k+6],23,76029189),f=d(f,i,g,h,j[k+9],4,-640364487),h=d(h,f,i,g,j[k+12],11,-421815835),g=d(g,h,f,i,j[k+15],16,530742520),f=a(f,i=d(i,g,h,f,j[k+2],23,-995338651),g,h,j[k],6,-198630844),h=a(h,f,i,g,j[k+7],10,1126891415),g=a(g,h,f,i,j[k+14],15,-1416354905),i=a(i,g,h,f,j[k+5],21,-57434055),f=a(f,i,g,h,j[k+12],6,1700485571),h=a(h,f,i,g,j[k+3],10,-1894986606),g=a(g,h,f,i,j[k+10],15,-1051523),i=a(i,g,h,f,j[k+1],21,-2054922799),f=a(f,i,g,h,j[k+8],6,1873313359),h=a(h,f,i,g,j[k+15],10,-30611744),g=a(g,h,f,i,j[k+6],15,-1560198380),i=a(i,g,h,f,j[k+13],21,1309151649),f=a(f,i,g,h,j[k+4],6,-145523070),h=a(h,f,i,g,j[k+11],10,-1120210379),g=a(g,h,f,i,j[k+2],15,718787259),i=a(i,g,h,f,j[k+9],21,-343485551),f=e(f,n),i=e(i,o),g=e(g,p),h=e(h,m);return[f,i,g,h]}function l(b){for(var c="",d=32*b.length,a=0;a<d;a+=8)c+=String.fromCharCode(b[a>>5]>>>a%32&255);return c}function h(c){var b=[],d,a;for(b[(c.length>>2)-1]=void 0,a=0;a<b.length;a+=1)b[a]=0;for(d=8*c.length,a=0;a<d;a+=8)b[a>>5]|=(255&c.charCodeAt(a/8))<<a%32;return b}function k(c){for(var a,d="0123456789abcdef",e="",b=0;b<c.length;b+=1)a=c.charCodeAt(b),e+=d.charAt(a>>>4&15)+d.charAt(15&a);return e}function i(a){return unescape(encodeURIComponent(a))}function m(b){return l(g(h(a=i(b)),8*a.length));var a}function n(a,b){return function(i,e){var a,f,b=h(i),d=[],c=[];for(d[15]=c[15]=void 0,16<b.length&&(b=g(b,8*i.length)),a=0;a<16;a+=1)d[a]=909522486^b[a],c[a]=1549556828^b[a];return f=g(d.concat(h(e)),512+8*e.length),l(g(c.concat(f),640))}(i(a),i(b))}function j(a,b,c){return b?c?n(b,a):k(n(b,a)):c?m(a):k(m(a))}"function"==typeof define&&define.amd?define(function(){return j}):"object"==typeof module&&module.exports?module.exports=j:o.md5=j}(this);var gitalk=new Gitalk({clientID:'804f53fd87621403bf11',clientSecret:'5cfea89eac0c032eb02b333a1030d73e7b6e2176',repo:'blog',owner:'thallium',admin:['thallium'],id:md5(location.pathname),distractionFreeMode:!1});gitalk.render('gitalk-container')</script>
+</div>
+<footer>
+<div class=social-icons>
+<a href=https://github.com/thallium name=GitHub>
+<em class="fab fa-github"></em>
+</a>
+</div>
+<div class=container>
+<p class="credits copyright">
+<a href=https://blog.tgc-thallium.com/zh-hans/about>Gengchen</a>
 &nbsp;&copy;
 2021
 &nbsp;/&nbsp;
 <a href=https://blog.tgc-thallium.com/zh-hans/>Thallium的博客</a>
 &nbsp;&ndash;&nbsp;
-<em class="fas fa-moon" id=dark-mode-toggle></em></p><p class="credits theme-by">Powered By <a href=https://gohugo.io>Hugo</a>&nbsp;
+<em class="fas fa-moon" id=dark-mode-toggle></em>
+</p>
+<p class="credits theme-by">
+Powered By <a href=https://gohugo.io>Hugo</a>&nbsp;
 主题
-<a href=https://github.com/matsuyoshi30/harbor>Harbor</a></p></div></footer></body></html>
+<a href=https://github.com/matsuyoshi30/harbor>Harbor</a>
+</p>
+</div>
+</footer>
+</body>
+</html>
