@@ -20,3 +20,7 @@ tags:
 假设$n, m$互质，最大的不能被表示为$an+bm, a, b\ge 0$的数是$nm-m-n$.
 
 [source](https://artofproblemsolving.com/wiki/index.php/Chicken_McNugget_Theorem)
+
+## 最小化一点到其他点距离的平方的和
+
+由于$dis^2=x^2+y^2$，而x和y可以独立改变，所以可以分别最小化两个坐标轴的距离，也就是坐标的平均数。

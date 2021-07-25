@@ -131,3 +131,6 @@ auto find_kth=[&](auto& find_kth, int A, int B, ll k) {
 
 [可以看这](https://baobaobear.github.io/post/20191012-binary-skill/)
 
+## 冒泡排序遍历的次数
+
+创建一个复制数组b，其中$b[i]={a[i], i}$，然后排序b，排序后$b[i].second-i$的最大值就是答案，$b[i].second-i$本质上就是一个数向前移动的距离，不难想出每个会向前移动的数从第一轮遍历就会开始向前移动，直到到达排序后的位置，所以最大的向前移动距离就是遍历的轮数。
