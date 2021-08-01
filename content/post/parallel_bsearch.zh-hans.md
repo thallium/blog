@@ -786,3 +786,162 @@ int main() {
 }
 ```
 {{% /collapse %}}
+
+## CTSC2008 Network 网络管理
+
+我提交的地方是个私有题库，暂时没找到公开的提交的地方。其实基本上就是动态区间第k大，只不过区间变成了树上路径，用树剖分解成多个区间就行了。
+
+{{% collapse 代码 %}}
+```cpp
+/* Author: Thallium54 {{{
+ * Blog: https://blog.tgc-thallium.com/
+ * Code library: https://github.com/thallium/acm-algorithm-template
+ * }}}*/
+#include <bits/stdc++.h>
+using namespace std;
+template <typename T> struct fenwick {
+    int n; vector<T> t;
+    fenwick(int n_) : n(n_), t(n + 1) {}
+    void add(int i, T x) {
+        assert(i >= 0 && i < n);
+        for (i++; i <= n; i += i & -i) {
+            t[i] += x;
+        }
+    }
+    template <typename U = T> U query(int i) {
+        assert(i >= 0 && i < n);
+        U res{};
+        for (i++; i > 0; i -= i & -i)
+            res += t[i];
+        return res;
+    }
+    template <typename U = T> U query(int l, int r) {
+        assert(l >= 0 && l <= r && r < n);
+        return query<U>(r) - (l ? query<U>(l - 1) : U{});
+    }
+};
+
+struct Heavy_light {
+    vector<vector<int>> g;
+    vector<int> fa, dep, heavy, head, pos, posr; // initialize heavy with -1
+    int cnt=0;
+    fenwick<int> tr;
+    Heavy_light(int n) : g(n), fa(n), dep(n), heavy(n, -1), head(n), pos(n), posr(n), tr(n) {}
+    void add_edge(int u, int v) {
+        g[u].push_back(v);
+        g[v].push_back(u);
+    }
+    int dfs(int u) {
+        int size = 1;
+        int mx = 0;
+        for (int v : g[u]) {
+            if (v != fa[u]) {
+                fa[v] = u, dep[v] = dep[u] + 1;
+                int csize = dfs(v);
+                size += csize;
+                if (csize > mx) mx = csize, heavy[u] = v;
+            }
+        }
+        return size;
+    }
+    void dfs2(int u, int h) {
+        head[u] = h, pos[u] = cnt++; //1-based index, could change to 0 based but less useful
+        if (heavy[u] != -1) dfs2(heavy[u], h);
+        for (int v : g[u]) {
+            if (v != fa[u] && v != heavy[u])
+                dfs2(v, v);
+        }
+        posr[u] = cnt;
+    }
+    int pathsum(int u, int v) {
+        int res = 0;
+        while (head[u] != head[v]) {
+            if (dep[head[u]] < dep[head[v]]) swap(u, v);
+            res += tr.query(pos[head[u]], pos[u]);
+            u = fa[head[u]];
+        }
+        if (pos[u] > pos[v]) swap(u, v);
+        res += tr.query(pos[u], pos[v]);
+        return res;
+    }
+    void add(int u, int x) {
+        tr.add(pos[u], x);
+    }
+};
+
+struct Q {
+    int type;
+    int i, j, k, id;
+};
+
+int main() {
+    ios::sync_with_stdio(false);
+    cin.tie(nullptr);
+    int n, q;
+    cin>>n>>q;
+    vector<int> t(n);
+    for (auto& x : t) cin>>x;
+    Heavy_light tr(n);
+    for (int i=1; i<n; i++) {
+        int u, v;
+        cin>>u>>v;
+        u--, v--;
+        tr.add_edge(u, v);
+    }
+    vector<Q> qs;
+    int qc=0;
+    for (int i=0; i<n; i++) {
+        qs.push_back({0, i, 1, t[i], -1});
+    }
+    for (int i=0; i<q; i++) {
+        int k, a, b;
+        cin>>k>>a>>b;
+        if (k==0) {
+            a--;
+            qs.push_back({0, a, -1, t[a], -1});
+            t[a]=b;
+            qs.push_back({0, a, 1, b, -1});
+        } else {
+            qs.push_back({1, a-1, b-1, k, qc++});
+        }
+    }
+    vector<int> ans(qc);
+    tr.dfs(0);
+    tr.dfs2(0, 0);
+    auto solve=[&](auto& slf, int l, int r, auto begin, auto end) {
+        if (l==r || begin==end) {
+            for (auto it = begin; it!=end; ++it) {
+                if (it->type==1) ans[it->id]=l;
+            }
+            return;
+        }
+        int mid=(l+r+1)/2;
+        auto qmid = stable_partition(begin, end, [&](Q& q) {
+            auto& [type, i, j, k, id] = q;
+            if (type==1) {
+                int cnt=tr.pathsum(i, j);
+                if (cnt >= k) return false;
+                k-=cnt;
+                return true;
+            } else {
+                if (k>=mid) {
+                    tr.add(i, j);
+                    return false;
+                } else
+                    return true;
+            }
+        });
+        for (auto it = qmid; it!=end; ++it)
+            if (it->type == 0)
+                tr.add(it->i, -it->j);
+        slf(slf, l, mid-1, begin, qmid);
+        slf(slf, mid, r, qmid, end);
+    };
+    solve(solve, 0, 1e6, qs.begin(), qs.end());
+    for (auto x : ans) {
+        if (x==0) cout<<"invalid request!\n";
+        else cout<<x<<'\n';
+    }
+}
+```
+{{% /collapse %}}
