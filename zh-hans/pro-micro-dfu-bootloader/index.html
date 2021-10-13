@@ -70,25 +70,77 @@
 <script>document.addEventListener("DOMContentLoaded",function(){renderMathInElement(document.body,{delimiters:[{left:'$$',right:'$$',display:!0},{left:'$',right:'$',display:!1},{left:'\\(',right:'\\)',display:!1},{left:'\\[',right:'\\]',display:!0}],throwOnError:!1})})</script>
 <p>一篇如何用两个pro micro当作ISP(In-System Programmer)互相给对方刷上DFU bootloader.</p>
 <p>众所周知，一般pro micro自带的bootloader是caterina，有一个比较烦人的缺点就是一次reset之后只有8秒的时间在dfu模式里。而dfu bootloader就不会有这个问题。</p>
+<h2 id=免责声明>免责声明</h2>
+<p>本人并不是学电子专业的，只是以一个客制化键盘爱好者的角度写的此教程，如有不慎或意外可能会导致pro micro变砖。纯小白请谨慎考虑。本文如有错误欢迎指正。</p>
 <h2 id=工具>工具</h2>
 <h3 id=软件>软件</h3>
-<p>Arduino IDE, QMK toolbox</p>
+<ul>
+<li><a href=https://downloads.arduino.cc/arduino-1.8.16-windows.exe>Arduino IDE</a></li>
+<li><a href=https://github.com/qmk/qmk_toolbox/releases/download/0.1.1/qmk_toolbox_install.exe>QMK toolbox</a></li>
+<li><a href=https://github.com/qmk/qmk_firmware/blob/master/util/bootloader_atmega32u4_1.0.0.hex>bootloader文件</a></li>
+</ul>
 <h3 id=硬件>硬件</h3>
 <p>两个 pro micro，6根导线</p>
 <h2 id=步骤>步骤</h2>
 <p>给两个pro micro刷bootloader的步骤稍有不同</p>
 <h3 id=给第一个pro-micro刷>给第一个pro micro刷</h3>
 <ol>
-<li>打开Arduino IDE, File -> Examples -> ArduinoISP -> ArduinoISP 然后点upload，这样一个pro micro就变成了ISP。</li>
+<li>打开Arduino IDE, Tools -> Arduino Leonardo, Tools -> Port 并记住端口号，File -> Examples -> ArduinoISP -> ArduinoISP 然后点upload，这样一个pro micro就变成了ISP。</li>
 <li>接线：</li>
 </ol>
-<img src=https://cdn.sparkfun.com/assets/9/c/3/c/4/523a1765757b7f5c6e8b4567.png alt=drawing width=100>
+<img src=https://cdn.sparkfun.com/assets/9/c/3/c/4/523a1765757b7f5c6e8b4567.png alt="pro micro角位示意图" width=400>
+<p>每行左右两侧脚位相连:</p>
+<table>
+<thead>
+<tr>
+<th>ISP</th>
+<th>目标</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>VCC</td>
+<td>VCC</td>
+</tr>
+<tr>
+<td>GND</td>
+<td>GND</td>
+</tr>
+<tr>
+<td>SCLK</td>
+<td>SCLK</td>
+</tr>
+<tr>
+<td>MISO</td>
+<td>MISO</td>
+</tr>
+<tr>
+<td>MOSI</td>
+<td>MOSI</td>
+</tr>
+<tr>
+<td>10</td>
+<td>RST</td>
+</tr>
+</tbody>
+</table>
 <ol start=3>
-<li>hah</li>
+<li>刷入</li>
 </ol>
+<p>Win+R然后输入cmd打开命令行，然后进到QMK Toolbox的目录，用到的程序在这个目录里。下面的<code>0.x.x</code>要换成你QMK Toolbox 的版本号(写这个教程时最新的版本为0.1.1)，所以不要直接复制粘贴。</p>
+<pre tabindex=0><code>cd AppData\Local\QMK\QMK Toolbox\0.x.x\
+</code></pre><p>然后运行刷入的命令，其中<code>&lt;PORT></code>换成第一步中的端口号，<code>&lt;PATH></code>换成bootloader文件的地址</p>
+<pre tabindex=0><code>avrdude.exe -c arduino -p atmega32u4 -P &lt;PORT&gt; -U flash:w:&quot;&lt;PATH&gt;&quot;:a -U hfuse:w:0xD9:m -U efuse:w:0xC3:m -U lock:w:0x3F:m
+</code></pre><p>如果运行成功的话你就成功将dfu bootloader刷到pro micro上了。</p>
+<h3 id=给另一个pro-micro刷>给另一个pro micro刷</h3>
+<p>由于arduino不支持dfu，所以我们需要用另一个程序<code>dfu-programmer</code>（也在QMK Toolbox的目录下）来将刷入dfu的那个pro micro再变成ISP。首先要找到ArduinoISP编译后的hex文件:<code>AppData\Local\Temp\arduino_build_xxxxxx\ArduinoISP.ino.hex</code>(xxxxxx是一串数字，每个人的不一样)。接下来就准备刷入了，还是在QMK Toolbox的目录下，执行下面3条命令：(其中<path>换成刚才提到的ArduinoISP.ino.hex的路径)</p>
+<pre tabindex=0><code>dfu-programmer.exe atmega32u4 erase
+dfu-programmer.exe atmega32u4 flash &lt;PATH&gt;
+dfu-programmer.exe atmega32u4 reset
+</code></pre><p>最后再重复上一个部分的2、3步即可。</p>
 <div class=blog-tags>
 <a href=https://blog.tgc-thallium.com/zh-hans/tags/%E9%94%AE%E7%9B%98/>键盘</a>&nbsp;
-<a href=https://blog.tgc-thallium.com/zh-hans/tags/%E5%85%8B%E5%88%B6%E5%8C%96/>克制化</a>&nbsp;
+<a href=https://blog.tgc-thallium.com/zh-hans/tags/%E5%AE%A2%E5%88%B6%E5%8C%96/>客制化</a>&nbsp;
 </div>
 </article>
 <link rel=stylesheet href=https://cdn.jsdelivr.net/npm/gitalk@1/dist/gitalk.css>
