@@ -116,9 +116,9 @@ h1,h2,h3,h4,h5,h6 {
   color: #333333;
 }
 
-.container img {
-  width: 100%;
-}
+/* .container img { */
+/*   width: 100%;   */
+/* }                */
 
 #blog-archives {
   margin: 20px auto;
