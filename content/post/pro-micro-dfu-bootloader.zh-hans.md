@@ -72,3 +72,9 @@ dfu-programmer.exe atmega32u4 reset
 ```
 
 最后再重复上一个部分的2、3步即可。
+
+## 参考资料
+
+https://www.reddit.com/r/olkb/comments/9ctx37/qmk_burn_dfu_bootloader_into_keyboard_with/
+https://www.reddit.com/r/olkb/comments/8sxgzb/replace_pro_micro_bootloader_with_qmk_dfu/
+
