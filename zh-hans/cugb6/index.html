@@ -4,17 +4,17 @@
 <title>CUGBACM18级训练#6 题解</title>
 <meta http-equiv=x-ua-compatible content="IE=edge">
 <meta name=viewport content="width=device-width,initial-scale=1">
-<link rel=alternate type=application/rss+xml href=https://blog.tgc-thallium.com/index.xml title=Thallium的博客>
+<link rel=alternate type=application/rss+xml href=https://blog.tgc54.comindex.xml title=Thallium的博客>
 <meta name=twitter:card content="summary">
 <meta name=twitter:title content="CUGBACM18级训练#6 题解">
 <meta name=twitter:description content>
-<link rel=stylesheet href=https://blog.tgc-thallium.com/fontawesome/css/all.min.css>
-<link rel=stylesheet href=https://blog.tgc-thallium.com/css/main.css>
-<link id=dark-mode-theme rel=stylesheet href=https://blog.tgc-thallium.com/css/dark.css>
+<link rel=stylesheet href=https://blog.tgc54.comfontawesome/css/all.min.css>
+<link rel=stylesheet href=https://blog.tgc54.comcss/main.css>
+<link id=dark-mode-theme rel=stylesheet href=https://blog.tgc54.comcss/dark.css>
 <script>var darkTheme=document.getElementById('dark-mode-theme'),storedTheme=localStorage.getItem('dark-mode-storage');storedTheme==='dark'?darkTheme.disabled=!1:storedTheme==='light'&&(darkTheme.disabled=!0)</script>
-<script src=https://blog.tgc-thallium.com/js/main.bundle.js></script>
-<script src=https://blog.tgc-thallium.com/js/instantpage.min.js type=module defer></script>
-<script src=https://blog.tgc-thallium.com/js/collapse.js type=module defer></script>
+<script src=https://blog.tgc54.comjs/main.bundle.js></script>
+<script src=https://blog.tgc54.comjs/instantpage.min.js type=module defer></script>
+<script src=https://blog.tgc54.comjs/collapse.js type=module defer></script>
 <meta name=generator content="Hugo 0.89.2">
 </head>
 <body>
@@ -23,7 +23,7 @@
 <div class=nav>
 <p class=lang>
 <i class="fas fa-globe"></i>
-<a href=https://blog.tgc-thallium.com/ title=无翻译>English</a>
+<a href=https://blog.tgc54.com/ title=无翻译>English</a>
 </p>
 <ul class=nav-links>
 <li>
@@ -56,7 +56,7 @@ CUGBACM18级训练#6 题解
 <span class=meta-post>
 <em class="fa fa-calendar-alt"></em>&nbsp;Sep 29, 2019
 &nbsp;&nbsp;&nbsp;<em class="fa fa-folder-open"></em>&nbsp;
-<a href=https://blog.tgc-thallium.com/zh-hans/categories/%E8%AE%AD%E7%BB%83%E9%A2%98%E8%A7%A3/>训练题解</a>&nbsp;
+<a href=https://blog.tgc54.com/zh-hans/categories/%E8%AE%AD%E7%BB%83%E9%A2%98%E8%A7%A3/>训练题解</a>&nbsp;
 </span>
 </div>
 </div>
@@ -111,7 +111,7 @@ CUGBACM18级训练#6 题解
 <p><strong>题意：</strong> 给出一棵边权点权树，问最少去掉几个点使得不存在这样的点$u$：其子树上存在某点$v$，其点权$a_v$大于$v$到$u$的距离。</p>
 <p><strong>思路：</strong> 计算树上所有的距离肯定超时，但是有这样一条性质，如果边权都是正数的话，如果$\operatorname{dist}(u,v)> a_u,v\not = root$那么$\operatorname{dist}(u,root)>a_u$，也就是说我们可以只计算到根节点的距离就行了，但是边权如果有负数上述性质就不成立了，但是我们可以稍加改动：当我们dfs的时候，如果当前点到根节点的距离小于0，那么我们就应该将距离置为0，然后接着dfs,这样就避免了前面的负权路径产生的干扰。</p>
 <div class=blog-tags>
-<a href=https://blog.tgc-thallium.com/zh-hans/tags/cugbacm/>CUGBACM</a>&nbsp;
+<a href=https://blog.tgc54.com/zh-hans/tags/cugbacm/>CUGBACM</a>&nbsp;
 </div>
 </article>
 <link rel=stylesheet href=https://cdn.jsdelivr.net/npm/gitalk@1/dist/gitalk.css>
@@ -127,11 +127,11 @@ CUGBACM18级训练#6 题解
 </div>
 <div class=container>
 <p class="credits copyright">
-<a href=https://blog.tgc-thallium.com/zh-hans/about>Gengchen</a>
+<a href=https://blog.tgc54.com/zh-hans/about>Gengchen</a>
 &nbsp;&copy;
 2021
 &nbsp;/&nbsp;
-<a href=https://blog.tgc-thallium.com/zh-hans/>Thallium的博客</a>
+<a href=https://blog.tgc54.com/zh-hans/>Thallium的博客</a>
 &nbsp;&ndash;&nbsp;
 <em class="fas fa-moon" id=dark-mode-toggle></em>
 </p>

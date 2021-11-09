@@ -4,17 +4,17 @@
 <title>Solution for AtCoder Beginner Contest 160E - Distributing Integers</title>
 <meta http-equiv=x-ua-compatible content="IE=edge">
 <meta name=viewport content="width=device-width,initial-scale=1">
-<link rel=alternate type=application/rss+xml href=https://blog.tgc-thallium.com/index.xml title="Thallium's Blog">
+<link rel=alternate type=application/rss+xml href=https://blog.tgc54.comindex.xml title="Thallium's Blog">
 <meta name=twitter:card content="summary">
 <meta name=twitter:title content="Solution for AtCoder Beginner Contest 160E - Distributing Integers">
 <meta name=twitter:description content="It&rsquo;s satisfying to solve this problem">
-<link rel=stylesheet href=https://blog.tgc-thallium.com/fontawesome/css/all.min.css>
-<link rel=stylesheet href=https://blog.tgc-thallium.com/css/main.css>
-<link id=dark-mode-theme rel=stylesheet href=https://blog.tgc-thallium.com/css/dark.css>
+<link rel=stylesheet href=https://blog.tgc54.comfontawesome/css/all.min.css>
+<link rel=stylesheet href=https://blog.tgc54.comcss/main.css>
+<link id=dark-mode-theme rel=stylesheet href=https://blog.tgc54.comcss/dark.css>
 <script>var darkTheme=document.getElementById('dark-mode-theme'),storedTheme=localStorage.getItem('dark-mode-storage');storedTheme==='dark'?darkTheme.disabled=!1:storedTheme==='light'&&(darkTheme.disabled=!0)</script>
-<script src=https://blog.tgc-thallium.com/js/main.bundle.js></script>
-<script src=https://blog.tgc-thallium.com/js/instantpage.min.js type=module defer></script>
-<script src=https://blog.tgc-thallium.com/js/collapse.js type=module defer></script>
+<script src=https://blog.tgc54.comjs/main.bundle.js></script>
+<script src=https://blog.tgc54.comjs/instantpage.min.js type=module defer></script>
+<script src=https://blog.tgc54.comjs/collapse.js type=module defer></script>
 <meta name=generator content="Hugo 0.89.2">
 </head>
 <body>
@@ -23,7 +23,7 @@
 <div class=nav>
 <p class=lang>
 <i class="fas fa-globe"></i>
-<a href=https://blog.tgc-thallium.com/zh-hans/ title="no translation">中文</a>
+<a href=https://blog.tgc54.com/zh-hans/ title="no translation">中文</a>
 </p>
 <ul class=nav-links>
 <li>
@@ -56,7 +56,7 @@ Solution for AtCoder Beginner Contest 160E - Distributing Integers
 <span class=meta-post>
 <em class="fa fa-calendar-alt"></em>&nbsp;Mar 31, 2020
 &nbsp;&nbsp;&nbsp;<em class="fa fa-folder-open"></em>&nbsp;
-<a href=https://blog.tgc-thallium.com/categories/solutions/>Solutions</a>&nbsp;
+<a href=https://blog.tgc54.comcategories/solutions/>Solutions</a>&nbsp;
 </span>
 </div>
 </div>
@@ -78,7 +78,7 @@ Solution for AtCoder Beginner Contest 160E - Distributing Integers
 </aside>
 <p>It&rsquo;s satisfying to solve this problem</p>
 <h2 id=solution>Solution</h2>
-<p><a href=https://blog.tgc-thallium.com/cf1187e/>Similar Problem</a></p>
+<p><a href=https://blog.tgc54.com/cf1187e/>Similar Problem</a></p>
 <p>This is the similar idea as that problem. That is if we know the answer for some vertex we cant get the answer for the adjacent vertex in $O(n)$ time.</p>
 <p>First we need to figure out how to calculate the answer for a single vertex: Let we ignore the constrains at first, just write numbers on the tree in any order, except write 1 on the root node. We have $(\operatorname{size}(u)-1)!$ ways to do this.</p>
 <p>Then we consider the constrains, that is some vertices must be used before some other vertices on the same subtree. Note that this order is subtree independent, so now let&rsquo;s only consider which subtree the number is written on and put the order in each subtree aside. In this situation we have $(\operatorname{size}(u)-1)!\prod_{v\in\operatorname{ch}(u)}\frac 1 {\operatorname{size}(v)!}$, where $u$ is the root node and $v$ is $u$&rsquo;s neighbor.</p>
@@ -163,11 +163,11 @@ Solution for AtCoder Beginner Contest 160E - Distributing Integers
 <span style=color:#111>}</span>
 </code></pre></div>
 <div class=blog-tags>
-<a href=https://blog.tgc-thallium.com/tags/dp/>DP</a>&nbsp;
-<a href=https://blog.tgc-thallium.com/tags/tree-dp/>Tree DP</a>&nbsp;
-<a href=https://blog.tgc-thallium.com/tags/math/>Math</a>&nbsp;
-<a href=https://blog.tgc-thallium.com/tags/combinatorics/>Combinatorics</a>&nbsp;
-<a href=https://blog.tgc-thallium.com/tags/dfs/>DFS</a>&nbsp;
+<a href=https://blog.tgc54.comtags/dp/>DP</a>&nbsp;
+<a href=https://blog.tgc54.comtags/tree-dp/>Tree DP</a>&nbsp;
+<a href=https://blog.tgc54.comtags/math/>Math</a>&nbsp;
+<a href=https://blog.tgc54.comtags/combinatorics/>Combinatorics</a>&nbsp;
+<a href=https://blog.tgc54.comtags/dfs/>DFS</a>&nbsp;
 </div>
 </article>
 <link rel=stylesheet href=https://cdn.jsdelivr.net/npm/gitalk@1/dist/gitalk.css>
@@ -183,11 +183,11 @@ Solution for AtCoder Beginner Contest 160E - Distributing Integers
 </div>
 <div class=container>
 <p class="credits copyright">
-<a href=https://blog.tgc-thallium.com/about>Gengchen</a>
+<a href=https://blog.tgc54.comabout>Gengchen</a>
 &nbsp;&copy;
 2021
 &nbsp;/&nbsp;
-<a href=https://blog.tgc-thallium.com/>Thallium's Blog</a>
+<a href=https://blog.tgc54.com>Thallium's Blog</a>
 &nbsp;&ndash;&nbsp;
 <em class="fas fa-moon" id=dark-mode-toggle></em>
 </p>

@@ -4,17 +4,17 @@
 <title>Rime配置码表输入法（以小鹤音形为例）</title>
 <meta http-equiv=x-ua-compatible content="IE=edge">
 <meta name=viewport content="width=device-width,initial-scale=1">
-<link rel=alternate type=application/rss+xml href=https://blog.tgc-thallium.com/index.xml title=Thallium的博客>
+<link rel=alternate type=application/rss+xml href=https://blog.tgc54.comindex.xml title=Thallium的博客>
 <meta name=twitter:card content="summary">
 <meta name=twitter:title content="Rime配置码表输入法（以小鹤音形为例）">
 <meta name=twitter:description content="rime输入法框架配置码表输入法的简单教程，以windows上小鹤音形为例。">
-<link rel=stylesheet href=https://blog.tgc-thallium.com/fontawesome/css/all.min.css>
-<link rel=stylesheet href=https://blog.tgc-thallium.com/css/main.css>
-<link id=dark-mode-theme rel=stylesheet href=https://blog.tgc-thallium.com/css/dark.css>
+<link rel=stylesheet href=https://blog.tgc54.comfontawesome/css/all.min.css>
+<link rel=stylesheet href=https://blog.tgc54.comcss/main.css>
+<link id=dark-mode-theme rel=stylesheet href=https://blog.tgc54.comcss/dark.css>
 <script>var darkTheme=document.getElementById('dark-mode-theme'),storedTheme=localStorage.getItem('dark-mode-storage');storedTheme==='dark'?darkTheme.disabled=!1:storedTheme==='light'&&(darkTheme.disabled=!0)</script>
-<script src=https://blog.tgc-thallium.com/js/main.bundle.js></script>
-<script src=https://blog.tgc-thallium.com/js/instantpage.min.js type=module defer></script>
-<script src=https://blog.tgc-thallium.com/js/collapse.js type=module defer></script>
+<script src=https://blog.tgc54.comjs/main.bundle.js></script>
+<script src=https://blog.tgc54.comjs/instantpage.min.js type=module defer></script>
+<script src=https://blog.tgc54.comjs/collapse.js type=module defer></script>
 <meta name=generator content="Hugo 0.89.2">
 </head>
 <body>
@@ -23,7 +23,7 @@
 <div class=nav>
 <p class=lang>
 <i class="fas fa-globe"></i>
-<a href=https://blog.tgc-thallium.com/ title=无翻译>English</a>
+<a href=https://blog.tgc54.com/ title=无翻译>English</a>
 </p>
 <ul class=nav-links>
 <li>
@@ -56,7 +56,7 @@ Rime配置码表输入法（以小鹤音形为例）
 <span class=meta-post>
 <em class="fa fa-calendar-alt"></em>&nbsp;Jul 20, 2021
 &nbsp;&nbsp;&nbsp;<em class="fa fa-folder-open"></em>&nbsp;
-<a href=https://blog.tgc-thallium.com/zh-hans/categories/%E6%95%99%E7%A8%8B/>教程</a>&nbsp;
+<a href=https://blog.tgc54.com/zh-hans/categories/%E6%95%99%E7%A8%8B/>教程</a>&nbsp;
 </span>
 </div>
 </div>
@@ -72,9 +72,9 @@ Rime配置码表输入法（以小鹤音形为例）
 <p>最近由于wayland有点受不了了，决定换成windows+wsl试试，虽说windows上有现成的小鹤音形，但相信大多数码表用户和我一样在标准词库上有所删减，所以需要一个输入法框架。用linux的时候久闻rime之大名，但并没有找到很好配置码表的教程，而官方文档有点长再加上是繁体写的读起来有点费事，遂决定记录一下自己配置的过程供大家参考。</p>
 <p>其实码表配置起来很简单，一共只需要两个文件：名为<code>&lt;name>.schema.yaml</code>的方案定义文件和名为<code>&lt;name>.dict.yaml</code>的码表文件。方案定义文件一般都有现成的，比如小鹤音形的<a href=http://flypy.ys168.com/>在这(挂接第三方平台里)</a>。码表格式要求<a href=https://github.com/rime/home/wiki/RimeWithSchemata#%E7%A2%BC%E8%A1%A8%E8%88%87%E8%A9%9E%E5%85%B8>看这</a>，如果你像我一样之前是用fcitx格式的码表，可以很简单的用<code>awk '{ OFS="\t"; print $2, $1 }' flypy_rime.txt > flypy.dict.yaml</code>修改格式。然后将两个文件放入默认文件夹（windows上默认为<code>%APPDATA%\Rime</code>），并修改<code>build/default.yaml</code>:在<code>schema_list</code>里加一行<code>- schema: flypy</code>。最后右键输入法图标点“重新部署”即可。</p>
 <div class=blog-tags>
-<a href=https://blog.tgc-thallium.com/zh-hans/tags/%E5%B0%8F%E9%B9%A4%E9%9F%B3%E5%BD%A2/>小鹤音形</a>&nbsp;
-<a href=https://blog.tgc-thallium.com/zh-hans/tags/rime/>rime</a>&nbsp;
-<a href=https://blog.tgc-thallium.com/zh-hans/tags/%E8%BE%93%E5%85%A5%E6%B3%95/>输入法</a>&nbsp;
+<a href=https://blog.tgc54.com/zh-hans/tags/%E5%B0%8F%E9%B9%A4%E9%9F%B3%E5%BD%A2/>小鹤音形</a>&nbsp;
+<a href=https://blog.tgc54.com/zh-hans/tags/rime/>rime</a>&nbsp;
+<a href=https://blog.tgc54.com/zh-hans/tags/%E8%BE%93%E5%85%A5%E6%B3%95/>输入法</a>&nbsp;
 </div>
 </article>
 <link rel=stylesheet href=https://cdn.jsdelivr.net/npm/gitalk@1/dist/gitalk.css>
@@ -90,11 +90,11 @@ Rime配置码表输入法（以小鹤音形为例）
 </div>
 <div class=container>
 <p class="credits copyright">
-<a href=https://blog.tgc-thallium.com/zh-hans/about>Gengchen</a>
+<a href=https://blog.tgc54.com/zh-hans/about>Gengchen</a>
 &nbsp;&copy;
 2021
 &nbsp;/&nbsp;
-<a href=https://blog.tgc-thallium.com/zh-hans/>Thallium的博客</a>
+<a href=https://blog.tgc54.com/zh-hans/>Thallium的博客</a>
 &nbsp;&ndash;&nbsp;
 <em class="fas fa-moon" id=dark-mode-toggle></em>
 </p>
