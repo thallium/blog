@@ -15,7 +15,7 @@
 <script src=https://blog.tgc-thallium.com/js/main.bundle.js></script>
 <script src=https://blog.tgc-thallium.com/js/instantpage.min.js type=module defer></script>
 <script src=https://blog.tgc-thallium.com/js/collapse.js type=module defer></script>
-<meta name=generator content="Hugo 0.88.1">
+<meta name=generator content="Hugo 0.89.2">
 </head>
 <body>
 <header>
@@ -173,7 +173,7 @@ $$\begin{align*} dp_{u, 0}&\coloneqq \min(dp_{u, 0}+dp_{v, 0}, dp_{u, 1}+dp_{v, 
 <p><a href=https://codeforces.com/contest/1521/problem/D>CF1521D - Nastia Plays with a Tree</a></p>
 <h2 id=dag的最小路径覆盖>DAG的最小路径覆盖</h2>
 <p>我们把原图上的每个点拆成两个点（对于点<code>x</code>，可以把从它拆出去的点记为<code>x+n</code>），其中一个点与源点相连，另一个与汇点相连。对于原DAG上的边<code>u -> v</code>，在新图中连接 <code>u -> v'</code>，所有边的容量均为1。跑一遍最大流（本质上是二分图匹配），得到的最大流（或者最大匹配）便是被覆盖的边数，由于路径上的点数等于边数+1，所以点数减被覆盖的边数便是路径的数目。也可以理解为最大流经过的每一条边对应原图中有一条向边的起点，所以路径的终点是没有对应的边的，所以点数减被覆盖的边数便是终点的数目也就是路径的数目。</p>
-<p>如何记录路径？可以在增广途中记录每个点的下一个点。如何找起点？如果<code>x'</code>到汇点的剩余容量为1，说明没有点流向<code>x</code>，也就说明<code>x</code>是起点。</p>
+<p>如何记录路径？可以在增广途中记录每个点的下一个点。如何找起点？如果<code>x'</code>到汇点的剩余容量为1，说明没有点流向<code>x </code>，也就说明<code>x</code>是起点。</p>
 <p>模板题：</p>
 <p><a href=https://www.luogu.com.cn/problem/P2764>洛谷P2764 最小路径覆盖问题</a></p>
 <p>代码：</p>
