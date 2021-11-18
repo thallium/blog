@@ -6,7 +6,7 @@ enableInlineShortcodes = true
 footnoteReturnLinkContents = "^"
 enableEmoji = true
 math = true
-baseURL = "https://blog.tgc54.com"
+baseURL = "https://blog.tgc54.com/"
 # DO NOT REMOVE THIS
 theme = "harbor"
 
