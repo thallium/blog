@@ -40,10 +40,7 @@ jobs:
           
           curl -H "X-TYPESENSE-API-KEY: ${{ secrets.TYPESENSE_KEY }}" \
           -X POST --data-binary @./public/index.jsonl \
-          "http://localhost:8108/collections/companies/documents/import?action=create"
-
-
-
+          "https://typesense.tgc54.com/collections/blog/documents/import?action=create"
 
 
       - name: Deploy
