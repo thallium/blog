@@ -20,7 +20,7 @@ jobs:
 
       - name: Build
         run: hugo --minify
-      - name: Update search index
+      - name: Update English search index
         run: |
           curl -H "X-TYPESENSE-API-KEY: ${{ secrets.TYPESENSE_KEY }}" \
           -X DELETE \
@@ -41,6 +41,28 @@ jobs:
           curl -H "X-TYPESENSE-API-KEY: ${{ secrets.TYPESENSE_KEY }}" \
           -X POST --data-binary @./public/index.jsonl \
           "https://typesense.tgc54.com/collections/blog/documents/import?action=create"
+
+      - name: Update Chinese search index
+        run: |
+          curl -H "X-TYPESENSE-API-KEY: ${{ secrets.TYPESENSE_KEY }}" \
+          -X DELETE \
+          "https://typesense.tgc54.com/collections/blog_chinese"
+
+          curl "https://typesense.tgc54.com/collections" \
+          -X POST \
+          -H "Content-Type: application/json" \
+          -H "X-TYPESENSE-API-KEY: ${{ secrets.TYPESENSE_KEY }}" \
+          -d '{
+              "name": "blog",
+              "fields": [
+                {"name": "title", "type": "string", "locale": "zh" },
+                {"name": "contents", "type": "string", "locale": "zh" }
+              ]
+          }'
+          
+          curl -H "X-TYPESENSE-API-KEY: ${{ secrets.TYPESENSE_KEY }}" \
+          -X POST --data-binary @./public/index.jsonl \
+          "https://typesense.tgc54.com/collections/blog_chinese/documents/import?action=create"
 
 
       - name: Deploy
