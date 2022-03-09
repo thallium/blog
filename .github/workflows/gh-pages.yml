@@ -22,6 +22,31 @@ jobs:
 
       - name: Build
         run: hugo --minify
+      - name: Update search index
+        run: |
+          curl -H "X-TYPESENSE-API-KEY: ${{ secrets.TYPESENSE_KEY }}" \
+          -X DELETE \
+          "https://typesense.tgc54.com/collections/blog"
+
+          curl "https://typesense.tgc54.com/collections" \
+          -X POST \
+          -H "Content-Type: application/json" \
+          -H "X-TYPESENSE-API-KEY: ${{ secrets.TYPESENSE_KEY }}" \
+          -d '{
+              'name': 'blog',
+              'fields': [
+                {'name': 'title', 'type': 'string' },
+                {'name': 'contents', 'type': 'string' },
+              ]
+          }'
+          
+          curl -H "X-TYPESENSE-API-KEY: ${{ secrets.TYPESENSE_KEY }}" \
+          -X POST --data-binary @./public/index.json \
+          "http://localhost:8108/collections/companies/documents/import?action=create"
+
+
+
+
 
       - name: Deploy
         uses: peaceiris/actions-gh-pages@v3
