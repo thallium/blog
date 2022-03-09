@@ -19,7 +19,7 @@ theme = "harbor"
     page = "/:filename/"
 
 [outputs]
-    section = ["JSON", "HTML"]
+    home = ["JSON", "HTML", "RSS"]
 
 [[params.nav]]
     identifier = "home"
