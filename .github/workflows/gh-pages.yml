@@ -53,7 +53,7 @@ jobs:
           -H "Content-Type: application/json" \
           -H "X-TYPESENSE-API-KEY: ${{ secrets.TYPESENSE_KEY }}" \
           -d '{
-              "name": "blog",
+              "name": "blog_chinese",
               "fields": [
                 {"name": "title", "type": "string", "locale": "zh" },
                 {"name": "contents", "type": "string", "locale": "zh" }
@@ -61,7 +61,7 @@ jobs:
           }'
           
           curl -H "X-TYPESENSE-API-KEY: ${{ secrets.TYPESENSE_KEY }}" \
-          -X POST --data-binary @./public/index.jsonl \
+          -X POST --data-binary @./public/zh-hans/index.jsonl \
           "https://typesense.tgc54.com/collections/blog_chinese/documents/import?action=create"
 
 
