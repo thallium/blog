@@ -1,8 +1,7 @@
 ---
 title: "Search Results"
-sitemap:
-  priority : 0.1
 type: "search"
+disable_comments: true
 ---
 
 {{< search blog >}}
