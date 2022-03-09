@@ -13,13 +13,21 @@ theme = "harbor"
 [Author]
   name = "Gengchen"
 
+[mediaTypes]
+  [mediaTypes.'application/jsonl']
+    suffixes = ['jsonl']
+[outputFormats]
+[outputFormats.JSONL]
+mediaType = "application/jsonl"
+isPlainText = true
+
 [permalinks]
     # post = "/:year/:month/:day/:filename/"
     post = "/:filename/"
     page = "/:filename/"
 
 [outputs]
-    home = ["JSON", "HTML", "RSS"]
+    home = ["JSONL", "HTML", "RSS"]
 
 [[params.nav]]
     identifier = "home"
