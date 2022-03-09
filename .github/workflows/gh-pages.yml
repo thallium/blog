@@ -31,10 +31,10 @@ jobs:
           -H "Content-Type: application/json" \
           -H "X-TYPESENSE-API-KEY: ${{ secrets.TYPESENSE_KEY }}" \
           -d '{
-              'name': 'blog',
-              'fields': [
-                {'name': 'title', 'type': 'string' },
-                {'name': 'contents', 'type': 'string' },
+              "name": "blog",
+              "fields": [
+                {"name": "title", "type": "string" },
+                {"name": "contents", "type": "string" }
               ]
           }'
           
