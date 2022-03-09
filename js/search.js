@@ -19,7 +19,7 @@ function search() {
     }
     let searchParameters = {
         'q'         : input,
-        'query_by'  : 'contents',
+        'query_by'  : 'contents, title',
     }
     client.collections(collection_name).documents().search(searchParameters).then((resp) => {
         // console.log(resp);
