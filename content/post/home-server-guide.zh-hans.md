@@ -58,3 +58,16 @@ https://certbot.eff.org/instructions?ws=apache&os=ubuntufocal
 ### Miniflux
 
 [docker compose部署](https://miniflux.app/docs/installation.html#docker)
+
+### Navidrome
+
+[docker-compose](https://www.navidrome.org/docs/installation/docker/)
+
+### qBittorrent(-nox)
+
+在服务器由于没有xorg所以装的是nox版本
+
+[安装教程](https://github.com/qbittorrent/qBittorrent/wiki/Running-qBittorrent-without-X-server-(WebUI-only,-systemd-service-set-up,-Ubuntu-15.04-or-newer)
+
+不知道为啥用局域网也访问不到，一种解决办法是利用ssh建立通道（[教程](https://rawsec.ml/en/archlinux-install-qbittorrent-nox-setup-webui/))，或者apache[反向代理](https://qbforums.shiki.hu/viewtopic.php?t=90)。
+
